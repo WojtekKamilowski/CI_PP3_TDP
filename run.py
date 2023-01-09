@@ -67,3 +67,15 @@ def update_worksheet(data, worksheet):
     print(f"{worksheet} worksheet updated successfully.\n")
 
 
+def main():
+    """
+    Run all program functions
+    """
+    data = get_loaded_data()
+    loaded_data = [int(num) for num in data]
+    update_worksheet(loaded_data, "loaded")
+   
+
+print("Welcome to Trailers Demand Planner")
+main()
+
