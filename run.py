@@ -19,14 +19,14 @@ def menu():
     Prints menu options
     """
     print("-----------------------------")
-    print("Select an option:\n")
-    print("0. Preview data")
-    print("1. Daily trailer forecast")
-    print("2. Add a new lane")
-    print("3. Delete a lane")
+    print("Options:\n")
+    print("1. Preview last loaded data\n")
+    print("2. Preview last planned data\n")
+    print("3. Preview last added_unused data\n")
+    print("4. Daily trailer forecast\n")
+    print("5. Add a new lane\n")
+    print("6. Delete a lane\n")
     print("-----------------------------")
-
-while
 
 # Daily trailer forecast based on Code Institute's walkthrough project Love Sandwiches
 
@@ -134,6 +134,8 @@ def calculate_planned_data(data):
 
     return new_planned_data
 
+# main
+
 def main():
     """
     Run all program functions
@@ -146,8 +148,39 @@ def main():
     loaded_column = get_last_5_entries_loaded()
     planned_data = calculate_planned_data(loaded_column)
     update_worksheet(planned_data, "planned")
-   
+
+
 
 print("Welcome to Trailers Demand Planner")
-main()
+
+def get_last_loaded():
+    """
+    
+    """
+    loaded = SHEET.worksheet("loaded")
+    
+    last_loaded_columns = []
+    for ind in range(1, 7):
+        last_loaded_column = loaded.col_values(ind)
+        last_loaded_columns.append(last_loaded_column)
+    
+    return last_loaded_columns 
+
+
+while True:
+    menu()
+    option = input("Please choose an option:\n")
+
+    if option == "1":
+        get_last_loaded()    
+    elif option == "4":
+        main()
+    else: 
+        print("Invalid Option, please try again")
+    
+
+    input("Press enter to continue.......\n")
+    
+
+
 
