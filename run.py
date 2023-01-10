@@ -67,6 +67,25 @@ def update_worksheet(data, worksheet):
     print(f"{worksheet} worksheet updated successfully.\n")
 
 
+def calculate_added_unused_data(loaded_row):
+    """
+    Compare loaded values with planned and calculate how many were added or unused for each lane.
+    It is defined as the loaded figure subtracted from the planned:
+    - Positive number indicates unused trailers
+    - Negative surplus indicates trailers ordered from haulier on the same day.
+    """
+    print("Calculating added_unused data...\n")
+    stock = SHEET.worksheet("planned").get_all_values()
+    planned_row = planned[-1]
+    
+    added_unused_data = []
+    for planned, loaded in zip(planned_row, loaded_row):
+        added_unused = int(planned) - loaded
+        added_unused_data.append(added_unused)
+    
+    return added_unused_data
+
+
 def main():
     """
     Run all program functions
@@ -74,6 +93,7 @@ def main():
     data = get_loaded_data()
     loaded_data = [int(num) for num in data]
     update_worksheet(loaded_data, "loaded")
+    new_added_unused_data = calculate_added_unused_data(loaded_data)
    
 
 print("Welcome to Trailers Demand Planner")
