@@ -86,6 +86,22 @@ def calculate_added_unused_data(loaded_row):
     return added_unused_data
 
 
+def get_last_5_entries_loaded():
+    """
+    Collects columns of data from loaded worksheet, collecging
+    the last 5 entries for each lane and returns the data
+    as a list of lists.
+    """
+    loaded = SHEET.worksheet("loaded")
+    
+    columns = []
+    for ind in range(1, 7):
+        column = loaded.col_values(ind)
+        columns.append(column[-5:])
+    
+    return columns 
+
+
 def main():
     """
     Run all program functions
