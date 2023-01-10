@@ -75,7 +75,7 @@ def calculate_added_unused_data(loaded_row):
     - Negative surplus indicates trailers ordered from haulier on the same day.
     """
     print("Calculating added_unused data...\n")
-    stock = SHEET.worksheet("planned").get_all_values()
+    planned = SHEET.worksheet("planned").get_all_values()
     planned_row = planned[-1]
     
     added_unused_data = []
