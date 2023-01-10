@@ -102,6 +102,22 @@ def get_last_5_entries_loaded():
     return columns 
 
 
+def calculate_planned_data(data):
+    """
+    Calculate the average planned for each lane, 
+    """
+    print("Calculating planned data...\n")
+    new_planned_data = []
+
+    for column in data:
+        int_column = [int(num) for num in column]
+        average = sum(int_column) / len(int_column)
+        planned_num = average
+        new_planned_data.append(round(planned_num))
+
+    return new_planned_data
+
+
 def main():
     """
     Run all program functions
@@ -110,6 +126,10 @@ def main():
     loaded_data = [int(num) for num in data]
     update_worksheet(loaded_data, "loaded")
     new_added_unused_data = calculate_added_unused_data(loaded_data)
+    update_worksheet(new_added_unused_data, "added_unused")
+    loaded_column = get_last_5_entries_loaded()
+    planned_data = calculate_planned_data(loaded_column)
+    update_worksheet(planned_data, "planned")
    
 
 print("Welcome to Trailers Demand Planner")
