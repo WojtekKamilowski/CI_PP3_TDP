@@ -72,7 +72,7 @@ def calculate_added_unused_data(loaded_row):
     Compare loaded values with planned and calculate how many were added or unused for each lane.
     It is defined as the loaded figure subtracted from the planned:
     - Positive number indicates unused trailers
-    - Negative surplus indicates trailers ordered from haulier on the same day.
+    - Negative surplus indicates trailers requested from haulier on the same day.
     """
     print("Calculating added_unused data...\n")
     planned = SHEET.worksheet("planned").get_all_values()
