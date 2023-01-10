@@ -12,6 +12,23 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('trailers_demand_planner')
 
+# Python Console Menu based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
+
+def menu():
+    """
+    Prints menu options
+    """
+    print("-----------------------------")
+    print("Select an option:\n")
+    print("0. Preview data")
+    print("1. Daily trailer forecast")
+    print("2. Add a new lane")
+    print("3. Delete a lane")
+    print("-----------------------------")
+
+while
+
+# Daily trailer forecast based on Code Institute's walkthrough project Love Sandwiches
 
 def get_loaded_data():
     """
@@ -23,7 +40,7 @@ def get_loaded_data():
     while True:        
         print("Please enter used equipment data from the last operations.")
         print("Data should be six numbers, separated by commas.")
-        print("Example: 10,20,30,40,50,60\n")
+        print("Example: 1,2,3,4,5,6\n")
 
         data_str = input("Enter your data here:\n")
         
@@ -116,7 +133,6 @@ def calculate_planned_data(data):
         new_planned_data.append(round(planned_num))
 
     return new_planned_data
-
 
 def main():
     """
