@@ -13,7 +13,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('trailers_demand_planner')
 
 # Python Console Menu based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
-
 def menu():
     """
     Prints menu options
@@ -30,8 +29,8 @@ def menu():
     print("0. Exit")
     print("-----------------------------")
 
-# Daily trailer forecast based on Code Institute's walkthrough project Love Sandwiches
 
+# Daily trailer forecast based on Code Institute's walkthrough project Love Sandwiches
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
@@ -123,7 +122,7 @@ def get_last_5_entries_loaded():
 
 def calculate_planned_data(data):
     """
-    Calculate the average planned for each lane, 
+    Calculate the average planned for each lane.
     """
     print("Calculating planned data...\n")
     new_planned_data = []
@@ -139,7 +138,7 @@ def calculate_planned_data(data):
 
 def daily_trailer_forecast():
     """
-    Run daily trailer forecast update program functions
+    Run daily trailer forecast update functions
     """
     data = get_loaded_data()
     loaded_data = [int(num) for num in data]
@@ -151,6 +150,7 @@ def daily_trailer_forecast():
     update_worksheet(planned_data, "planned")
 
 
+# Menu option 1 code
 def get_last_loaded():
     """
     Collects columns of data from loaded worksheet, collecting
@@ -165,9 +165,25 @@ def get_last_loaded():
         last_loaded_columns.append(last_loaded_column[-1:])
 
     last_loaded_columns_str = [''.join(x) for x in last_loaded_columns]
-    print(last_loaded_columns_str)
+    
+    return last_loaded_columns_str
 
 
+last_loaded_data = get_last_loaded()
+
+
+def get_last_loaded_values(data):
+    """
+    Return the last loaded numbers with the heading of each lane.
+    """
+    headings = SHEET.worksheet("loaded").get_all_values()[0]
+   
+    return {heading: data for heading, data in zip(headings, data)}
+
+last_loaded_values = get_last_loaded_values(last_loaded_data)
+
+
+# Menu option 2 code
 def get_last_planned():
     """
     Collects columns of data from planned worksheet, collecting
@@ -185,6 +201,7 @@ def get_last_planned():
     print(last_planned_columns_str)
 
 
+# Menu option 3 code
 def get_last_added_unused():
     """
     Collects columns of data from planned worksheet, collecting
@@ -204,13 +221,19 @@ def get_last_added_unused():
     print("- Positive number indicates unused trailers.\n")
     print("- Negative number indicates trailers requested from haulier on the same day.\n")
 
+
 def main():
+    """
+    Runs all program functions
+    """
+    # Menu loop based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
     while True:
         menu()
         option = input("Please choose an option:\n")
             
         if option == "1":
-            get_last_loaded()
+            print("Last time the following numbers of trailers were loaded:")
+            print(last_loaded_values)
         elif option == "2":
             get_last_planned()
         elif option == "3":
@@ -228,5 +251,5 @@ def main():
 
 main()
 
-
+# python3 run.py
 
