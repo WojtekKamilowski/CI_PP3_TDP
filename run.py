@@ -23,7 +23,7 @@ def menu():
     print("1. Preview last loaded data\n")
     print("2. Preview last planned data\n")
     print("3. Preview last added_unused data\n")
-    print("4. Daily trailer forecast\n")
+    print("4. Run daily trailer forecast\n")
     print("5. Add a new lane\n")
     print("6. Delete a lane\n")
     print("0. Exit")
