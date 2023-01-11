@@ -198,7 +198,22 @@ def get_last_planned():
         last_planned_columns.append(last_planned_column[-1:])
 
     last_planned_columns_str = [''.join(x) for x in last_planned_columns]
-    print(last_planned_columns_str)
+
+    return last_planned_columns_str
+
+
+last_planned_data = get_last_planned()
+
+
+def get_last_planned_values(data):
+    """
+    Return the last planned numbers with the heading of each lane.
+    """
+    headings = SHEET.worksheet("planned").get_all_values()[0]
+   
+    return {heading: data for heading, data in zip(headings, data)}
+
+last_planned_values = get_last_planned_values(last_planned_data)
 
 
 # Menu option 3 code
@@ -235,7 +250,8 @@ def main():
             print("Last time the following numbers of trailers were loaded:")
             print(last_loaded_values)
         elif option == "2":
-            get_last_planned()
+            print("Pre-order following number of trailers for next loading:")
+            print(last_planned_values)
         elif option == "3":
             get_last_added_unused()
         elif option == "4":
