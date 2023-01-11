@@ -90,7 +90,7 @@ def calculate_added_unused_data(loaded_row):
     Compare loaded values with planned and calculate how many were added or unused for each lane.
     It is defined as the loaded figure subtracted from the planned:
     - Positive number indicates unused trailers
-    - Negative surplus indicates trailers requested from haulier on the same day.
+    - Negative number indicates trailers requested from haulier on the same day.
     """
     print("Calculating added_unused data...\n")
     planned = SHEET.worksheet("planned").get_all_values()
@@ -204,6 +204,26 @@ def get_last_planned():
     print(last_planned_columns_str)
 
 
+def get_last_added_unused():
+    """
+    Collects columns of data from planned worksheet, collecting
+    the last entry for each lane and returns the data
+    as a list os strings.
+    """
+    added_unused = SHEET.worksheet("added_unused")
+    
+    last_added_unused_columns = []
+    for ind in range(1, 7):
+        last_added_unused_column = added_unused.col_values(ind)
+        last_added_unused_columns.append(last_added_unused_column[-1:])
+
+    last_added_unused_columns_str = [''.join(x) for x in last_added_unused_columns]
+    print(last_added_unused_columns_str)
+    print("")
+    print("- Positive number indicates unused trailers.\n")
+    print("- Negative number indicates trailers requested from haulier on the same day.\n")
+
+
 while True:
     menu()
     option = input("Please choose an option:\n")
@@ -211,7 +231,9 @@ while True:
     if option == "1":
         get_last_loaded()
     elif option == "2":
-        get_last_planned()    
+        get_last_planned()
+    elif option == "3":
+        get_last_added_unused()
     elif option == "4":
         main()
     elif option == "0":
