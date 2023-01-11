@@ -106,7 +106,7 @@ def calculate_added_unused_data(loaded_row):
 
 def get_last_5_entries_loaded():
     """
-    Collects columns of data from loaded worksheet, collecging
+    Collects columns of data from loaded worksheet, collecting
     the last 5 entries for each lane and returns the data
     as a list of lists.
     """
@@ -151,12 +151,13 @@ def main():
     update_worksheet(planned_data, "planned")
 
 
-
 print("Welcome to Trailers Demand Planner")
 
 def get_last_loaded():
     """
-    
+    Collects columns of data from loaded worksheet, collecting
+    the last entry for each lane and returns the data
+    as a list os strings.
     """
     loaded = SHEET.worksheet("loaded")
     
@@ -169,12 +170,48 @@ def get_last_loaded():
     print(last_loaded_columns_str)
 
 
+def get_last_loaded():
+    """
+    Collects columns of data from loaded worksheet, collecting
+    the last entry for each lane and returns the data
+    as a list os strings.
+    """
+    loaded = SHEET.worksheet("loaded")
+    
+    last_loaded_columns = []
+    for ind in range(1, 7):
+        last_loaded_column = loaded.col_values(ind)
+        last_loaded_columns.append(last_loaded_column[-1:])
+
+    last_loaded_columns_str = [''.join(x) for x in last_loaded_columns]
+    print(last_loaded_columns_str)
+
+
+def get_last_planned():
+    """
+    Collects columns of data from planned worksheet, collecting
+    the last entry for each lane and returns the data
+    as a list os strings.
+    """
+    planned = SHEET.worksheet("planned")
+    
+    last_planned_columns = []
+    for ind in range(1, 7):
+        last_planned_column = planned.col_values(ind)
+        last_planned_columns.append(last_planned_column[-1:])
+
+    last_planned_columns_str = [''.join(x) for x in last_planned_columns]
+    print(last_planned_columns_str)
+
+
 while True:
     menu()
     option = input("Please choose an option:\n")
         
     if option == "1":
-        get_last_loaded()    
+        get_last_loaded()
+    elif option == "2":
+        get_last_planned()    
     elif option == "4":
         main()
     elif option == "0":
