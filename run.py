@@ -18,6 +18,7 @@ def menu():
     """
     Prints menu options
     """
+    print("TDP - Trailers Demand Planner")
     print("-----------------------------")
     print("Options:\n")
     print("1. Preview last loaded data\n")
@@ -135,11 +136,10 @@ def calculate_planned_data(data):
 
     return new_planned_data
 
-# main
 
-def main():
+def daily_trailer_forecast():
     """
-    Run all program functions
+    Run daily trailer forecast update program functions
     """
     data = get_loaded_data()
     loaded_data = [int(num) for num in data]
@@ -149,25 +149,6 @@ def main():
     loaded_column = get_last_5_entries_loaded()
     planned_data = calculate_planned_data(loaded_column)
     update_worksheet(planned_data, "planned")
-
-
-print("Welcome to Trailers Demand Planner")
-
-def get_last_loaded():
-    """
-    Collects columns of data from loaded worksheet, collecting
-    the last entry for each lane and returns the data
-    as a list os strings.
-    """
-    loaded = SHEET.worksheet("loaded")
-    
-    last_loaded_columns = []
-    for ind in range(1, 7):
-        last_loaded_column = loaded.col_values(ind)
-        last_loaded_columns.append(last_loaded_column[-1:])
-
-    last_loaded_columns_str = [''.join(x) for x in last_loaded_columns]
-    print(last_loaded_columns_str)
 
 
 def get_last_loaded():
@@ -223,28 +204,29 @@ def get_last_added_unused():
     print("- Positive number indicates unused trailers.\n")
     print("- Negative number indicates trailers requested from haulier on the same day.\n")
 
-
-while True:
-    menu()
-    option = input("Please choose an option:\n")
+def main():
+    while True:
+        menu()
+        option = input("Please choose an option:\n")
+            
+        if option == "1":
+            get_last_loaded()
+        elif option == "2":
+            get_last_planned()
+        elif option == "3":
+            get_last_added_unused()
+        elif option == "4":
+            daily_trailer_forecast()
+        elif option == "0":
+            print("Program closed")
+            break        
+        else:
+            print("Invalid Option, please try again")
         
-    if option == "1":
-        get_last_loaded()
-    elif option == "2":
-        get_last_planned()
-    elif option == "3":
-        get_last_added_unused()
-    elif option == "4":
-        main()
-    elif option == "0":
-        print("Program closed")
-        break        
-    else:
-        print("Invalid Option, please try again")
-    
-    input("Press enter to continue.......\n")
+        input("Press enter to continue.......\n")
 
-    
+
+main()
 
 
 
