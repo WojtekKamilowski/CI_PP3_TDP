@@ -231,10 +231,21 @@ def get_last_added_unused():
         last_added_unused_columns.append(last_added_unused_column[-1:])
 
     last_added_unused_columns_str = [''.join(x) for x in last_added_unused_columns]
-    print(last_added_unused_columns_str)
-    print("")
-    print("- Positive number indicates unused trailers.\n")
-    print("- Negative number indicates trailers requested from haulier on the same day.\n")
+    return last_added_unused_columns_str
+
+
+last_added_unused_data = get_last_added_unused()
+
+
+def get_last_added_unused_values(data):
+    """
+    Return the last added_unused numbers with the heading of each lane.
+    """
+    headings = SHEET.worksheet("added_unused").get_all_values()[0]
+   
+    return {heading: data for heading, data in zip(headings, data)}
+
+last_added_unused_values = get_last_added_unused_values(last_added_unused_data)
 
 
 def main():
@@ -253,7 +264,10 @@ def main():
             print("Pre-order following number of trailers for next loading:")
             print(last_planned_values)
         elif option == "3":
-            get_last_added_unused()
+            print("Following numbers of trailer were unused or ordered at the day of loading:\n")
+            print("- Positive number indicates unused trailers.\n")
+            print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
+            print(last_added_unused_values)
         elif option == "4":
             daily_trailer_forecast()
         elif option == "0":
