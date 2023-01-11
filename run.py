@@ -26,6 +26,7 @@ def menu():
     print("4. Daily trailer forecast\n")
     print("5. Add a new lane\n")
     print("6. Delete a lane\n")
+    print("0. Exit")
     print("-----------------------------")
 
 # Daily trailer forecast based on Code Institute's walkthrough project Love Sandwiches
@@ -162,24 +163,28 @@ def get_last_loaded():
     last_loaded_columns = []
     for ind in range(1, 7):
         last_loaded_column = loaded.col_values(ind)
-        last_loaded_columns.append(last_loaded_column)
-    
-    return last_loaded_columns 
+        last_loaded_columns.append(last_loaded_column[-1:])
+
+    last_loaded_columns_str = [''.join(x) for x in last_loaded_columns]
+    print(last_loaded_columns_str)
 
 
 while True:
     menu()
     option = input("Please choose an option:\n")
-
+        
     if option == "1":
         get_last_loaded()    
     elif option == "4":
         main()
-    else: 
+    elif option == "0":
+        print("Program closed")
+        break        
+    else:
         print("Invalid Option, please try again")
     
-
     input("Press enter to continue.......\n")
+
     
 
 
