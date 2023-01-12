@@ -262,13 +262,13 @@ def id_unused_haulage_costs():
     """
     added_unused = SHEET.worksheet("added_unused")
 
-    added_unused_columns = []
+    unused_haulage_columns = []
 
     for ind in range(1, 7):
-        added_unused_column = added_unused.col_values(ind)
-        added_unused_columns.append(added_unused_column)
+        unused_haulage_column = added_unused.col_values(ind) 
+        unused_haulage_columns.append(unused_haulage_column[-8:])
 
-    print(added_unused_columns)
+    print(unused_haulage_columns)
 
 """
 Main 
