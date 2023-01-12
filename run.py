@@ -12,6 +12,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('trailers_demand_planner')
 
+
+import heapq
+
 # Python Console Menu based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
 def menu():
     """
@@ -266,10 +269,11 @@ def id_unused_haulage_costs():
 
     for ind in range(1, 7):
         unused_haulage_column = added_unused.col_values(ind) 
-        unused_haulage_columns.append(unused_haulage_column[-8:])
+        unused_haulage_columns.append(unused_haulage_column[1:])
+    
+    int_unused_haulage_columns = ([[int(float(j)) for j in i] for i in unused_haulage_columns])
 
-    print(unused_haulage_columns)
-
+    
 """
 Main 
 """
