@@ -32,8 +32,9 @@ def menu():
     print("0. Exit")
     print("-----------------------------")
 
-
-# Daily trailer forecast based on Code Institute's walkthrough project Love Sandwiches
+"""
+Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
+"""
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
@@ -153,7 +154,10 @@ def daily_trailer_forecast():
     update_worksheet(planned_data, "planned")
 
 
-# Menu option 1 code
+"""
+Remaining menu options 
+"""
+# Menu option 1
 def get_last_loaded():
     """
     Collects columns of data from loaded worksheet, collecting
@@ -186,7 +190,7 @@ def get_last_loaded_values(data):
 last_loaded_values = get_last_loaded_values(last_loaded_data)
 
 
-# Menu option 2 code
+# Menu option 2
 def get_last_planned():
     """
     Collects columns of data from planned worksheet, collecting
@@ -219,7 +223,7 @@ def get_last_planned_values(data):
 last_planned_values = get_last_planned_values(last_planned_data)
 
 
-# Menu option 3 code
+# Menu option 3
 def get_last_added_unused():
     """
     Collects columns of data from planned worksheet, collecting
@@ -251,6 +255,24 @@ def get_last_added_unused_values(data):
 last_added_unused_values = get_last_added_unused_values(last_added_unused_data)
 
 
+# Menu option 4
+def id_unused_haulage_costs():
+    """
+
+    """
+    added_unused = SHEET.worksheet("added_unused")
+
+    added_unused_columns = []
+
+    for ind in range(1, 7):
+        added_unused_column = added_unused.col_values(ind)
+        added_unused_columns.append(added_unused_column)
+
+    print(added_unused_columns)
+
+"""
+Main 
+"""
 def main():
     """
     Runs all program functions
@@ -271,6 +293,8 @@ def main():
             print("- Positive number indicates unused trailers.\n")
             print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
             print(last_added_unused_values)
+        elif option == "4":
+            id_unused_haulage_costs()
         elif option == "9":
             daily_trailer_forecast()
             break
