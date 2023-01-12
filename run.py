@@ -23,9 +23,9 @@ def menu():
     print("1. Preview last loaded data\n")
     print("2. Preview last planned data\n")
     print("3. Preview last added_unused data\n")
-    print("4. Run daily trailer forecast\n")
-    print("5. Add a new lane\n")
-    print("6. Delete a lane\n")
+    print("4. Add a new lane\n")
+    print("5. Delete a lane\n")
+    print("9. Run daily trailer forecast & exit\n")
     print("0. Exit")
     print("-----------------------------")
 
@@ -261,22 +261,23 @@ def main():
             print("Last time the following numbers of trailers were loaded:")
             print(last_loaded_values)
         elif option == "2":
-            print("Pre-order following number of trailers for next loading:")
+            print("If not already done, please remember to pre-order following number of trailers for next loading:")
             print(last_planned_values)
         elif option == "3":
             print("Following numbers of trailer were unused or ordered at the day of loading:\n")
             print("- Positive number indicates unused trailers.\n")
             print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
             print(last_added_unused_values)
-        elif option == "4":
+        elif option == "9":
             daily_trailer_forecast()
+            break
         elif option == "0":
             print("Program closed")
-            break        
+            break
         else:
             print("Invalid Option, please try again")
         
-        input("Press enter to continue.......\n")
+        input("Press enter to return to the menu\n")
 
 
 main()
