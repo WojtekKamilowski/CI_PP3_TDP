@@ -259,7 +259,7 @@ last_added_unused_values = get_last_added_unused_values(last_added_unused_data)
 
 
 # Menu option 4
-def id_unused_haulage_costs():
+def added_unused_values():
     """
 
     """
@@ -271,9 +271,56 @@ def id_unused_haulage_costs():
         unused_haulage_column = added_unused.col_values(ind) 
         unused_haulage_columns.append(unused_haulage_column[1:])
     
+    # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python 
     int_unused_haulage_columns = ([[int(float(j)) for j in i] for i in unused_haulage_columns])
-
     
+    def flatten_list(_2d_list):
+        """
+        Taken from https://stackabuse.com/python-how-to-flatten-list-of-lists/
+        """
+        flat_list = []
+        
+        for element in _2d_list:
+            if type(element) is list:
+                
+                for item in element:
+                    flat_list.append(item)
+            else:
+                flat_list.append(element)
+        return flat_list
+
+    return flatten_list(int_unused_haulage_columns)
+
+
+added_unused_values = added_unused_values()
+
+
+def unused_haulage_costs():
+    """
+
+    """
+    cancellation_charge = int(input("Please confirm estimated cancellation charge per trailer(EUR), example: 250\n"))
+
+    # from https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
+    unused_haulage_values = list(filter(lambda x:(x > 0),added_unused_values)) 
+
+    unused_haulage_sum = sum(unused_haulage_values)
+
+    unused_haulage_costs = unused_haulage_sum * cancellation_charge
+
+    # from https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
+    int_last_added_unused_data = list(map(int, last_added_unused_data))
+
+    last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
+
+    last_unused_sum = sum(last_unused_data)
+
+    last_unused_cost = last_unused_sum * cancellation_charge
+    
+    print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
+    print(f"For most recent operations we planned {last_unused_sum} unused trailers, cancelling them generated costs of {last_unused_cost} EUR.\n")
+    
+
 """
 Main 
 """
@@ -298,7 +345,7 @@ def main():
             print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
             print(last_added_unused_values)
         elif option == "4":
-            id_unused_haulage_costs()
+            unused_haulage_costs()
         elif option == "9":
             daily_trailer_forecast()
             break
