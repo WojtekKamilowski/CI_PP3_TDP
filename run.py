@@ -64,7 +64,7 @@ def get_loaded_data():
 
 def validate_data(values):
     """
-    inside the try, coverts all string values into integers.
+    Inside the try, converts all string values into integers.
     Raise ValueError if strings cannot be converted into int,
     or if there aren't exactly 6 values.
     """
@@ -157,12 +157,9 @@ def daily_trailer_forecast():
     update_worksheet(planned_data, "planned")
 
 
-"""
-Remaining menu options 
-"""
-# Menu option 1
 def get_last_loaded():
     """
+    For Menu option 1.
     Collects columns of data from loaded worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
@@ -184,6 +181,7 @@ last_loaded_data = get_last_loaded()
 
 def get_last_loaded_values(data):
     """
+    For Menu option 1.
     Return the last loaded numbers with the heading of each lane.
     """
     headings = SHEET.worksheet("loaded").get_all_values()[0]
@@ -193,9 +191,9 @@ def get_last_loaded_values(data):
 last_loaded_values = get_last_loaded_values(last_loaded_data)
 
 
-# Menu option 2
 def get_last_planned():
     """
+    For Menu option 2.
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
@@ -217,6 +215,7 @@ last_planned_data = get_last_planned()
 
 def get_last_planned_values(data):
     """
+    For Menu option 2.
     Return the last planned numbers with the heading of each lane.
     """
     headings = SHEET.worksheet("planned").get_all_values()[0]
@@ -226,9 +225,9 @@ def get_last_planned_values(data):
 last_planned_values = get_last_planned_values(last_planned_data)
 
 
-# Menu option 3
 def get_last_added_unused():
     """
+    For Menu option 3.
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
@@ -249,6 +248,7 @@ last_added_unused_data = get_last_added_unused()
 
 def get_last_added_unused_values(data):
     """
+    For Menu option 3.
     Return the last added_unused numbers with the heading of each lane.
     """
     headings = SHEET.worksheet("added_unused").get_all_values()[0]
@@ -258,10 +258,12 @@ def get_last_added_unused_values(data):
 last_added_unused_values = get_last_added_unused_values(last_added_unused_data)
 
 
-# Menu option 4
 def added_unused_values():
     """
-
+    For Menu option 4.
+    Access data from added_unused worksheet, 
+    convert it to list of lists of ints,
+    flatten the list of lists to one list of ints.
     """
     added_unused = SHEET.worksheet("added_unused")
 
@@ -277,6 +279,7 @@ def added_unused_values():
     def flatten_list(_2d_list):
         """
         Taken from https://stackabuse.com/python-how-to-flatten-list-of-lists/
+        Returns single list of ints from added_unused_values worksheet.
         """
         flat_list = []
         
@@ -297,7 +300,15 @@ added_unused_values = added_unused_values()
 
 def unused_haulage_costs():
     """
-
+    For Menu option 4.
+    Run a while loop to collect a valid data with estimated cancellation charge
+    per trailer from the user via the terminal, which must be a number
+    or adds 250 as data for cancellation charge value if the input is empty.
+    The loop will repeatedly request data, until it is valid.
+    Filters data from entire added_unused worksheet and only recent row to collect
+    only positive numbers, adds all positive numbers, and multiplies
+    the sum by the entered/default amount for cancellation charge per trailer
+    to calculate the cancellation costs.
     """
     while True:
         cancellation_charge = input("Please confirm estimated cancellation charge per trailer(EUR), example: 250\n")
@@ -312,14 +323,14 @@ def unused_haulage_costs():
         else:
             True
 
-    # from https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
+    # From https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
     unused_haulage_values = list(filter(lambda x:(x > 0),added_unused_values)) 
 
     unused_haulage_sum = sum(unused_haulage_values)
 
     unused_haulage_costs = unused_haulage_sum * int(cancellation_charge)
 
-    # from https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
+    # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
     int_last_added_unused_data = list(map(int, last_added_unused_data))
 
     last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
@@ -334,7 +345,9 @@ def unused_haulage_costs():
 
 def validate_charge(values):
     """
-    Raise ValueError if strings cannot be converted into int.
+    Inside the try, converts string value into integers.
+    Raise ValueError if string cannot be converted into int.
+    Based on Love Sandwiches by Code Institute: https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/blob/master/05-deployment/01-deployment-part-1/run.py
     """
     try: 
         [int(values)]
@@ -345,9 +358,7 @@ def validate_charge(values):
     
     return True
 
-"""
-Main 
-"""
+
 def main():
     """
     Runs all program functions
