@@ -299,14 +299,22 @@ def unused_haulage_costs():
     """
 
     """
-    cancellation_charge = int(input("Please confirm estimated cancellation charge per trailer(EUR), example: 250\n"))
+    while True:
+        cancellation_charge = input("Please confirm estimated cancellation charge per trailer(EUR), example: 250\n")
+
+        if validate_charge(cancellation_charge):
+            print(f"Cancellation charge entered {cancellation_charge} EUR per trailer")
+            break
+        else:
+            True
+
 
     # from https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
     unused_haulage_values = list(filter(lambda x:(x > 0),added_unused_values)) 
 
     unused_haulage_sum = sum(unused_haulage_values)
 
-    unused_haulage_costs = unused_haulage_sum * cancellation_charge
+    unused_haulage_costs = unused_haulage_sum * int(cancellation_charge)
 
     # from https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
     int_last_added_unused_data = list(map(int, last_added_unused_data))
@@ -315,12 +323,25 @@ def unused_haulage_costs():
 
     last_unused_sum = sum(last_unused_data)
 
-    last_unused_cost = last_unused_sum * cancellation_charge
+    last_unused_cost = last_unused_sum * int(cancellation_charge)
     
     print("")
     print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
     print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
     
+
+def validate_charge(values):
+    """
+    Raise ValueError if strings cannot be converted into int.
+    """
+    try: 
+        [int(values)]
+        
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again. \n")
+        return False
+    
+    return True
 
 """
 Main 
