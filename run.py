@@ -302,12 +302,15 @@ def unused_haulage_costs():
     while True:
         cancellation_charge = input("Please confirm estimated cancellation charge per trailer(EUR), example: 250\n")
 
+        if cancellation_charge == "":
+            print("No value enetered, default cancellation charge value in use\n")
+            cancellation_charge = "250"          
+
         if validate_charge(cancellation_charge):
-            print(f"Cancellation charge entered {cancellation_charge} EUR per trailer")
+            print(f"Cancellation charge per trailer: {cancellation_charge} EUR\n")
             break
         else:
             True
-
 
     # from https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
     unused_haulage_values = list(filter(lambda x:(x > 0),added_unused_values)) 
@@ -325,7 +328,6 @@ def unused_haulage_costs():
 
     last_unused_cost = last_unused_sum * int(cancellation_charge)
     
-    print("")
     print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
     print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
     
