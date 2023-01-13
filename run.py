@@ -26,7 +26,7 @@ def menu():
     print("1. Preview last loaded data\n")
     print("2. Preview last planned data\n")
     print("3. Preview last added_unused data\n")
-    print("4. Identify lanes generating unused haulage costs\n")
+    print("4. Run unused haulage costs report\n")
     print("5. Add a new lane\n")
     print("6. Delete a lane\n")
     print("7. Share Worksheet via email\n")
@@ -317,8 +317,9 @@ def unused_haulage_costs():
 
     last_unused_cost = last_unused_sum * cancellation_charge
     
+    print("")
     print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
-    print(f"For most recent operations we planned {last_unused_sum} unused trailers, cancelling them generated costs of {last_unused_cost} EUR.\n")
+    print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
     
 
 """
