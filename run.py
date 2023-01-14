@@ -12,15 +12,26 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('trailers_demand_planner')
 
+def logo():
+    """
+    Display Program logo
+    Based on https://github.com/aleksandracodes/CI_PP3_Connect4/blob/main/run.py
+    """
+    print("____________________________________________________")
+    print("|                                                   |")
+    print("|            TRAILERS DEMAND PLANNER                |")
+    print("|                                                   |")
+    print("|___________________________________________________|")
+    print(" ___    ___    ___                          |")
+    print("/ _ \  / _ \  / _ \                         |")
+    print("|(_) | |(_) | |(_) |                        |")
+    print("\___/  \___/  \___/                         |")
 
-import heapq
-
-# Python Console Menu based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
 def menu():
     """
     Prints menu options
+    Based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
     """
-    print("TDP - Trailers Demand Planner")
     print("-----------------------------")
     print("Options:\n")
     print("1. Preview last loaded data\n")
@@ -29,8 +40,8 @@ def menu():
     print("4. Run unused haulage costs report\n")
     print("5. Add a new lane\n")
     print("6. Delete a lane\n")
-    print("7. Share Worksheet via email\n")
-    print("8. Clear last data & exit\n")
+    print("7. Clear LAST data & exit\n")
+    print("8. Clear ALL data & exit\n")
     print("9. Run daily trailer forecast & exit\n")
     print("0. Exit")
     print("-----------------------------")
@@ -365,6 +376,7 @@ def main():
     """
     # Menu loop based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
     while True:
+        logo()
         menu()
         option = input("Please choose an option:\n")
             
