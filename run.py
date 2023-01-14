@@ -14,7 +14,7 @@ SHEET = GSPREAD_CLIENT.open('trailers_demand_planner')
 
 def logo():
     """
-    Display Program logo
+    Prints program logo
     Based on https://github.com/aleksandracodes/CI_PP3_Connect4/blob/main/run.py
     """
     print("____________________________________________________")
@@ -156,7 +156,8 @@ def calculate_planned_data(data):
 
 def daily_trailer_forecast():
     """
-    Run daily trailer forecast update functions
+    For Menu option 9.
+    Runs daily trailer forecast update functions
     """
     data = get_loaded_data()
     loaded_data = [int(num) for num in data]
@@ -370,6 +371,32 @@ def validate_charge(values):
     return True
 
 
+def request_new_lane():
+    print("Lane name should be in following format: loading town, country code->unloading town, country code")
+    print("Example: Cork, IE->Dublin, IE")
+    lane = input("Please enter a new lane name:")    
+
+    return lane
+
+def add_lane(lane):
+    """
+    
+    """
+    first_row_loaded = len(SHEET.worksheet("loaded").row_values(1))
+    loaded_column = first_row_loaded+1    
+    SHEET.worksheet("loaded").update_cell(1, loaded_column, lane)
+
+    first_row_planned = len(SHEET.worksheet("planned").row_values(1))
+    planned_column = first_row_planned+1    
+    SHEET.worksheet("planned").update_cell(1, planned_column, lane)
+
+    first_row_added_unused = len(SHEET.worksheet("added_unused").row_values(1))
+    added_unused_column = first_row_added_unused+1    
+    SHEET.worksheet("added_unused").update_cell(1, added_unused_column, lane)
+
+    print(f"Lane '{lane}' has been added successfully.\n")
+
+
 def main():
     """
     Runs all program functions
@@ -393,6 +420,9 @@ def main():
             print(last_added_unused_values)
         elif option == "4":
             unused_haulage_costs()
+        elif option == "5":
+            lane = request_new_lane()
+            add_lane(lane)
         elif option == "9":
             daily_trailer_forecast()
             break
