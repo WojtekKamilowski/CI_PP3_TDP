@@ -450,6 +450,16 @@ def delete_lane():
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
 
 
+def delete_last_data(worksheet):
+    """
+    For Menu option 7.
+    From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on
+    Identifies last row index & deletes data from it.
+    """
+    last_row = len(worksheet.col_values(1))
+    worksheet.delete_rows(last_row)
+    
+
 def main():
     """
     Runs all program functions
@@ -479,6 +489,15 @@ def main():
         elif option == "6":
             lane_names()
             delete_lane()
+        elif option == "7":
+            delete_last_data(LOADED)
+            delete_last_data(PLANNED)
+            delete_last_data(ADDED_UNUSED)
+            print("Last data from all worksheets deleted")
+            break
+        elif option == "8":
+            print("you want to clear ALL data & exit\n")
+            break
         elif option == "9":
             daily_trailer_forecast()
             break
