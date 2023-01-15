@@ -417,50 +417,20 @@ def delete_lane():
     """
     Asks for index number of the lane to be deleted by the user.
     Confirms if the user wants to delete the lane with the chosen index number.
-    Deletes the lane from all 3 worksheets if confirmed or breaks the loop if user does not confirm.
+    Deletes the lane from all 3 worksheets if confirmed or breaks the loop if the user does not confirm.
     """
     print("Review the lanes to choose a lane to be deleted by entering its index (from the left the index number of the first one is 1 :")
     lane_index = int(input("Please enter index number, example: 1:\n"))
-
-    def remove_lane_planned():
-    spreadsheetId = "your-spreadsheet-id"
-    sheetId = "id-of-sheet-to-delete-column-from"
-
-    sh = client.open_by_key(spreadsheetId)
-
-    request = {
-        "requests": [
-            {
-                "deleteDimension": {
-                    "range": {
-                        "sheetId": sheetId,
-                        "dimension": "COLUMNS",
-                        "startIndex": 0,
-                        "endIndex": 1
-                    }
-                }
-            }
-        ]
-    }
-    result = sh.batch_update(request)
 
     while True:
         print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
         confirm_index = input("yes(y) / no(n):  \n")
 
         if confirm_index == "yes" or confirm_index == "y":
-
-            
-            # From https://docs.gspread.org/en/latest/user-guide.html
-
-            #print("Updating loaded worksheet...")
-            #loaded_column_to_delete = LOADED.col_values(lane_index)
-            #loaded_column_to_delete.append_row("")
-            
-            #for row in range(1, 30):                
-                # SHEET.worksheet("loaded").update_cell(row, lane_index, '') 
-            # SHEET.worksheet("planned").update([lane_index, 99999], '') 
-            # SHEET.worksheet("added_unused").update([lane_index, 99999], '')
+            # From https://stackoverflow.com/questions/61213417/delete-remove-column-in-google-sheet-over-gspread-python-like-sheet-delete-row#:~:text=There%20is%20no%20method%20in,this%20with%20a%20batch%20update.
+            LOADED.delete_columns(lane_index)
+            PLANNED.delete_columns(lane_index)
+            ADDED_UNUSED.delete_columns(lane_index)
             print(f"Lane index: {lane_index} has been deleted successfully\n") 
             break
         elif confirm_index == "no" or confirm_index == "n":
