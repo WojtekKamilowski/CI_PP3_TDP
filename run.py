@@ -379,7 +379,7 @@ def request_new_lane():
     """
     print("Lane name should be in following format: loading town, country code->unloading town, country code")
     print("Example: Cork, IE->Dublin, IE")
-    lane = input("Please enter a new lane name:")    
+    lane = input("Please enter a new lane name:\n")    
 
     return lane
 
