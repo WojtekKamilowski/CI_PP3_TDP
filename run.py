@@ -372,6 +372,10 @@ def validate_charge(values):
 
 
 def request_new_lane():
+    """
+    For Menu option 5.
+    Requests name of a new lane to be added to the sheet by the user.
+    """
     print("Lane name should be in following format: loading town, country code->unloading town, country code")
     print("Example: Cork, IE->Dublin, IE")
     lane = input("Please enter a new lane name:")    
@@ -380,7 +384,9 @@ def request_new_lane():
 
 def add_lane(lane):
     """
-    
+    For Menu option 5.
+    Based on https://stackoverflow.com/questions/60495748/append-value-to-column-in-gspread
+    Adds entered by the user lane to all 3 worksheets.
     """
     first_row_loaded = len(SHEET.worksheet("loaded").row_values(1))
     loaded_column = first_row_loaded+1    
