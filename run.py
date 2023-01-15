@@ -406,8 +406,33 @@ def lane_names():
 
     """
     headings = SHEET.worksheet("planned").get_all_values()[0]
+    print("Following lanes are planned for next loading:\n")
     print(headings)
+    print("")
 
+def delete_lane():
+    """
+
+    """
+    print("Choose a lane to be deleted by entering its index (from left first one the index number is 1:")
+    lane_index = input("Please enter index number, example: 1:\n")
+
+    while True:
+        print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
+        confirm_index = input("yes / no:  \n")
+
+        if confirm_index == "yes":
+            break
+        elif confirm_index == "no":
+            print("Returning to the menu")
+            main()
+        else:
+            print("Invalid input, please type yes or no")
+
+    print("You really want to delete it")
+
+    #.update_cell(1, 2, '') https://docs.gspread.org/en/latest/user-guide.html
+    
 
 def main():
     """
@@ -438,6 +463,7 @@ def main():
         elif option == "6":
             print("You want to remove a lane")
             lane_names()
+            delete_lane()
         elif option == "9":
             daily_trailer_forecast()
             break
