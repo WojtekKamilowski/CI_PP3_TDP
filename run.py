@@ -46,9 +46,24 @@ def menu():
     print("0. Exit")
     print("-----------------------------")
 
-"""
-Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
-"""
+def flatten_list(_2d_list):
+        """
+        Taken from https://stackabuse.com/python-how-to-flatten-list-of-lists/
+        Flattens list of lists to a single list.
+        """
+        flat_list = []
+        
+        for element in _2d_list:
+            if type(element) is list:
+                
+                for item in element:
+                    flat_list.append(item)
+            else:
+                flat_list.append(element)
+        return flat_list
+
+
+# Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
@@ -288,22 +303,6 @@ def added_unused_values():
     # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python 
     int_unused_haulage_columns = ([[int(float(j)) for j in i] for i in unused_haulage_columns])
     
-    def flatten_list(_2d_list):
-        """
-        Taken from https://stackabuse.com/python-how-to-flatten-list-of-lists/
-        Returns single list of ints from added_unused_values worksheet.
-        """
-        flat_list = []
-        
-        for element in _2d_list:
-            if type(element) is list:
-                
-                for item in element:
-                    flat_list.append(item)
-            else:
-                flat_list.append(element)
-        return flat_list
-
     return flatten_list(int_unused_haulage_columns)
 
 
@@ -402,6 +401,13 @@ def add_lane(lane):
 
     print(f"Lane '{lane}' has been added successfully.\n")
 
+def lane_names():
+    """
+
+    """
+    headings = SHEET.worksheet("planned").get_all_values()[0]
+    print(headings)
+
 
 def main():
     """
@@ -429,6 +435,9 @@ def main():
         elif option == "5":
             lane = request_new_lane()
             add_lane(lane)
+        elif option == "6":
+            print("You want to remove a lane")
+            lane_names()
         elif option == "9":
             daily_trailer_forecast()
             break
