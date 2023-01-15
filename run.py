@@ -82,8 +82,7 @@ def get_loaded_data():
         data_str = input("Enter your data here:\n")
         
         loaded_data = data_str.split(",")
-        validate_data(loaded_data)
-
+        
         if validate_data(loaded_data):
             print("Data is valid!")
             break
@@ -331,7 +330,7 @@ def unused_haulage_costs():
             print("No value enetered, default cancellation charge value in use\n")
             cancellation_charge = "250"          
 
-        if validate_charge(cancellation_charge):
+        if validate_number(cancellation_charge):
             print(f"Cancellation charge per trailer: {cancellation_charge} EUR\n")
             break
         else:
@@ -357,14 +356,14 @@ def unused_haulage_costs():
     print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
     
 
-def validate_charge(values):
+def validate_number(number):
     """
-    Inside the try, converts string value into integers.
+    Inside the try, converts string value into integer.
     Raise ValueError if string cannot be converted into int.
     Based on Love Sandwiches by Code Institute: https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/blob/master/05-deployment/01-deployment-part-1/run.py
     """
     try: 
-        [int(values)]
+        [int(number)]
         
     except ValueError as e:
         print(f"Invalid data: {e}, please try again. \n")
@@ -404,8 +403,10 @@ def add_lane(lane):
 
     print(f"Lane '{lane}' has been added successfully.\n")
 
+
 def lane_names():
     """
+    For Menu option 6.
     Prints lane names that are planned for next loading
     """
     headings = SHEET.worksheet("planned").get_all_values()[0]
@@ -415,30 +416,39 @@ def lane_names():
 
 def delete_lane():
     """
+    For Menu option 6.
     Asks for index number of the lane to be deleted by the user.
     Confirms if the user wants to delete the lane with the chosen index number.
     Deletes the lane from all 3 worksheets if confirmed or breaks the loop if the user does not confirm.
     """
-    print("Review the lanes to choose a lane to be deleted by entering its index (from the left the index number of the first one is 1 :")
-    lane_index = int(input("Please enter index number, example: 1:\n"))
+    while True:
+        print("Review the lanes to choose a lane to be deleted by entering its index (from the left the index number of the first one is 1 :")
+        lane_index = input("Please enter index number, example: 1:\n")
 
+        if validate_number(lane_index):
+            print(f"Selected lane index: {lane_index}")
+            break            
+        else:
+            True
     while True:
         print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
-        confirm_index = input("yes(y) / no(n):  \n")
+        confirm_index = input(f"yes(y) / no(n):\n")   
+
+        lane_index_int = int(lane_index)
 
         if confirm_index == "yes" or confirm_index == "y":
             # From https://stackoverflow.com/questions/61213417/delete-remove-column-in-google-sheet-over-gspread-python-like-sheet-delete-row#:~:text=There%20is%20no%20method%20in,this%20with%20a%20batch%20update.
-            LOADED.delete_columns(lane_index)
-            PLANNED.delete_columns(lane_index)
-            ADDED_UNUSED.delete_columns(lane_index)
+            LOADED.delete_columns(lane_index_int)
+            PLANNED.delete_columns(lane_index_int)
+            ADDED_UNUSED.delete_columns(lane_index_int)
             print(f"Lane index: {lane_index} has been deleted successfully\n") 
-            break
+            break    
         elif confirm_index == "no" or confirm_index == "n":
             print(f"Deleting lane index number: {lane_index} has been stopped")
             break
         else:
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
-   
+
 
 def main():
     """
