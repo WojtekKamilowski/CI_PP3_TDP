@@ -11,6 +11,9 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('trailers_demand_planner')
+LOADED = SHEET.worksheet("loaded")
+PLANNED = SHEET.worksheet("planned")
+ADDED_UNUSED = SHEET.worksheet("added_unused")
 
 def logo():
     """
@@ -403,7 +406,7 @@ def add_lane(lane):
 
 def lane_names():
     """
-
+    Prints lane names that are planned for next loading
     """
     headings = SHEET.worksheet("planned").get_all_values()[0]
     print("Following lanes are planned for next loading:\n")
@@ -412,33 +415,66 @@ def lane_names():
 
 def delete_lane():
     """
-
+    Asks for index number of the lane to be deleted by the user.
+    Confirms if the user wants to delete the lane with the chosen index number.
+    Deletes the lane from all 3 worksheets if confirmed or breaks the loop if user does not confirm.
     """
-    print("Choose a lane to be deleted by entering its index (from left first one the index number is 1:")
-    lane_index = input("Please enter index number, example: 1:\n")
+    print("Review the lanes to choose a lane to be deleted by entering its index (from the left the index number of the first one is 1 :")
+    lane_index = int(input("Please enter index number, example: 1:\n"))
+
+    def remove_lane_planned():
+    spreadsheetId = "your-spreadsheet-id"
+    sheetId = "id-of-sheet-to-delete-column-from"
+
+    sh = client.open_by_key(spreadsheetId)
+
+    request = {
+        "requests": [
+            {
+                "deleteDimension": {
+                    "range": {
+                        "sheetId": sheetId,
+                        "dimension": "COLUMNS",
+                        "startIndex": 0,
+                        "endIndex": 1
+                    }
+                }
+            }
+        ]
+    }
+    result = sh.batch_update(request)
 
     while True:
         print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
-        confirm_index = input("yes / no:  \n")
+        confirm_index = input("yes(y) / no(n):  \n")
 
-        if confirm_index == "yes":
+        if confirm_index == "yes" or confirm_index == "y":
+
+            
+            # From https://docs.gspread.org/en/latest/user-guide.html
+
+            #print("Updating loaded worksheet...")
+            #loaded_column_to_delete = LOADED.col_values(lane_index)
+            #loaded_column_to_delete.append_row("")
+            
+            #for row in range(1, 30):                
+                # SHEET.worksheet("loaded").update_cell(row, lane_index, '') 
+            # SHEET.worksheet("planned").update([lane_index, 99999], '') 
+            # SHEET.worksheet("added_unused").update([lane_index, 99999], '')
+            print(f"Lane index: {lane_index} has been deleted successfully\n") 
             break
-        elif confirm_index == "no":
-            print("Returning to the menu")
-            main()
+        elif confirm_index == "no" or confirm_index == "n":
+            print(f"Deleting lane index number: {lane_index} has been stopped")
+            break
         else:
-            print("Invalid input, please type yes or no")
-
-    print("You really want to delete it")
-
-    #.update_cell(1, 2, '') https://docs.gspread.org/en/latest/user-guide.html
-    
+            print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
+   
 
 def main():
     """
     Runs all program functions
     """
-    # Menu loop based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
+    # Loop based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
     while True:
         logo()
         menu()
@@ -461,7 +497,6 @@ def main():
             lane = request_new_lane()
             add_lane(lane)
         elif option == "6":
-            print("You want to remove a lane")
             lane_names()
             delete_lane()
         elif option == "9":
