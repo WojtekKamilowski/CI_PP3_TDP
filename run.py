@@ -458,7 +458,17 @@ def delete_last_data(worksheet):
     """
     last_row = len(worksheet.col_values(1))
     worksheet.delete_rows(last_row)
-    
+
+
+def delete_all_data(worksheet): 
+
+    """ 
+    For Menu option 8. 
+    From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on 
+    Deletes all data from. 
+    """ 
+    last_row = len(worksheet.col_values(1)) 
+    worksheet.delete_rows(2, last_row) 
 
 def main():
     """
@@ -496,8 +506,20 @@ def main():
             print("Last data from all worksheets deleted")
             break
         elif option == "8":
-            print("you want to clear ALL data & exit\n")
-            break
+            while True:
+                confirm_delete_all = input("Are you sure you want to delete ALL data!?: yes(y) / no(n)\n")
+
+                if confirm_delete_all == "yes" or confirm_delete_all == "y":
+                    delete_all_data(LOADED)
+                    delete_all_data(PLANNED)
+                    delete_all_data(ADDED_UNUSED)
+                    break
+                elif confirm_delete_all == "no" or confirm_delete_all == "n":
+                    main()
+                    break     
+                else:
+                    print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
+            break 
         elif option == "9":
             daily_trailer_forecast()
             break
