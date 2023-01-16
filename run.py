@@ -65,11 +65,11 @@ def flatten_list(_2d_list):
                 flat_list.append(element)
         return flat_list
 
-def lane_count(worksheet):
+def lane_count(wksh):
     """
     Counts and returns how many rows with lane names are in use.
     """
-    lane_count = len(worksheet.row_values(1))
+    lane_count = len(wksh.row_values(1))
     return(lane_count)
 
 planned_lane_count = lane_count(PLANNED)  
@@ -151,12 +151,10 @@ def get_last_5_entries_loaded():
     as a list of lists.
     """
     column_count = lane_count(LOADED) + 1
-
-    loaded = SHEET.worksheet("loaded")
     
     columns = []
     for ind in range(1, column_count):
-        column = loaded.col_values(ind)
+        column = LOADED.col_values(ind)
         columns.append(column[-5:])
     
     return columns 
@@ -197,12 +195,10 @@ def get_last_loaded():
     Collects columns of data from loaded worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """
-    loaded = SHEET.worksheet("loaded")
-    
+    """  
     last_loaded_columns = []
     for ind in range(1, 7):
-        last_loaded_column = loaded.col_values(ind)
+        last_loaded_column = LOADED.col_values(ind)
         last_loaded_columns.append(last_loaded_column[-1:])
 
     last_loaded_columns_str = [''.join(x) for x in last_loaded_columns]
@@ -217,7 +213,7 @@ def get_last_loaded_values(data):
     For Menu option 1.
     Return the last loaded numbers with the heading of each lane.
     """
-    headings = SHEET.worksheet("loaded").get_all_values()[0]
+    headings = LOADED.get_all_values()[0]
    
     return {heading: data for heading, data in zip(headings, data)}
 
@@ -229,12 +225,10 @@ def get_last_planned():
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """
-    planned = SHEET.worksheet("planned")
-    
+    """    
     last_planned_columns = []
     for ind in range(1, 7):
-        last_planned_column = planned.col_values(ind)
+        last_planned_column = PLANNED.col_values(ind)
         last_planned_columns.append(last_planned_column[-1:])
 
     last_planned_columns_str = [''.join(x) for x in last_planned_columns]
@@ -248,7 +242,7 @@ def get_last_planned_values(data):
     For Menu option 2.
     Return the last planned numbers with the heading of each lane.
     """
-    headings = SHEET.worksheet("planned").get_all_values()[0]
+    headings = PLANNED.get_all_values()[0]
    
     return {heading: data for heading, data in zip(headings, data)}
 
@@ -260,12 +254,10 @@ def get_last_added_unused():
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """
-    added_unused = SHEET.worksheet("added_unused")
-    
+    """    
     last_added_unused_columns = []
     for ind in range(1, 7):
-        last_added_unused_column = added_unused.col_values(ind)
+        last_added_unused_column = ADDED_UNUSED.col_values(ind)
         last_added_unused_columns.append(last_added_unused_column[-1:])
 
     last_added_unused_columns_str = [''.join(x) for x in last_added_unused_columns]
@@ -278,7 +270,7 @@ def get_last_added_unused_values(data):
     For Menu option 3.
     Return the last added_unused numbers with the heading of each lane.
     """
-    headings = SHEET.worksheet("added_unused").get_all_values()[0]
+    headings = ADDED_UNUSED.get_all_values()[0]
    
     return {heading: data for heading, data in zip(headings, data)}
 
@@ -291,12 +283,11 @@ def added_unused_values():
     convert it to list of lists of ints,
     flatten the list of lists to one list of ints.
     """
-    added_unused = SHEET.worksheet("added_unused")
 
     unused_haulage_columns = []
 
     for ind in range(1, 7):
-        unused_haulage_column = added_unused.col_values(ind) 
+        unused_haulage_column = ADDED_UNUSED.col_values(ind) 
         unused_haulage_columns.append(unused_haulage_column[1:])
     
     # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python 
@@ -338,18 +329,24 @@ def unused_haulage_costs():
 
     unused_haulage_costs = unused_haulage_sum * int(cancellation_charge)
 
-    # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
-    int_last_added_unused_data = list(map(int, last_added_unused_data))
+    def last_added_unused_data_str():
+        str = ""
+        for e in last_added_unused_data:
+            str += e
+        return str
 
-    last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
+    if validate_number(last_added_unused_data_str()):
+        # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
+        int_last_added_unused_data = list(map(int, last_added_unused_data))
+        last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
+        last_unused_sum = sum(last_unused_data)
+        last_unused_cost = last_unused_sum * int(cancellation_charge)
 
-    last_unused_sum = sum(last_unused_data)
-
-    last_unused_cost = last_unused_sum * int(cancellation_charge)
-    
-    print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
-    print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
-    
+        print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
+        print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
+    else:
+        print("Calculation failed: there is no enough data to calculate from.")
+            
 def validate_number(number):
     """
     Inside the try, converts string value into integer.
@@ -382,18 +379,18 @@ def add_lane(lane):
     Based on https://stackoverflow.com/questions/60495748/append-value-to-column-in-gspread
     Adds entered by the user lane to all 3 worksheets.
     """
-    first_row_loaded = len(SHEET.worksheet("loaded").row_values(1))
-    loaded_column = first_row_loaded+1    
-    SHEET.worksheet("loaded").update_cell(1, loaded_column, lane)
+    def add_heading(wksh):
+        """
+        Add a new column with the lane name to the worksheet.
+        """
+        first_row = len(wksh.row_values(1))
+        column = first_row+1
+        wksh.update_cell(1, column, lane)
 
-    first_row_planned = len(SHEET.worksheet("planned").row_values(1))
-    planned_column = first_row_planned+1    
-    SHEET.worksheet("planned").update_cell(1, planned_column, lane)
-
-    first_row_added_unused = len(SHEET.worksheet("added_unused").row_values(1))
-    added_unused_column = first_row_added_unused+1    
-    SHEET.worksheet("added_unused").update_cell(1, added_unused_column, lane)
-
+    add_heading(LOADED)
+    add_heading(PLANNED)
+    add_heading(ADDED_UNUSED)
+    
     print(f"Lane '{lane}' has been added successfully.\n")
 
 def lane_names():
@@ -441,24 +438,24 @@ def delete_lane():
         else:
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
 
-def delete_last_data(worksheet):
+def delete_last_data(wksh):
     """
     For Menu option 7.
     From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on
     Identifies last row index & deletes data from it.
     """
-    last_row = len(worksheet.col_values(1))
-    worksheet.delete_rows(last_row)
+    last_row = len(wksh.col_values(1))
+    wksh.delete_rows(last_row)
 
-def delete_all_data(worksheet): 
+def delete_all_data(wksh): 
 
     """ 
     For Menu option 8. 
     From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on 
-    Deletes all data from. 
+    Deletes all data from whsh and adds blank rows.
     """ 
-    last_row = len(worksheet.col_values(1)) 
-    worksheet.delete_rows(2, last_row) 
+    last_row = len(wksh.col_values(1)) 
+    wksh.delete_rows(2, last_row)
 
 def main():
     """
@@ -495,6 +492,7 @@ def main():
             delete_last_data(PLANNED)
             delete_last_data(ADDED_UNUSED)
             print("Last data from all worksheets deleted")
+            print("Program closed")
             break
         elif option == "8":
             while True:
@@ -504,15 +502,18 @@ def main():
                     delete_all_data(LOADED)
                     delete_all_data(PLANNED)
                     delete_all_data(ADDED_UNUSED)
+                    print("ALL data deleted!")
                     break
                 elif confirm_delete_all == "no" or confirm_delete_all == "n":
                     main()
                     break     
                 else:
                     print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
+            print("Program closed")
             break 
         elif option == "9":
             daily_trailer_forecast()
+            print("Program closed")
             break
         elif option == "0":
             print("Program closed")
