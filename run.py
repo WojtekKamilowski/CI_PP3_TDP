@@ -74,6 +74,9 @@ def lane_count(worksheet):
     return(lane_count)
 
 
+planned_lane_count = lane_count(PLANNED)  
+
+
 # Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
 def get_loaded_data():
     """
@@ -82,10 +85,11 @@ def get_loaded_data():
     via the terminal, which must be a string of as many numbers equal to the lane count
     separated by commas. The loop will repeatedly request data, until it is valid.
     """
-    lane_count = lane_count(PLANNED)
-    while True:        
+
+    while True:   
+           
         print("Please enter used equipment data from the last operations.")
-        print(f"Data should be {lane_count} numbers(as that many lanes were planned last time), separated by commas.")
+        print(f"Data should be {planned_lane_count} numbers(as that many lanes were planned last time), separated by commas.")
         print("Example: 1,2,3,4,5,6,(...)\n")
 
         data_str = input("Enter your data here:\n")
@@ -105,12 +109,11 @@ def validate_data(values):
     Raise ValueError if strings cannot be converted into int,
     or if there aren't exactly 6 values.
     """
-    lane_count = lane_count(PLANNED)
     try: 
         [int(value) for value in values]
-        if len(values) != lane_count:
+        if len(values) != planned_lane_count:
             raise ValueError(
-                f"Exactly {lane_count} value required, you provided {len(values)}"
+                f"Exactly {planned_lane_count} value required, you provided {len(values)}"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again. \n")
@@ -155,10 +158,12 @@ def get_last_5_entries_loaded():
     the last 5 entries for each lane and returns the data
     as a list of lists.
     """
+    column_count = lane_count(LOADED) + 1
+
     loaded = SHEET.worksheet("loaded")
     
     columns = []
-    for ind in range(1, 7):
+    for ind in range(1, column_count):
         column = loaded.col_values(ind)
         columns.append(column[-5:])
     
