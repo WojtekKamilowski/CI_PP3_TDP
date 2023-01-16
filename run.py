@@ -66,18 +66,27 @@ def flatten_list(_2d_list):
         return flat_list
 
 
+def lane_count(worksheet):
+    """
+    Counts and returns how many rows with lane names are in use.
+    """
+    lane_count = len(worksheet.row_values(1))
+    return(lane_count)
+
+
 # Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
     Run a while loop to collect a valid string of data from the user
-    via the terminal, which must be a string of 6 numbers separated
-    by commas. The loop will repeatedly request data, until it is valid.
+    via the terminal, which must be a string of as many numbers equal to the lane count
+    separated by commas. The loop will repeatedly request data, until it is valid.
     """
+    lane_count = lane_count(PLANNED)
     while True:        
         print("Please enter used equipment data from the last operations.")
-        print("Data should be six numbers, separated by commas.")
-        print("Example: 1,2,3,4,5,6\n")
+        print(f"Data should be {lane_count} numbers(as that many lanes were planned last time), separated by commas.")
+        print("Example: 1,2,3,4,5,6,(...)\n")
 
         data_str = input("Enter your data here:\n")
         
@@ -96,11 +105,12 @@ def validate_data(values):
     Raise ValueError if strings cannot be converted into int,
     or if there aren't exactly 6 values.
     """
+    lane_count = lane_count(PLANNED)
     try: 
         [int(value) for value in values]
-        if len(values) != 6:
+        if len(values) != lane_count:
             raise ValueError(
-                f"Exactly 6 value required, you provided {len(values)}"
+                f"Exactly {lane_count} value required, you provided {len(values)}"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again. \n")
@@ -186,6 +196,7 @@ def daily_trailer_forecast():
     update_worksheet(planned_data, "planned")
 
 
+# Menu options 1 to 8
 def get_last_loaded():
     """
     For Menu option 1.
@@ -470,6 +481,7 @@ def delete_all_data(worksheet):
     last_row = len(worksheet.col_values(1)) 
     worksheet.delete_rows(2, last_row) 
 
+
 def main():
     """
     Runs all program functions
@@ -478,8 +490,9 @@ def main():
     while True:
         logo()
         menu()
+        
         option = input("Please choose an option:\n")
-            
+                    
         if option == "1":
             print("Last time the following numbers of trailers were loaded:")
             print(last_loaded_values)
