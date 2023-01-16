@@ -65,7 +65,6 @@ def flatten_list(_2d_list):
                 flat_list.append(element)
         return flat_list
 
-
 def lane_count(worksheet):
     """
     Counts and returns how many rows with lane names are in use.
@@ -73,9 +72,7 @@ def lane_count(worksheet):
     lane_count = len(worksheet.row_values(1))
     return(lane_count)
 
-
 planned_lane_count = lane_count(PLANNED)  
-
 
 # Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
 def get_loaded_data():
@@ -85,7 +82,6 @@ def get_loaded_data():
     via the terminal, which must be a string of as many numbers equal to the lane count
     separated by commas. The loop will repeatedly request data, until it is valid.
     """
-
     while True:   
            
         print("Please enter used equipment data from the last operations.")
@@ -102,12 +98,11 @@ def get_loaded_data():
 
     return loaded_data
 
-
 def validate_data(values):
     """
     Inside the try, converts all string values into integers.
     Raise ValueError if strings cannot be converted into int,
-    or if there aren't exactly 6 values.
+    or if there aren't exactly as many values as many lanes.
     """
     try: 
         [int(value) for value in values]
@@ -121,7 +116,6 @@ def validate_data(values):
     
     return True
 
-
 def update_worksheet(data, worksheet):
     """
     Receives a list of integers to be inserted into a worksheet
@@ -131,7 +125,6 @@ def update_worksheet(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully.\n")
-
 
 def calculate_added_unused_data(loaded_row):
     """
@@ -151,7 +144,6 @@ def calculate_added_unused_data(loaded_row):
     
     return added_unused_data
 
-
 def get_last_5_entries_loaded():
     """
     Collects columns of data from loaded worksheet, collecting
@@ -169,7 +161,6 @@ def get_last_5_entries_loaded():
     
     return columns 
 
-
 def calculate_planned_data(data):
     """
     Calculate the average planned for each lane.
@@ -185,7 +176,6 @@ def calculate_planned_data(data):
 
     return new_planned_data
 
-
 def daily_trailer_forecast():
     """
     For Menu option 9.
@@ -199,7 +189,6 @@ def daily_trailer_forecast():
     loaded_column = get_last_5_entries_loaded()
     planned_data = calculate_planned_data(loaded_column)
     update_worksheet(planned_data, "planned")
-
 
 # Menu options 1 to 8
 def get_last_loaded():
@@ -223,7 +212,6 @@ def get_last_loaded():
 
 last_loaded_data = get_last_loaded()
 
-
 def get_last_loaded_values(data):
     """
     For Menu option 1.
@@ -234,7 +222,6 @@ def get_last_loaded_values(data):
     return {heading: data for heading, data in zip(headings, data)}
 
 last_loaded_values = get_last_loaded_values(last_loaded_data)
-
 
 def get_last_planned():
     """
@@ -254,9 +241,7 @@ def get_last_planned():
 
     return last_planned_columns_str
 
-
 last_planned_data = get_last_planned()
-
 
 def get_last_planned_values(data):
     """
@@ -268,7 +253,6 @@ def get_last_planned_values(data):
     return {heading: data for heading, data in zip(headings, data)}
 
 last_planned_values = get_last_planned_values(last_planned_data)
-
 
 def get_last_added_unused():
     """
@@ -287,9 +271,7 @@ def get_last_added_unused():
     last_added_unused_columns_str = [''.join(x) for x in last_added_unused_columns]
     return last_added_unused_columns_str
 
-
 last_added_unused_data = get_last_added_unused()
-
 
 def get_last_added_unused_values(data):
     """
@@ -301,7 +283,6 @@ def get_last_added_unused_values(data):
     return {heading: data for heading, data in zip(headings, data)}
 
 last_added_unused_values = get_last_added_unused_values(last_added_unused_data)
-
 
 def added_unused_values():
     """
@@ -323,9 +304,7 @@ def added_unused_values():
     
     return flatten_list(int_unused_haulage_columns)
 
-
 added_unused_values = added_unused_values()
-
 
 def unused_haulage_costs():
     """
@@ -371,7 +350,6 @@ def unused_haulage_costs():
     print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
     print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
     
-
 def validate_number(number):
     """
     Inside the try, converts string value into integer.
@@ -386,7 +364,6 @@ def validate_number(number):
         return False
     
     return True
-
 
 def request_new_lane():
     """
@@ -418,7 +395,6 @@ def add_lane(lane):
     SHEET.worksheet("added_unused").update_cell(1, added_unused_column, lane)
 
     print(f"Lane '{lane}' has been added successfully.\n")
-
 
 def lane_names():
     """
@@ -465,7 +441,6 @@ def delete_lane():
         else:
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
 
-
 def delete_last_data(worksheet):
     """
     For Menu option 7.
@@ -474,7 +449,6 @@ def delete_last_data(worksheet):
     """
     last_row = len(worksheet.col_values(1))
     worksheet.delete_rows(last_row)
-
 
 def delete_all_data(worksheet): 
 
@@ -485,7 +459,6 @@ def delete_all_data(worksheet):
     """ 
     last_row = len(worksheet.col_values(1)) 
     worksheet.delete_rows(2, last_row) 
-
 
 def main():
     """
@@ -549,8 +522,4 @@ def main():
         
         input("Press enter to return to the menu\n")
 
-
 main()
-
-# python3 run.py
-
