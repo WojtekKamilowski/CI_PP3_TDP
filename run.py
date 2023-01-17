@@ -41,10 +41,10 @@ def menu():
     print("2. Preview last planned data\n")
     print("3. Preview last added_unused data\n")
     print("4. Run unused haulage costs report\n")
-    print("5. Add a new lane\n")
-    print("6. Delete a lane\n")
-    print("7. Clear LAST data & exit\n")
-    print("8. Clear ALL data & exit\n")
+    print("5. Add a new lane & exit\n")
+    print("6. Delete a lane & exit\n")
+    print("7. Clear RECENT non-default data & exit\n")
+    print("8. Clear ALL non-default data & exit\n")
     print("9. Run daily trailer forecast & exit\n")
     print("0. Exit")
     print("-----------------------------")
@@ -134,7 +134,7 @@ def calculate_added_unused_data(loaded_row):
     - Negative number indicates trailers requested from haulier on the same day.
     """
     print("Calculating added_unused data...\n")
-    planned = SHEET.worksheet("planned").get_all_values()
+    planned = PLANNED.get_all_values()
     planned_row = planned[-1]
     
     added_unused_data = []
@@ -194,10 +194,12 @@ def get_last_loaded():
     For Menu option 1.
     Collects columns of data from loaded worksheet, collecting
     the last entry for each lane and returns the data
-    as a list os strings.
+    as a list of strings.
     """  
+    column_count = lane_count(LOADED) + 1
+
     last_loaded_columns = []
-    for ind in range(1, 7):
+    for ind in range(1, column_count):
         last_loaded_column = LOADED.col_values(ind)
         last_loaded_columns.append(last_loaded_column[-1:])
 
@@ -225,9 +227,11 @@ def get_last_planned():
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """    
+    """ 
+    column_count = lane_count(PLANNED) + 1
+
     last_planned_columns = []
-    for ind in range(1, 7):
+    for ind in range(1, column_count):
         last_planned_column = PLANNED.col_values(ind)
         last_planned_columns.append(last_planned_column[-1:])
 
@@ -254,9 +258,11 @@ def get_last_added_unused():
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """    
+    """ 
+    column_count = lane_count(ADDED_UNUSED) + 1
+
     last_added_unused_columns = []
-    for ind in range(1, 7):
+    for ind in range(1, column_count):
         last_added_unused_column = ADDED_UNUSED.col_values(ind)
         last_added_unused_columns.append(last_added_unused_column[-1:])
 
@@ -283,10 +289,11 @@ def added_unused_values():
     convert it to list of lists of ints,
     flatten the list of lists to one list of ints.
     """
+    column_count = lane_count(ADDED_UNUSED) + 1
 
     unused_haulage_columns = []
 
-    for ind in range(1, 7):
+    for ind in range(1, column_count):
         unused_haulage_column = ADDED_UNUSED.col_values(ind) 
         unused_haulage_columns.append(unused_haulage_column[1:])
     
@@ -389,10 +396,30 @@ def add_lane(lane):
         first_row = len(wksh.row_values(1))
         column = first_row+1
         wksh.update_cell(1, column, lane)
+    
+    print("Adding headings...")
 
     add_heading(LOADED)
     add_heading(PLANNED)
     add_heading(ADDED_UNUSED)
+        
+    def add_values(wksh):
+        """
+        Adds values 0 to cells under the heading of the lane to be added.
+        """
+        row_range = len(wksh.col_values(1)) + 1
+
+        row = len(wksh.row_values(2))
+        column = row+1
+
+        for i in range(2, row_range):
+            wksh.update_cell(i, column, "0")
+    
+    print("Adding values...")
+    
+    add_values(LOADED)
+    add_values(PLANNED)
+    add_values(ADDED_UNUSED)
     
     print(f"Lane '{lane}' has been added successfully.\n")
 
@@ -401,7 +428,7 @@ def lane_names():
     For Menu option 6.
     Prints lane names that are planned for next loading
     """
-    headings = SHEET.worksheet("planned").get_all_values()[0]
+    headings = PLANNED.get_all_values()[0]
     print("Following lanes are planned for next loading:\n")
     print(headings)
     print("")
@@ -448,39 +475,13 @@ def delete_last_data(wksh, wksh_name):
     Identifies last row index & deletes data from it.
     """
     last_row = len(wksh.col_values(1))
-
-    last_row_values_list = wksh.row_values(last_row)
-
-    def last_row_values_str():
-        """
-        Conversts row_values_list to a string
-        """
-        str = ""
-        for e in last_row_values_list:
-            str += e
-        return str
-
-    last_row_values_str = last_row_values_str()
     
-    if validate_values_to_delete(last_row_values_str, wksh_name):
+    if last_row > 7:
+        print(f"Deleting the most recent non-default number values from {wksh_name} worksheet...")
         wksh.delete_rows(last_row)
-        print(f"Deleting the most recent number values from {wksh_name} worksheet...")
-        print(f"Deleting the most recent number values from {wksh_name} worksheet has been completed!\n")
-
-def validate_values_to_delete(values, wksh_name):
-    """
-    Inside the try, converts string value into integer.
-    Raise ValueError if string cannot be converted into int.
-    Based on Love Sandwiches by Code Institute: https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/blob/master/05-deployment/01-deployment-part-1/run.py
-    """
-    try: 
-        [int(values)]
-        
-    except ValueError as e:
-        print(f"All number values from {wksh_name} worksheet have already been removed.\n")
-        return False
-    
-    return True
+        print(f"Deleting the most recent non-default number values from {wksh_name} worksheet has been completed!\n")
+    else:
+        print(f"All non-default number values from {wksh_name} worksheet have already been removed.\n")
 
 def delete_all_data(wksh, wksh_name): 
 
@@ -490,10 +491,10 @@ def delete_all_data(wksh, wksh_name):
     Deletes all data from whsh and adds blank rows.
     """ 
     last_row = len(wksh.col_values(1)) 
-    if last_row > 2:
-        wksh.delete_rows(2, last_row)
+    if last_row > 7:
+        wksh.delete_rows(7, last_row)
     else:
-        print(f"All number values from {wksh_name} worksheet have already been removed")
+        print(f"All non-default number values from {wksh_name} worksheet have already been removed.\n")
 
 def main():
     """
@@ -522,9 +523,19 @@ def main():
         elif option == "5":
             lane = request_new_lane()
             add_lane(lane)
+            print("Closing program...")
+            break
         elif option == "6":
-            lane_names()
-            delete_lane()
+            headings = PLANNED.get_all_values()[0]
+            if headings != "":
+                lane_names()
+                delete_lane()
+                print("Closing program...")
+                break
+            else:
+                print("At least one lane must remain, you need to add one more to be able to delete other")
+                main()
+                break  
         elif option == "7":
             delete_last_data(LOADED, "loaded")
             delete_last_data(PLANNED, "planned")
