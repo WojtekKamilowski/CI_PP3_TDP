@@ -490,9 +490,15 @@ def delete_all_data(wksh, wksh_name):
     From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on 
     Deletes all data from whsh and adds blank rows.
     """ 
-    last_row = len(wksh.col_values(1)) 
+    last_row = len(wksh.col_values(1))
+
+    def_rows = 7
+
+    if wksh ==  LOADED:
+        def_rows = 8
+
     if last_row > 7:
-        wksh.delete_rows(7, last_row)
+        wksh.delete_rows(def_rows, last_row)
     else:
         print(f"All non-default number values from {wksh_name} worksheet have already been removed.\n")
 
@@ -522,9 +528,12 @@ def main():
             unused_haulage_costs()
         elif option == "5":
             lane = request_new_lane()
-            add_lane(lane)
-            print("Closing program...")
-            break
+            if lane != "":
+                add_lane(lane)
+                print("Closing program...")
+                break
+            else:
+                print("Input cannot be blank, please enter name or code for the new lane")
         elif option == "6":
             headings = PLANNED.get_all_values()[0]
             if headings != "":
@@ -543,22 +552,20 @@ def main():
             print("Closing program...")
             break
         elif option == "8":
-            while True:
-                confirm_delete_all = input("Are you sure you want to delete ALL data!?: yes(y) / no(n)\n")
+            confirm_delete_all = input("Are you sure you want to delete ALL data!?: yes(y) / no(n)\n")
 
-                if confirm_delete_all == "yes" or confirm_delete_all == "y":
-                    delete_all_data(LOADED, "loaded")
-                    delete_all_data(PLANNED, "planned")
-                    delete_all_data(ADDED_UNUSED, "added_unused")
-                    print("ALL data deleted!")
-                    break
-                elif confirm_delete_all == "no" or confirm_delete_all == "n":
-                    main()
-                    break     
-                else:
-                    print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
-            print("Closing program...")
-            break 
+            if confirm_delete_all == "yes" or confirm_delete_all == "y":
+                delete_all_data(LOADED, "loaded")
+                delete_all_data(PLANNED, "planned")
+                delete_all_data(ADDED_UNUSED, "added_unused")
+                print("Closing program...")
+                break
+            elif confirm_delete_all == "no" or confirm_delete_all == "n":
+                print("Deleting ALL data has been stopped!") 
+                main()
+                break 
+            else:
+                print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
         elif option == "9":
             daily_trailer_forecast()
             print("Closing program...")
