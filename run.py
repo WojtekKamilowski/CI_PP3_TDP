@@ -482,7 +482,7 @@ def validate_values_to_delete(values, wksh_name):
     
     return True
 
-def delete_all_data(wksh): 
+def delete_all_data(wksh, wksh_name): 
 
     """ 
     For Menu option 8. 
@@ -490,7 +490,10 @@ def delete_all_data(wksh):
     Deletes all data from whsh and adds blank rows.
     """ 
     last_row = len(wksh.col_values(1)) 
-    wksh.delete_rows(2, last_row)
+    if last_row > 2:
+        wksh.delete_rows(2, last_row)
+    else:
+        print(f"All number values from {wksh_name} worksheet have already been removed")
 
 def main():
     """
@@ -526,16 +529,16 @@ def main():
             delete_last_data(LOADED, "loaded")
             delete_last_data(PLANNED, "planned")
             delete_last_data(ADDED_UNUSED, "added_unused")              
-            print("Closing program...\n")
+            print("Closing program...")
             break
         elif option == "8":
             while True:
                 confirm_delete_all = input("Are you sure you want to delete ALL data!?: yes(y) / no(n)\n")
 
                 if confirm_delete_all == "yes" or confirm_delete_all == "y":
-                    delete_all_data(LOADED)
-                    delete_all_data(PLANNED)
-                    delete_all_data(ADDED_UNUSED)
+                    delete_all_data(LOADED, "loaded")
+                    delete_all_data(PLANNED, "planned")
+                    delete_all_data(ADDED_UNUSED, "added_unused")
                     print("ALL data deleted!")
                     break
                 elif confirm_delete_all == "no" or confirm_delete_all == "n":
