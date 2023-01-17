@@ -441,7 +441,7 @@ def delete_lane():
         else:
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
     
-def delete_last_data(wksh):
+def delete_last_data(wksh, wksh_name):
     """
     For Menu option 7.
     From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on
@@ -462,14 +462,26 @@ def delete_last_data(wksh):
 
     last_row_values_str = last_row_values_str()
     
-    if validate_number(last_row_values_str):
+    if validate_values_to_delete(last_row_values_str, wksh_name):
         wksh.delete_rows(last_row)
-        print("Deleting last data...")
-        print("Last data deleted from all worksheets")
-    else:
-        print("There is no data to be deleted. If you wish delete a lane please use option 6")
+        print(f"Deleting the most recent number values from {wksh_name} worksheet...")
+        print(f"Deleting the most recent number values from {wksh_name} worksheet has been completed!\n")
+
+def validate_values_to_delete(values, wksh_name):
+    """
+    Inside the try, converts string value into integer.
+    Raise ValueError if string cannot be converted into int.
+    Based on Love Sandwiches by Code Institute: https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/blob/master/05-deployment/01-deployment-part-1/run.py
+    """
+    try: 
+        [int(values)]
         
+    except ValueError as e:
+        print(f"All number values from {wksh_name} worksheet have already been removed.\n")
+        return False
     
+    return True
+
 def delete_all_data(wksh): 
 
     """ 
@@ -511,13 +523,10 @@ def main():
             lane_names()
             delete_lane()
         elif option == "7":
-            print("Accessing loaded worksheet...")
-            delete_last_data(LOADED)
-            print("Accessing planned worksheet...")
-            delete_last_data(PLANNED)
-            print("Accessing added_unused worksheet...")
-            delete_last_data(ADDED_UNUSED)               
-            print("Program closed")
+            delete_last_data(LOADED, "loaded")
+            delete_last_data(PLANNED, "planned")
+            delete_last_data(ADDED_UNUSED, "added_unused")              
+            print("Closing program...\n")
             break
         elif option == "8":
             while True:
@@ -534,14 +543,14 @@ def main():
                     break     
                 else:
                     print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
-            print("Program closed")
+            print("Closing program...")
             break 
         elif option == "9":
             daily_trailer_forecast()
-            print("Program closed")
+            print("Closing program...")
             break
         elif option == "0":
-            print("Program closed")
+            print("Closing program...")
             break
         else:
             print("Invalid Option, please try again")
