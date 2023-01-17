@@ -475,8 +475,13 @@ def delete_last_data(wksh, wksh_name):
     Identifies last row index & deletes data from it.
     """
     last_row = len(wksh.col_values(1))
+
+    def_rows = 7
+
+    if wksh ==  PLANNED:
+        def_rows = 8
     
-    if last_row > 7:
+    if last_row > def_rows:
         print(f"Deleting the most recent non-default number values from {wksh_name} worksheet...")
         wksh.delete_rows(last_row)
         print(f"Deleting the most recent non-default number values from {wksh_name} worksheet has been completed!\n")
@@ -494,10 +499,10 @@ def delete_all_data(wksh, wksh_name):
 
     def_rows = 7
 
-    if wksh ==  LOADED:
+    if wksh ==  PLANNED:
         def_rows = 8
 
-    if last_row > 7:
+    if last_row > def_rows:
         wksh.delete_rows(def_rows, last_row)
     else:
         print(f"All non-default number values from {wksh_name} worksheet have already been removed.\n")
