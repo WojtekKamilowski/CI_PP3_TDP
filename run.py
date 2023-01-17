@@ -330,6 +330,9 @@ def unused_haulage_costs():
     unused_haulage_costs = unused_haulage_sum * int(cancellation_charge)
 
     def last_added_unused_data_str():
+        """
+        Conversts last_added_unused_data list to a string
+        """
         str = ""
         for e in last_added_unused_data:
             str += e
@@ -437,7 +440,7 @@ def delete_lane():
             break
         else:
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
-
+    
 def delete_last_data(wksh):
     """
     For Menu option 7.
@@ -445,8 +448,28 @@ def delete_last_data(wksh):
     Identifies last row index & deletes data from it.
     """
     last_row = len(wksh.col_values(1))
-    wksh.delete_rows(last_row)
 
+    last_row_values_list = wksh.row_values(last_row)
+
+    def last_row_values_str():
+        """
+        Conversts row_values_list to a string
+        """
+        str = ""
+        for e in last_row_values_list:
+            str += e
+        return str
+
+    last_row_values_str = last_row_values_str()
+    
+    if validate_number(last_row_values_str):
+        wksh.delete_rows(last_row)
+        print("Deleting last data...")
+        print("Last data deleted from all worksheets")
+    else:
+        print("There is no data to be deleted. If you wish delete a lane please use option 6")
+        
+    
 def delete_all_data(wksh): 
 
     """ 
@@ -488,10 +511,12 @@ def main():
             lane_names()
             delete_lane()
         elif option == "7":
+            print("Accessing loaded worksheet...")
             delete_last_data(LOADED)
+            print("Accessing planned worksheet...")
             delete_last_data(PLANNED)
-            delete_last_data(ADDED_UNUSED)
-            print("Last data from all worksheets deleted")
+            print("Accessing added_unused worksheet...")
+            delete_last_data(ADDED_UNUSED)               
             print("Program closed")
             break
         elif option == "8":
