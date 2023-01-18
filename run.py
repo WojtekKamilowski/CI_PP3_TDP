@@ -437,6 +437,7 @@ def delete_lane():
             break            
         else:
             True
+            
     while True:
         print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
         confirm_index = input(f"yes(y) / no(n):\n")   
@@ -452,6 +453,7 @@ def delete_lane():
             break    
         elif confirm_index == "no" or confirm_index == "n":
             print(f"Deleting lane index number: {lane_index} has been stopped")
+            main()
             break
         else:
             print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
@@ -528,8 +530,10 @@ def main():
             else:
                 print("Input cannot be blank, please enter name or code for the new lane")
         elif option == "6":
-            headings = PLANNED.get_all_values()[0]
-            if headings != "":
+            # From https://docs.gspread.org/en/latest/user-guide.html
+            second_lane = PLANNED.acell('B1').value
+
+            if second_lane != "":
                 lane_names()
                 delete_lane()
                 print("Closing program...")
