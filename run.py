@@ -519,6 +519,7 @@ def main():
         elif option == "3":
             print("Following numbers of trailer were unused or ordered at the day of loading:\n")
             print("- Positive number indicates unused trailers.\n")
+            print("- 0 indicates that we planned the same number of trailers as many were loaded")
             print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
             print(last_added_unused_values)
         elif option == "4":
@@ -543,7 +544,7 @@ def main():
                 break
             else:
                 lane_names()
-                print("At least one lane must remain, you need to add one more to be able to delete other")
+                print("At least one lane must remain, you need to add one more to be able to delete a lane")
         elif option == "7":
             confirm_delete_recent = input("Please confirm you want to delete RECENT data?: yes(y) / no(n)\n")
 
