@@ -367,7 +367,7 @@ def request_new_lane():
     """
     print("Lane name should be in following format: loading town, country code->unloading town, country code")
     print("Example: Cork, IE->Dublin, IE")
-    lane = input("Please enter a new lane name:\n")    
+    lane = input("Please enter a new lane name: it cannot be blank if you wish to cancel please press 0\n")    
 
     return lane
 
@@ -437,7 +437,7 @@ def delete_lane():
             break            
         else:
             True
-            
+
     while True:
         print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
         confirm_index = input(f"yes(y) / no(n):\n")   
@@ -449,7 +449,8 @@ def delete_lane():
             LOADED.delete_columns(lane_index_int)
             PLANNED.delete_columns(lane_index_int)
             ADDED_UNUSED.delete_columns(lane_index_int)
-            print(f"Lane index: {lane_index} has been deleted successfully\n") 
+            print(f"Lane index: {lane_index} has been deleted successfully\n")
+            print("Closing program...") 
             break    
         elif confirm_index == "no" or confirm_index == "n":
             print(f"Deleting lane index number: {lane_index} has been stopped")
@@ -523,12 +524,13 @@ def main():
             unused_haulage_costs()
         elif option == "5":
             lane = request_new_lane()
+
             if lane != "":
                 add_lane(lane)
                 print("Closing program...")
                 break
             else:
-                print("Input cannot be blank, please enter name or code for the new lane")
+                print("Input cannot be blank, to add a new lane you need to choose this option again and enter at least one character for name or code of the new lane")
         elif option == "6":
             # From https://docs.gspread.org/en/latest/user-guide.html
             second_lane = PLANNED.acell('B1').value
@@ -536,18 +538,24 @@ def main():
             if second_lane != "":
                 lane_names()
                 delete_lane()
-                print("Closing program...")
                 break
             else:
                 print("At least one lane must remain, you need to add one more to be able to delete other")
                 main()
                 break  
         elif option == "7":
-            delete_last_data(LOADED, "loaded")
-            delete_last_data(PLANNED, "planned")
-            delete_last_data(ADDED_UNUSED, "added_unused")              
-            print("Closing program...")
-            break
+            confirm_delete_recent = input("Please confirm you want to delete RECENT data?: yes(y) / no(n)\n")
+
+            if confirm_delete_recent == "yes" or confirm_delete_recent == "y":
+                delete_last_data(LOADED, "loaded")
+                delete_last_data(PLANNED, "planned")
+                delete_last_data(ADDED_UNUSED, "added_unused")              
+                print("Closing program...")
+                break
+            elif confirm_delete_recent == "no" or confirm_delete_recent == "n":
+                print("Deleting RECENT data has been stopped!") 
+                main()
+                break
         elif option == "8":
             confirm_delete_all = input("Are you sure you want to delete ALL data!?: yes(y) / no(n)\n")
 
