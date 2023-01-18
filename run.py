@@ -367,7 +367,7 @@ def request_new_lane():
     """
     print("Lane name should be in following format: loading town, country code->unloading town, country code")
     print("Example: Cork, IE->Dublin, IE")
-    lane = input("Please enter a new lane name: it cannot be blank if you wish to cancel please press 0\n")    
+    lane = input("Please enter a new lane name:\n")    
 
     return lane
 
@@ -533,16 +533,14 @@ def main():
                 print("Input cannot be blank, to add a new lane you need to choose this option again and enter at least one character for name or code of the new lane")
         elif option == "6":
             # From https://docs.gspread.org/en/latest/user-guide.html
-            second_lane = PLANNED.acell('B1').value
-
-            if second_lane != "":
+            second_lane = PLANNED.cell(1,2).value
+            
+            if second_lane != None:
                 lane_names()
                 delete_lane()
                 break
             else:
                 print("At least one lane must remain, you need to add one more to be able to delete other")
-                main()
-                break  
         elif option == "7":
             confirm_delete_recent = input("Please confirm you want to delete RECENT data?: yes(y) / no(n)\n")
 
