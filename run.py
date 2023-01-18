@@ -403,7 +403,7 @@ def add_lane(lane):
         for i in range(2, row_range):
             wksh.update_cell(i, column, "0")
     
-    print("Adding values...")
+    print("updating worksheets...")
     
     add_values(LOADED)
     add_values(PLANNED)
@@ -450,7 +450,8 @@ def delete_lane():
             PLANNED.delete_columns(lane_index_int)
             ADDED_UNUSED.delete_columns(lane_index_int)
             print(f"Lane index: {lane_index} has been deleted successfully\n")
-            print("Closing program...") 
+            print("Closing program...")
+            print("Program closed!") 
             break    
         elif confirm_index == "no" or confirm_index == "n":
             print(f"Deleting lane index number: {lane_index} has been stopped")
@@ -528,6 +529,7 @@ def main():
             if lane != "":
                 add_lane(lane)
                 print("Closing program...")
+                print("Program closed!")
                 break
             else:
                 print("Input cannot be blank, to add a new lane you need to choose this option again and enter at least one character for name or code of the new lane")
@@ -540,6 +542,7 @@ def main():
                 delete_lane()
                 break
             else:
+                lane_names()
                 print("At least one lane must remain, you need to add one more to be able to delete other")
         elif option == "7":
             confirm_delete_recent = input("Please confirm you want to delete RECENT data?: yes(y) / no(n)\n")
@@ -549,6 +552,7 @@ def main():
                 delete_last_data(PLANNED, "planned")
                 delete_last_data(ADDED_UNUSED, "added_unused")              
                 print("Closing program...")
+                print("Program closed!")
                 break
             elif confirm_delete_recent == "no" or confirm_delete_recent == "n":
                 print("Deleting RECENT data has been stopped!") 
@@ -562,6 +566,7 @@ def main():
                 delete_all_data(PLANNED, "planned")
                 delete_all_data(ADDED_UNUSED, "added_unused")
                 print("Closing program...")
+                print("Program closed!")
                 break
             elif confirm_delete_all == "no" or confirm_delete_all == "n":
                 print("Deleting ALL data has been stopped!") 
@@ -572,9 +577,11 @@ def main():
         elif option == "9":
             daily_trailer_forecast()
             print("Closing program...")
+            print("Program closed!")
             break
         elif option == "0":
             print("Closing program...")
+            print("Program closed!")
             break
         else:
             print("Invalid Option, please try again")
