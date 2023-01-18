@@ -519,7 +519,7 @@ def main():
         elif option == "3":
             print("Following numbers of trailer were unused or ordered at the day of loading:\n")
             print("- Positive number indicates unused trailers.\n")
-            print("- 0 indicates that we planned the same number of trailers as many were loaded")
+            print("- 0 indicates that previously we pre-ordered as many trailers as many were loaded.\n")
             print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
             print(last_added_unused_values)
         elif option == "4":
@@ -546,7 +546,7 @@ def main():
                 lane_names()
                 print("At least one lane must remain, you need to add one more to be able to delete a lane")
         elif option == "7":
-            confirm_delete_recent = input("Please confirm you want to delete RECENT data?: yes(y) / no(n)\n")
+            confirm_delete_recent = input("Please confirm you want to delete RECENT non-default data?: yes(y) / no(n)\n")
 
             if confirm_delete_recent == "yes" or confirm_delete_recent == "y":
                 delete_last_data(LOADED, "loaded")
@@ -559,8 +559,10 @@ def main():
                 print("Deleting RECENT data has been stopped!") 
                 main()
                 break
+            else:
+                print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
         elif option == "8":
-            confirm_delete_all = input("Are you sure you want to delete ALL data!?: yes(y) / no(n)\n")
+            confirm_delete_all = input("Are you sure you want to delete ALL non-default data!?: yes(y) / no(n)\n")
 
             if confirm_delete_all == "yes" or confirm_delete_all == "y":
                 delete_all_data(LOADED, "loaded")
