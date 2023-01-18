@@ -328,35 +328,49 @@ def unused_haulage_costs():
             break
         else:
             True
+    """
+    def last_added_unused_row_values():
 
+        last_added_unused_row_index = len(ADDED_UNUSED.col_values(1))
+
+        last_added_unused_row_values = ADDED_UNUSED.row_values(last_added_unused_row_index)
+
+        return last_added_unused_row_values
+        
+    last_added_unused_row_values = last_added_unused_row_values()
+
+    last_unused_row_values = list(filter(lambda x:(x > 0),int(last_added_unused_row_values)))
+
+    unused_haulage_costs = sum(last_unused_row_values) * int(cancellation_charge)
+
+    print(unused_haulage_costs)
+    """
     # From https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
     unused_haulage_values = list(filter(lambda x:(x > 0),added_unused_values)) 
 
     unused_haulage_sum = sum(unused_haulage_values)
 
     unused_haulage_costs = unused_haulage_sum * int(cancellation_charge)
-
+    """
     def last_added_unused_data_str():
-        """
+       
         Conversts last_added_unused_data list to a string
-        """
+        
         str = ""
         for e in last_added_unused_data:
             str += e
         return str
+    """
+    
+    # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
+    int_last_added_unused_data = list(map(int, last_added_unused_data))
+    last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
+    last_unused_sum = sum(last_unused_data)
+    last_unused_cost = last_unused_sum * int(cancellation_charge)
 
-    if validate_number(last_added_unused_data_str()):
-        # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
-        int_last_added_unused_data = list(map(int, last_added_unused_data))
-        last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
-        last_unused_sum = sum(last_unused_data)
-        last_unused_cost = last_unused_sum * int(cancellation_charge)
-
-        print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
-        print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
-    else:
-        print("Calculation failed: there is no enough data to calculate from.")
-            
+    print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
+    print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
+    
 def validate_number(number):
     """
     Inside the try, converts string value into integer.
