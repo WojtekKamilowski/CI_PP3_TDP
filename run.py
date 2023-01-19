@@ -90,18 +90,17 @@ def get_loaded_data():
     """
     while True:
         print("Please enter used equipment data from the last operations.")
-        print(f"Data should be {planned_lane_count} numbers(as that many lanes were planned last time), separated by commas.")
+        print(f"{planned_lane_count} numbers, separated by commas.")
         print("Example: 1,2,3,4,5,6,(...)\n")
 
         data_str = input("Enter your data here:\n")
-        
         loaded_data = data_str.split(",")
-        
         if validate_data(loaded_data):
             print("Data is valid!")
             break
 
     return loaded_data
+
 
 def validate_data(values):
     """
@@ -109,17 +108,17 @@ def validate_data(values):
     Raise ValueError if strings cannot be converted into int,
     or if there aren't exactly as many values as many lanes.
     """
-    try: 
+    try:
         [int(value) for value in values]
         if len(values) != planned_lane_count:
             raise ValueError(
-                f"Exactly {planned_lane_count} value required, you provided {len(values)}"
+                f"{planned_lane_count} values required, provided {len(values)}"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again. \n")
         return False
-    
     return True
+
 
 def update_worksheet(data, worksheet):
     """
@@ -131,23 +130,24 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully.\n")
 
+
 def calculate_added_unused_data(loaded_row):
     """
-    Compare loaded values with planned and calculate how many were added or unused for each lane.
+    Compare loaded values with planned
+    and calculate how many were added or unused for each lane.
     It is defined as the loaded figure subtracted from the planned:
     - Positive number indicates unused trailers
-    - Negative number indicates trailers requested from haulier on the same day.
+    - Negative number indicates trailers requested on the same day.
     """
     print("Calculating added_unused data...\n")
     planned = PLANNED.get_all_values()
     planned_row = planned[-1]
-    
     added_unused_data = []
     for planned, loaded in zip(planned_row, loaded_row):
         added_unused = int(planned) - loaded
         added_unused_data.append(added_unused)
-    
     return added_unused_data
+
 
 def get_last_5_entries_loaded():
     """
@@ -156,13 +156,12 @@ def get_last_5_entries_loaded():
     as a list of lists.
     """
     column_count = lane_count(LOADED) + 1
-    
     columns = []
     for ind in range(1, column_count):
         column = LOADED.col_values(ind)
         columns.append(column[-5:])
-    
-    return columns 
+    return columns
+
 
 def calculate_planned_data(data):
     """
@@ -179,6 +178,7 @@ def calculate_planned_data(data):
 
     return new_planned_data
 
+
 def daily_trailer_forecast():
     """
     For Menu option 9.
@@ -193,6 +193,7 @@ def daily_trailer_forecast():
     planned_data = calculate_planned_data(loaded_column)
     update_worksheet(planned_data, "planned")
 
+
 # Menu options 1 to 8
 def get_last_loaded():
     """
@@ -200,20 +201,19 @@ def get_last_loaded():
     Collects columns of data from loaded worksheet, collecting
     the last entry for each lane and returns the data
     as a list of strings.
-    """  
+    """
     column_count = lane_count(LOADED) + 1
 
     last_loaded_columns = []
     for ind in range(1, column_count):
         last_loaded_column = LOADED.col_values(ind)
         last_loaded_columns.append(last_loaded_column[-1:])
-
     last_loaded_columns_str = [''.join(x) for x in last_loaded_columns]
-    
     return last_loaded_columns_str
 
 
 last_loaded_data = get_last_loaded()
+
 
 def get_last_loaded_values(data):
     """
@@ -221,10 +221,11 @@ def get_last_loaded_values(data):
     Return the last loaded numbers with the heading of each lane.
     """
     headings = LOADED.get_all_values()[0]
-   
     return {heading: data for heading, data in zip(headings, data)}
 
+
 last_loaded_values = get_last_loaded_values(last_loaded_data)
+
 
 def get_last_planned():
     """
@@ -232,7 +233,7 @@ def get_last_planned():
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """ 
+    """
     column_count = lane_count(PLANNED) + 1
 
     last_planned_columns = []
@@ -241,10 +242,11 @@ def get_last_planned():
         last_planned_columns.append(last_planned_column[-1:])
 
     last_planned_columns_str = [''.join(x) for x in last_planned_columns]
-
     return last_planned_columns_str
 
+
 last_planned_data = get_last_planned()
+
 
 def get_last_planned_values(data):
     """
@@ -252,10 +254,11 @@ def get_last_planned_values(data):
     Return the last planned numbers with the heading of each lane.
     """
     headings = PLANNED.get_all_values()[0]
-   
     return {heading: data for heading, data in zip(headings, data)}
 
+
 last_planned_values = get_last_planned_values(last_planned_data)
+
 
 def get_last_added_unused():
     """
@@ -263,7 +266,7 @@ def get_last_added_unused():
     Collects columns of data from planned worksheet, collecting
     the last entry for each lane and returns the data
     as a list os strings.
-    """ 
+    """
     column_count = lane_count(ADDED_UNUSED) + 1
 
     last_added_unused_columns = []
@@ -271,10 +274,12 @@ def get_last_added_unused():
         last_added_unused_column = ADDED_UNUSED.col_values(ind)
         last_added_unused_columns.append(last_added_unused_column[-1:])
 
-    last_added_unused_columns_str = [''.join(x) for x in last_added_unused_columns]
-    return last_added_unused_columns_str
+    last_added_unused_col_str = [''.join(x) for x in last_added_unused_columns]
+    return last_added_unused_col_str
+
 
 last_added_unused_data = get_last_added_unused()
+
 
 def get_last_added_unused_values(data):
     """
@@ -282,32 +287,33 @@ def get_last_added_unused_values(data):
     Return the last added_unused numbers with the heading of each lane.
     """
     headings = ADDED_UNUSED.get_all_values()[0]
-   
     return {heading: data for heading, data in zip(headings, data)}
 
+
 last_added_unused_values = get_last_added_unused_values(last_added_unused_data)
+
 
 def added_unused_values():
     """
     For Menu option 4.
-    Access data from added_unused worksheet, 
+    Access data from added_unused worksheet,
     convert it to list of lists of ints,
     flatten the list of lists to one list of ints.
     """
     column_count = lane_count(ADDED_UNUSED) + 1
 
-    unused_haulage_columns = []
+    unsd_haul_cols = []
 
     for ind in range(1, column_count):
-        unused_haulage_column = ADDED_UNUSED.col_values(ind) 
-        unused_haulage_columns.append(unused_haulage_column[1:])
-    
-    # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python 
-    int_unused_haulage_columns = ([[int(float(j)) for j in i] for i in unused_haulage_columns])
-    
-    return flatten_list(int_unused_haulage_columns)
+        unused_haulage_column = ADDED_UNUSED.col_values(ind)
+        unsd_haul_cols.append(unused_haulage_column[1:])
+    # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python
+    int_und_haul_cls = ([[int(float(j)) for j in i] for i in unused_haul_cols])
+    return flatten_list(int_und_haul_cls)
+
 
 added_unused_values = added_unused_values()
+
 
 def unused_haulage_costs():
     """
@@ -316,65 +322,65 @@ def unused_haulage_costs():
     per trailer from the user via the terminal, which must be a number
     or adds 250 as data for cancellation charge value if the input is empty.
     The loop will repeatedly request data, until it is valid.
-    Filters data from entire added_unused worksheet and only recent row to collect
-    only positive numbers, adds all positive numbers, and multiplies
-    the sum by the entered/default amount for cancellation charge per trailer
+    Filters data from entire added_unused worksheet
+    and only recent row to collect only positive numbers,
+    adds all positive numbers, and multiplies the sum by
+    the entered/default amount for cancellation charge per trailer
     to calculate the cancellation costs.
     """
     while True:
-        cancellation_charge = input("Please confirm estimated cancellation charge per trailer(EUR), example: 250\n")
+        canc_char = input("Enter cancellation charge/trailer(EUR): e.g. 250\n")
 
-        if cancellation_charge == "":
-            print("No value enetered, default cancellation charge value in use\n")
-            cancellation_charge = "250"          
+        if canc_char == "":
+            print("No value enetered, default value in use\n")
+            canc_char = "250"
 
-        if validate_number(cancellation_charge):
-            print(f"Cancellation charge per trailer: {cancellation_charge} EUR\n")
+        if validate_number(canc_char):
+            print(f"Cancellation charge per trailer: {canc_char} EUR\n")
             break
         else:
             True
-            
     # From https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
-    unused_haulage_values = list(filter(lambda x:(x > 0),added_unused_values)) 
+    und_haul_vals = list(filter(lambda x: (x > 0), added_unused_values))
 
-    unused_haulage_sum = sum(unused_haulage_values)
+    und_haul_sum = sum(und_haul_vals)
 
-    unused_haulage_costs = unused_haulage_sum * int(cancellation_charge)
-    
+    und_haul_costs = und_haul_sum * int(canc_char)
     # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
     int_last_added_unused_data = list(map(int, last_added_unused_data))
-    last_unused_data = list(filter(lambda x:(x > 0),int_last_added_unused_data)) 
-    last_unused_sum = sum(last_unused_data)
-    last_unused_cost = last_unused_sum * int(cancellation_charge)
+    lt_und_data = list(filter(lambda x: (x > 0), int_last_added_unused_data))
+    last_und_sum = sum(lt_und_data)
+    last_unused_cost = last_und_sum * int(canc_char)
 
-    print(f"Until now the total number of {unused_haulage_sum} cancelled trailers generated loss of: {unused_haulage_costs} EUR.\n")
-    print(f"For most recent operations we planned {last_unused_sum} trailers that were unused, cancelling them generated costs of: {last_unused_cost} EUR.\n")
-    
+    print(f"Total {und_haul_sum} cancelled trailers cost: €{und_haul_costs}\n")
+    print(f"Recently {last_und_sum} trailer(s) cost: €{last_unused_cost}\n")
+
+
 def validate_number(number):
     """
     Inside the try, converts string value into integer.
     Raise ValueError if string cannot be converted into int.
-    Based on Love Sandwiches by Code Institute: https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/blob/master/05-deployment/01-deployment-part-1/run.py
+    Based on Love Sandwiches by Code Institute:
+    https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/blob/master/05-deployment/01-deployment-part-1/run.py
     """
-    try: 
+    try:
         [int(number)]
-        
     except ValueError as e:
         print(f"Invalid data: {e}, please try again. \n")
         return False
-    
     return True
+
 
 def request_new_lane():
     """
     For Menu option 5.
     Requests name of a new lane to be added to the sheet by the user.
     """
-    print("Lane name should be in following format: loading town, country code->unloading town, country code")
+    print("Recommended format: town, CC->town, CC")
     print("Example: Cork, IE->Dublin, IE")
-    lane = input("Please enter a new lane name:\n")    
-
+    lane = input("Please enter a new lane name:\n")
     return lane
+
 
 def add_lane(lane):
     """
@@ -389,13 +395,12 @@ def add_lane(lane):
         first_row = len(wksh.row_values(1))
         column = first_row+1
         wksh.update_cell(1, column, lane)
-    
     print("Adding headings...")
 
     add_heading(LOADED)
     add_heading(PLANNED)
     add_heading(ADDED_UNUSED)
-        
+
     def add_values(wksh):
         """
         Adds values 0 to cells under the heading of the lane to be added.
@@ -407,14 +412,15 @@ def add_lane(lane):
 
         for i in range(2, row_range):
             wksh.update_cell(i, column, "0")
-    
+
     print("updating worksheets...")
-    
+
     add_values(LOADED)
     add_values(PLANNED)
     add_values(ADDED_UNUSED)
-    
+
     print(f"Lane '{lane}' has been added successfully.\n")
+
 
 def lane_names():
     """
@@ -426,26 +432,29 @@ def lane_names():
     print(headings)
     print("")
 
+
 def delete_lane():
     """
     For Menu option 6.
     Asks for index number of the lane to be deleted by the user.
     Confirms if the user wants to delete the lane with the chosen index number.
-    Deletes the lane from all 3 worksheets if confirmed or breaks the loop if the user does not confirm.
+    Deletes the lane from all 3 worksheets if confirmed
+    or breaks the loop if the user does not confirm.
     """
     while True:
-        print("Review the lanes to choose a lane to be deleted by entering its index (from the left the index number of the first one is 1 :")
+        print("Choose a lane to be deleted by entering its index.")
+        print("From the left the index number of the first one is 1.")
         lane_index = input("Please enter index number, example: 1:\n")
 
         if validate_number(lane_index):
             print(f"Selected lane index: {lane_index}")
-            break            
+            break
         else:
             True
 
     while True:
-        print(f"Are you sure you want to delete this lane index number: {lane_index}?\n")
-        confirm_index = input(f"yes(y) / no(n):\n")   
+        print(f"Confirm to delete lane index number: {lane_index}?\n")
+        confirm_index = input(f"yes(y) / no(n):\n")
 
         lane_index_int = int(lane_index)
 
@@ -456,15 +465,17 @@ def delete_lane():
             ADDED_UNUSED.delete_columns(lane_index_int)
             print(f"Lane index: {lane_index} has been deleted successfully\n")
             print("Closing program...")
-            print("Program closed!") 
-            break    
+            print("Program closed!")
+            break
         elif confirm_index == "no" or confirm_index == "n":
             print(f"Deleting lane index number: {lane_index} has been stopped")
             main()
             break
         else:
-            print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
-    
+            print("Invalid input!")
+            print("Please input: yes OR y OR no OR n")
+
+
 def delete_last_data(wksh, wksh_name):
     """
     For Menu option 7.
@@ -475,34 +486,35 @@ def delete_last_data(wksh, wksh_name):
 
     def_rows = 7
 
-    if wksh ==  PLANNED:
+    if wksh == PLANNED:
         def_rows = 8
-    
+
     if last_row > def_rows:
-        print(f"Deleting the most recent non-default number values from {wksh_name} worksheet...")
+        print(f"Deleting from {wksh_name} worksheet...")
         wksh.delete_rows(last_row)
-        print(f"Deleting the most recent non-default number values from {wksh_name} worksheet has been completed!\n")
+        print(f"Deleting from {wksh_name} worksheet has been completed!\n")
     else:
-        print(f"All non-default number values from {wksh_name} worksheet have already been removed.\n")
+        print(f"All non-default data from {wksh_name} already deleted.\n")
 
-def delete_all_data(wksh, wksh_name): 
 
-    """ 
-    For Menu option 8. 
-    From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on 
+def delete_all_data(wksh, wksh_name):
+    """
+    For Menu option 8.
+    From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on
     Deletes all data from whsh and adds blank rows.
-    """ 
+    """
     last_row = len(wksh.col_values(1))
 
     def_rows = 7
 
-    if wksh ==  PLANNED:
+    if wksh == PLANNED:
         def_rows = 8
 
     if last_row > def_rows:
         wksh.delete_rows(def_rows, last_row)
     else:
-        print(f"All non-default number values from {wksh_name} worksheet have already been removed.\n")
+        print(f"All non-default data from {wksh_name} already deleted.\n")
+
 
 def main():
     """
@@ -512,20 +524,20 @@ def main():
     while True:
         logo()
         menu()
-        
+
         option = input("Please choose an option:\n")
-                    
+
         if option == "1":
             print("Last time the following numbers of trailers were loaded:")
             print(last_loaded_values)
         elif option == "2":
-            print("If not already done, please remember to pre-order following number of trailers for next loading:")
+            print("Please ensure to pre-order trailers for next loading:")
             print(last_planned_values)
         elif option == "3":
-            print("Following numbers of trailer were unused or ordered at the day of loading:\n")
-            print("- Positive number indicates unused trailers.\n")
-            print("- 0 indicates that previously we pre-ordered as many trailers as many were loaded.\n")
-            print("- Negative number indicates trailers requested from haulier(s) on the same day.\n")
+            print("For last ops we unused or ordered at the day:\n")
+            print("- Positive number: unused trailers.\n")
+            print("- 0 indicates that was no trailers addded or unused.\n")
+            print("- Negative number: trailers ordered during ops.\n")
             print(last_added_unused_values)
         elif option == "4":
             unused_haulage_costs()
@@ -538,50 +550,55 @@ def main():
                 print("Program closed!")
                 break
             else:
-                print("Input cannot be blank, to add a new lane you need to choose this option again and enter at least one character for name or code of the new lane")
+                print("Input cannot be blank!")
+                print("Choose this option again")
+                print("Enter at least one character for name/code of the lane")
         elif option == "6":
             # From https://docs.gspread.org/en/latest/user-guide.html
-            second_lane = PLANNED.cell(1,2).value
-            
-            if second_lane != None:
+            second_lane = PLANNED.cell(1, 2).value
+
+            if second_lane is not None:
                 lane_names()
                 delete_lane()
                 break
             else:
                 lane_names()
-                print("At least one lane must remain, you need to add one more to be able to delete a lane")
+                print("At least one lane must remain")
+                print("you need to add one more to be able to delete a lane")
         elif option == "7":
-            confirm_delete_recent = input("Please confirm you want to delete RECENT non-default data?: yes(y) / no(n)\n")
+            cfrm_del_rec = input("Please confirm: yes(y) / no(n)\n")
 
-            if confirm_delete_recent == "yes" or confirm_delete_recent == "y":
+            if cfrm_del_rec == "yes" or cfrm_del_rec == "y":
                 delete_last_data(LOADED, "loaded")
                 delete_last_data(PLANNED, "planned")
-                delete_last_data(ADDED_UNUSED, "added_unused")              
+                delete_last_data(ADDED_UNUSED, "added_unused")
                 print("Closing program...")
                 print("Program closed!")
                 break
-            elif confirm_delete_recent == "no" or confirm_delete_recent == "n":
-                print("Deleting RECENT data has been stopped!") 
+            elif cfrm_del_rec == "no" or cfrm_del_rec == "n":
+                print("Deleting RECENT data has been stopped!")
                 main()
                 break
             else:
-                print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
+                print("Invalid input!")
+                print("Please input: yes OR y OR no OR n")
         elif option == "8":
-            confirm_delete_all = input("Are you sure you want to delete ALL non-default data!?: yes(y) / no(n)\n")
+            cfm_del_all = input("Please confirm: yes(y) / no(n)\n")
 
-            if confirm_delete_all == "yes" or confirm_delete_all == "y":
+            if cfm_del_all == "yes" or cfm_del_all == "y":
                 delete_all_data(LOADED, "loaded")
                 delete_all_data(PLANNED, "planned")
                 delete_all_data(ADDED_UNUSED, "added_unused")
                 print("Closing program...")
                 print("Program closed!")
                 break
-            elif confirm_delete_all == "no" or confirm_delete_all == "n":
-                print("Deleting ALL data has been stopped!") 
+            elif cfm_del_all == "no" or cfm_del_all == "n":
+                print("Deleting ALL data has been stopped!")
                 main()
-                break 
+                break
             else:
-                print("Invalid input, please type one of the following(without quotation marks): 'yes' OR 'y' OR 'no' OR 'n'")
+                print("Invalid input!")
+                print("Please input: yes OR y OR no OR n")
         elif option == "9":
             daily_trailer_forecast()
             print("Closing program...")
@@ -593,7 +610,8 @@ def main():
             break
         else:
             print("Invalid Option, please try again")
-        
+
         input("Press enter to return to the menu\n")
+
 
 main()
