@@ -22,6 +22,7 @@ Its objective is to support everyday tasks of a freight forwarder.
 2. [User Experience](#user-experience)
     - [Target Audience](#target-audience)
     - [User Requirements and Expectations](#user-requirements-and-expectations)
+    - [User Manual](#user-manual)
     - [User Stories](#user-stories)
 3. [Design](#design)
     - [Design Choices](#design-choices)
@@ -128,13 +129,40 @@ the user can enter any name of their choice besides empty input which will be co
 When the user enter a name for the new lane then the program will print status updates on the progress: "Adding headings..." and "Updating worksheets"
 The data under the heading of the new lane in all worksheets will be updated as 0 for previous operations and next day planning.
 The program will then print a confirmation that the new lane has been added successfully.
-The program will be closed to correctly access the newest data when choosing other options after.
+The program closes to correctly access the updated data.
 
-The user needs to re-open the application after the update to ensure the program is working with the updated data.
+The user needs to re-open the application after the update to continue using the program.
 
 <img src="docs/manual/option-5-added.png">
 
 [Back to Table Of Contents](#table-of-contents)
 
 #### Option 6: Delete a lane & exit
-This option allows user to preview lane names in the program. 
+When the user chooses this option firstly is able to preview lane names in the program, the program communicates to select a lane to be deleted.
+The user can select the lane to be deleted by its index: the first lane from the left has index 1 and user needs to count the number to identfy the lane to be deleted.
+The program also prints the range of indexes to choose from. The user is asked to enter index for example: 1, which must be confirmed by pressing enter key.
+
+<img src="docs/manual/option-6.png">
+
+When the user inputs index that does not exist, the program will inform that it was invalid  and reminds the user the range of indexes.
+
+<img src="docs/manual/option-6-invalid-index.png">
+
+In case the user input is a letter or blank, the program will inform that it needs to be a number with base 10:
+
+<img src="docs/manual/option-6-invalid-index-alpha.png">
+
+Once the correct index is entered, the program asks the user to confirm deleting lane of the chosen index. 
+Entering no or n and pressing enter prints message that deleting lane has been stopped and displays the main menu.
+If users confirms by typing yes or y confirmed by enter key then the program deletes the lane number 7 and informs the user.
+The program closes to correctly access the updated data.
+
+The user needs to re-open the application after the update to continue using the program.
+
+<img src="docs/manual/option-6-invalid-lane-deleted.png">
+
+#### Option 7:
+
+
+
+
