@@ -64,7 +64,7 @@ def flatten_list(_2d_list):
                 flat_list.append(item)
         else:
             flat_list.append(element)
-        return flat_list
+    return flat_list
 
 
 def lane_count(wksh):
@@ -304,11 +304,12 @@ def added_unused_values():
 
     unsd_haul_cols = []
 
-    for ind in range(1, column_count):
+    for ind in range(1, 8):
         unused_haulage_column = ADDED_UNUSED.col_values(ind)
         unsd_haul_cols.append(unused_haulage_column[1:])
     # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python
     int_und_haul_cls = ([[int(float(j)) for j in i] for i in unsd_haul_cols])
+
     return flatten_list(int_und_haul_cls)
 
 
@@ -332,7 +333,7 @@ def unused_haulage_costs():
         canc_char = input("Enter cancellation charge/trailer(EUR): e.g. 250\n")
 
         if canc_char == "":
-            print("No value enetered, default value in use\n")
+            print("No value entered, default value in use\n")
             canc_char = "250"
 
         if validate_number(canc_char):
@@ -342,7 +343,7 @@ def unused_haulage_costs():
             True
     # From https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
     und_haul_vals = list(filter(lambda x: (x > 0), added_unused_values))
-
+ 
     und_haul_sum = sum(und_haul_vals)
 
     und_haul_costs = und_haul_sum * int(canc_char)
@@ -615,3 +616,4 @@ def main():
 
 
 main()
+
