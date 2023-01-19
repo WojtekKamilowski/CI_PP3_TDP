@@ -79,7 +79,6 @@ def lane_count(wksh):
 planned_lane_count = lane_count(PLANNED)
 
 
-# Option 9 based on Code Institute's walkthrough project Love Sandwiches:
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
@@ -182,7 +181,8 @@ def calculate_planned_data(data):
 def daily_trailer_forecast():
     """
     For Menu option 9.
-    Runs daily trailer forecast update functions
+    Runs daily trailer forecast update functions.
+    Option 9 based on Code Institute's walkthrough project Love Sandwiches.
     """
     data = get_loaded_data()
     loaded_data = [int(num) for num in data]
@@ -194,7 +194,6 @@ def daily_trailer_forecast():
     update_worksheet(planned_data, "planned")
 
 
-# Menu options 1 to 8
 def get_last_loaded():
     """
     For Menu option 1.
@@ -307,6 +306,7 @@ def added_unused_values():
     for ind in range(1, 8):
         unused_haulage_column = ADDED_UNUSED.col_values(ind)
         unsd_haul_cols.append(unused_haulage_column[1:])
+
     # code from stackoverflow.com
     int_und_haul_cls = ([[int(float(j)) for j in i] for i in unsd_haul_cols])
 
@@ -341,12 +341,14 @@ def unused_haulage_costs():
             break
         else:
             True
+
     # From https://www.codespeedy.com/
     und_haul_vals = list(filter(lambda x: (x > 0), added_unused_values))
 
     und_haul_sum = sum(und_haul_vals)
 
     und_haul_costs = und_haul_sum * int(canc_char)
+
     # From https://stackoverflow.com/
     int_last_added_unused_data = list(map(int, last_added_unused_data))
     lt_und_data = list(filter(lambda x: (x > 0), int_last_added_unused_data))
@@ -461,10 +463,12 @@ def delete_lane():
         lane_index_int = int(lane_index)
 
         if confirm_index == "yes" or confirm_index == "y":
+
             # From https://stackoverflow.com/
             LOADED.delete_columns(lane_index_int)
             PLANNED.delete_columns(lane_index_int)
             ADDED_UNUSED.delete_columns(lane_index_int)
+
             print(f"Lane index: {lane_index} has been deleted successfully\n")
             print("Closing program...")
             print("Program closed!")
@@ -541,8 +545,8 @@ def delete_all_data(wksh, wksh_name):
 def main():
     """
     Runs all program functions
+    Loop based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
     """
-    # Loop based on https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s
     while True:
         logo()
         menu()
