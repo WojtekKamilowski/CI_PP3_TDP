@@ -26,7 +26,7 @@ def logo():
     print("|            TRAILERS DEMAND PLANNER                |")
     print("|                                                   |")
     print("|___________________________________________________|")
-    print("  ___    ___    ___                          |")
+    print("___    ___    ___                          |")
     print(r"/ _ \  / _ \  / _ \                         |")
     print(r"|(_) | |(_) | |(_) |                        |")
     print(r"\___/  \___/  \___/                         |")
@@ -445,9 +445,10 @@ def delete_lane():
     while True:
         print("Choose a lane to be deleted by entering its index.")
         print("From the left the index number of the first one is 1.")
+        print(f"Lanes indexes are from 1 to {lane_count(PLANNED)}")
         lane_index = input("Please enter index number, example: 1:\n")
 
-        if validate_number(lane_index):
+        if validate_index(lane_index):
             print(f"Selected lane index: {lane_index}")
             break
         else:
@@ -475,6 +476,24 @@ def delete_lane():
         else:
             print("Invalid input!")
             print("Please input: yes OR y OR no OR n")
+
+
+def validate_index(index):
+    """
+    Inside the try, converts all string values into integers.
+    Raise ValueError if strings cannot be converted into int,
+    or if the input is more than number of indexes.
+    """
+    try:
+        [int(index)]
+        if int(index) > planned_lane_count:
+            raise ValueError(
+                f"Indexes are 1 to {planned_lane_count}, entered {index}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again. \n")
+        return False
+    return True
 
 
 def delete_last_data(wksh, wksh_name):
