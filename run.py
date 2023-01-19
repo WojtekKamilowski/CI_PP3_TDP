@@ -622,6 +622,7 @@ def main():
                 print("Invalid input!")
                 print("Please input: yes OR y OR no OR n")
         elif option == "9":
+            lane_names()
             daily_trailer_forecast()
             print("Closing program...")
             print("Program closed!")

@@ -199,11 +199,20 @@ Input of yes or y and enter deletes all non-default data or informs that no more
 
 If the user inputs other data than y/yes or n/no the prgoram informs about invalid input and the user needs to return to the main menu by pressing enter.
 
+<img src="docs/manual/option-8-invalid-confirmation.png">
+
 The program closes to correctly access the updated data.
 The user needs to re-open the application after the update to continue using the program.
 
+<img src="docs/manual/option-8.png">
+<img src="docs/manual/option-8-already-deleted.png">
+
 #### Option 9: Run daily trailer forecast & exit
 
+Once the option 9 is selected by the user the program dispalys information about the required input: 
+It must be as many numbers as many lanes in use, separated by commas: example: 1,2,3,4,5,6
+
+The user must enter numbers of how many trailers were loaded during the last operations 
 
  
 
