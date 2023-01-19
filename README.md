@@ -161,7 +161,29 @@ The user needs to re-open the application after the update to continue using the
 
 <img src="docs/manual/option-6-invalid-lane-deleted.png">
 
-#### Option 7:
+At least one lane must be in the program so the user is prevented to delete the last one.
+The user needs to enter one more lane using the option 5 to be able to delete the lane that remained as last one,
+If no other lane is known, lane name such: "???" can be used temporarily while adding an extra one.
+
+#### Option 7: Clear RECENT non-default data & exit.
+
+There is a minimum set of 7 rows for loaded and added_unused worksheets, and 8 rows of numeric data for planned worksheet to provide some base data for calculations. 
+
+The user can delete the most recent data from all worksheets by choosing option 7. 
+Once the option is chosen, the user is asked to confirm deleting LAST.
+
+Typing no or n confirmed by enter inform that the action has been stopped and displays the main menu.
+
+Input of yes or y and enter will delete the most recent data or inform that no more data can be deleted from the program.
+
+<img src="docs/manual/option-7.png">
+<img src="docs/manual/option-7-already-deleted.png">
+
+#### Option 8: Clear ALL non-default data & exit
+
+
+
+
 
 
 
