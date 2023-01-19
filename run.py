@@ -19,17 +19,17 @@ ADDED_UNUSED = SHEET.worksheet("added_unused")
 def logo():
     """
     Prints program logo
-    Based on https://github.com/aleksandracodes/CI_PP3_Connect4/blob/main/run.py
+    Based on CI_PP3_Connect4
     """
     print("____________________________________________________")
     print("|                                                   |")
     print("|            TRAILERS DEMAND PLANNER                |")
     print("|                                                   |")
     print("|___________________________________________________|")
-    print(" ___    ___    ___                          |")
-    print("/ _ \  / _ \  / _ \                         |")
-    print("|(_) | |(_) | |(_) |                        |")
-    print("\___/  \___/  \___/                         |")
+    print("  ___    ___    ___                          |")
+    print(r"/ _ \  / _ \  / _ \                         |")
+    print(r"|(_) | |(_) | |(_) |                        |")
+    print(r"\___/  \___/  \___/                         |")
 
 
 def menu():
@@ -307,7 +307,7 @@ def added_unused_values():
     for ind in range(1, 8):
         unused_haulage_column = ADDED_UNUSED.col_values(ind)
         unsd_haul_cols.append(unused_haulage_column[1:])
-    # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python
+    # code from stackoverflow.com
     int_und_haul_cls = ([[int(float(j)) for j in i] for i in unsd_haul_cols])
 
     return flatten_list(int_und_haul_cls)
@@ -341,13 +341,13 @@ def unused_haulage_costs():
             break
         else:
             True
-    # From https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.
+    # From https://www.codespeedy.com/
     und_haul_vals = list(filter(lambda x: (x > 0), added_unused_values))
- 
+
     und_haul_sum = sum(und_haul_vals)
 
     und_haul_costs = und_haul_sum * int(canc_char)
-    # From https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int
+    # From https://stackoverflow.com/
     int_last_added_unused_data = list(map(int, last_added_unused_data))
     lt_und_data = list(filter(lambda x: (x > 0), int_last_added_unused_data))
     last_und_sum = sum(lt_und_data)
@@ -386,7 +386,7 @@ def request_new_lane():
 def add_lane(lane):
     """
     For Menu option 5.
-    Based on https://stackoverflow.com/questions/60495748/append-value-to-column-in-gspread
+    Based on https://stackoverflow.com/
     Adds entered by the user lane to all 3 worksheets.
     """
     def add_heading(wksh):
@@ -460,7 +460,7 @@ def delete_lane():
         lane_index_int = int(lane_index)
 
         if confirm_index == "yes" or confirm_index == "y":
-            # From https://stackoverflow.com/questions/61213417/delete-remove-column-in-google-sheet-over-gspread-python-like-sheet-delete-row#:~:text=There%20is%20no%20method%20in,this%20with%20a%20batch%20update.
+            # From https://stackoverflow.com/
             LOADED.delete_columns(lane_index_int)
             PLANNED.delete_columns(lane_index_int)
             ADDED_UNUSED.delete_columns(lane_index_int)
@@ -480,7 +480,7 @@ def delete_lane():
 def delete_last_data(wksh, wksh_name):
     """
     For Menu option 7.
-    From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on
+    From https://stackoverflow.com/
     Identifies last row index & deletes data from it.
     """
     last_row = len(wksh.col_values(1))
@@ -501,7 +501,7 @@ def delete_last_data(wksh, wksh_name):
 def delete_all_data(wksh, wksh_name):
     """
     For Menu option 8.
-    From https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on
+    From https://stackoverflow.com
     Deletes all data from whsh and adds blank rows.
     """
     last_row = len(wksh.col_values(1))
@@ -567,7 +567,7 @@ def main():
                 print("At least one lane must remain")
                 print("you need to add one more to be able to delete a lane")
         elif option == "7":
-            cfrm_del_rec = input("Please confirm: yes(y) / no(n)\n")
+            cfrm_del_rec = input("Confirm deleting LAST: yes(y) / no(n)\n")
 
             if cfrm_del_rec == "yes" or cfrm_del_rec == "y":
                 delete_last_data(LOADED, "loaded")
@@ -584,7 +584,7 @@ def main():
                 print("Invalid input!")
                 print("Please input: yes OR y OR no OR n")
         elif option == "8":
-            cfm_del_all = input("Please confirm: yes(y) / no(n)\n")
+            cfm_del_all = input("Confirm deleting ALL: yes(y) / no(n)\n")
 
             if cfm_del_all == "yes" or cfm_del_all == "y":
                 delete_all_data(LOADED, "loaded")
@@ -616,4 +616,3 @@ def main():
 
 
 main()
-
