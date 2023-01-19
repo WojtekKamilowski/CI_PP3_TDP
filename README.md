@@ -167,19 +167,46 @@ If no other lane is known, lane name such: "???" can be used temporarily while a
 
 #### Option 7: Clear RECENT non-default data & exit.
 
-There is a minimum set of 7 rows for loaded and added_unused worksheets, and 8 rows of numeric data for planned worksheet to provide some base data for calculations. 
+There is a minimum set of default numeric data: 6 rows for loaded and added_unused worksheets, and 7 rows for planned worksheet to provide some base data for calculations. 
 
-The user can delete the most recent data from all worksheets by choosing option 7. 
+The user can delete the most recent non-default data from all worksheets by choosing option 7. 
 Once the option is chosen, the user is asked to confirm deleting LAST.
 
 Typing no or n confirmed by enter inform that the action has been stopped and displays the main menu.
 
-Input of yes or y and enter will delete the most recent data or inform that no more data can be deleted from the program.
+Input of yes or y and enter deletes the most recent non-default data or informs that no more data can be deleted from the program.
+
+If the user inputs other data than y/yes or n/no the prgoram informs about invalid input and the user needs to return to the main menu by pressing enter.
+
+<img src="docs/manual/option-7-invalid-confirmation.png">
+
+The program closes to correctly access the updated data.
+The user needs to re-open the application after the update to continue using the program.
 
 <img src="docs/manual/option-7.png">
 <img src="docs/manual/option-7-already-deleted.png">
 
 #### Option 8: Clear ALL non-default data & exit
+
+There is a minimum set of default numeric data: 6 rows for loaded and added_unused worksheets, and 7 rows for planned worksheet to provide some base data for calculations.
+
+The user can delete all non-default data from all worksheets by choosing option 8. 
+Once the option is chosen, the user is asked to confirm deleting ALL.
+
+Typing no or n confirmed by enter inform that the action has been stopped and displays the main menu.
+
+Input of yes or y and enter deletes all non-default data or informs that no more data can be deleted from the program.
+
+If the user inputs other data than y/yes or n/no the prgoram informs about invalid input and the user needs to return to the main menu by pressing enter.
+
+The program closes to correctly access the updated data.
+The user needs to re-open the application after the update to continue using the program.
+
+#### Option 9: Run daily trailer forecast & exit
+
+
+ 
+
 
 
 

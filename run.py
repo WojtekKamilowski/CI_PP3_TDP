@@ -531,7 +531,8 @@ def delete_all_data(wksh, wksh_name):
         def_rows = 8
 
     if last_row > def_rows:
-        wksh.delete_rows(def_rows, last_row)
+        wksh.delete_rows(def_rows + 1, last_row)
+        print(f"ALL non-default data deleted from {wksh} now")
     else:
         print(f"All non-default data from {wksh_name} already deleted.\n")
 
