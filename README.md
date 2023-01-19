@@ -125,13 +125,16 @@ However, as some lane names may need to be a code/ serial number or other non-st
 the user can enter any name of their choice besides empty input which will be communicated to the user and will need to choose this option again to proceed.
 <img src="docs/manual/option-5.png">
 
-When the user enter a name for the new lane then the program will printupdates on the progress: "Adding headings..." and "Updating worksheets"
+When the user enter a name for the new lane then the program will print status updates on the progress: "Adding headings..." and "Updating worksheets"
 The data under the heading of the new lane in all worksheets will be updated as 0 for previous operations and next day planning.
 The program will then print a confirmation that the new lane has been added successfully.
 The program will be closed to correctly access the newest data when choosing other options after.
 
-The user needs to re-open
+The user needs to re-open the application after the update to ensure the program is working with the updated data.
 
 <img src="docs/manual/option-5-added.png">
 
 [Back to Table Of Contents](#table-of-contents)
+
+#### Option 6: Delete a lane & exit
+This option allows user to preview lane names in the program. 
