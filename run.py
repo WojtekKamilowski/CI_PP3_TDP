@@ -308,7 +308,7 @@ def added_unused_values():
         unused_haulage_column = ADDED_UNUSED.col_values(ind)
         unsd_haul_cols.append(unused_haulage_column[1:])
     # code from https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python
-    int_und_haul_cls = ([[int(float(j)) for j in i] for i in unused_haul_cols])
+    int_und_haul_cls = ([[int(float(j)) for j in i] for i in unsd_haul_cols])
     return flatten_list(int_und_haul_cls)
 
 
