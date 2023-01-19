@@ -77,4 +77,54 @@ Its objective is to support everyday tasks of a freight forwarder.
 - Easy navigation.
 - Possiblity to confirm intention to delete.
 
+### User Manual
+
+<details><summary>Click for instructions</summary>
+
+#### Main Menu
+Opens with the program Consists of three main parts:
+- Logo
+- Options
+- User input
+
+Actions:
+- Review and select one of the options by inputing the index number of the option confirming with enter.
+- If an invalid option is selected the program will print: "Invalid Option, please try again" & "Press enter to return to the menu": 
+    In this case user needs to press enter to see the main menu again and choose one of the options: 1 - 9 or 0
+
+#### Option 1: Preview last loaded data
+After choosing option 1 the program will print how many trailers were loaded for their corresponding lane,
+Example 'Cork, IE->Dublin, IE': '0', which should be interpreted as 0 trailers were loaded during last operations on the Cork, IE->Dublin, IE lane.
+
+Below the program prints "Press enter to return to the menu": to print the main menu press enter.
+
+#### Option 2: Preview last planned data
+Selecting Option 2 prints a reminder to pre-order trailers for next operations.
+Example 'Cork, IE->Dublin, IE': '2', which means the user should contact a haulage opeartor to order 2 trailers.
+
+Below the program prints "Press enter to return to the menu": to print the main menu press enter.
+
+#### Option 3: Preview last added_unused data
+Option 3 displays how many trailers were unused (positive numbers) or ordered at the day (negative numbers) during last opeartions for each lane.
+Example 1: 'Cork, IE->Dublin, IE': '2', means that 2 trailers were planned previosuly without the need and eventually were not loaded.
+Example 2: 'Cork, IE->Reading, GB': '-1', there was one trailer loaded more than planned and the freight forwarder had to contact a haulage opeartor to order 1 trailer for loading on the day of operations.
+
+Below the program prints "Press enter to return to the menu": to print the main menu press enter.
+
+#### Option 4: Run unused haulage costs report
+Choosing this option the user will be asked to confirm how much haulier operator will charge the freight forwarding company for cancelling loading at the day operations.
+If the input is invalid the program will display an error: Invalid data, in case there the input is blank the program will assume €250 as default cancellation charge.
+
+The program prints information how many trailers in total were unused and how much it cost and below same for most recent opearations only. 
+
+Below the program prints "Press enter to return to the menu": to print the main menu press enter.
+
+#### Option 5: Add a new lane & exit 
+After selection of the option 5 the user will be requested to specify a name for the new lane to be added suggesting to follow same format: Cork, IE->Dublin, IE'
+However, as some lane names may need to be a code/ serial number or other non-standard name that would allow the user to choose it according to the operational needs,
+the user can enter any name of their choice besides empty input which will be communicated to the user .
+<img src="docs/manual/option-5.png">
+
+
+
 [Back to Table Of Contents](#table-of-contents)

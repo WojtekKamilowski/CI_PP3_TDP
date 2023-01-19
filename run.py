@@ -15,6 +15,7 @@ LOADED = SHEET.worksheet("loaded")
 PLANNED = SHEET.worksheet("planned")
 ADDED_UNUSED = SHEET.worksheet("added_unused")
 
+
 def logo():
     """
     Prints program logo
@@ -29,6 +30,7 @@ def logo():
     print("/ _ \  / _ \  / _ \                         |")
     print("|(_) | |(_) | |(_) |                        |")
     print("\___/  \___/  \___/                         |")
+
 
 def menu():
     """
@@ -49,41 +51,44 @@ def menu():
     print("0. Exit")
     print("-----------------------------")
 
+
 def flatten_list(_2d_list):
-        """
-        Taken from https://stackabuse.com/python-how-to-flatten-list-of-lists/
-        Flattens list of lists to a single list.
-        """
-        flat_list = []
-        
-        for element in _2d_list:
-            if type(element) is list:
-                
-                for item in element:
-                    flat_list.append(item)
-            else:
-                flat_list.append(element)
+    """
+    Taken from https://stackabuse.com/python-how-to-flatten-list-of-lists/
+    Flattens list of lists to a single list.
+    """
+    flat_list = []
+    for element in _2d_list:
+        if type(element) is list:
+            for item in element:
+                lat_list.append(item)
+        else:
+            flat_list.append(element)
         return flat_list
+
 
 def lane_count(wksh):
     """
     Counts and returns how many rows with lane names are in use.
     """
     lane_count = len(wksh.row_values(1))
-    return(lane_count)
 
-planned_lane_count = lane_count(PLANNED)  
+    return lane_count
 
-# Daily trailer forecast for option 9 based on Code Institute's walkthrough project Love Sandwiches:
+
+planned_lane_count = lane_count(PLANNED)
+
+
+# Option 9 based on Code Institute's walkthrough project Love Sandwiches:
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
     Run a while loop to collect a valid string of data from the user
-    via the terminal, which must be a string of as many numbers equal to the lane count
-    separated by commas. The loop will repeatedly request data, until it is valid.
+    via the terminal, which must be a string of as many numbers
+    equal to the lane count separated by commas.
+    The loop will repeatedly request data, until it is valid.
     """
-    while True:   
-           
+    while True:
         print("Please enter used equipment data from the last operations.")
         print(f"Data should be {planned_lane_count} numbers(as that many lanes were planned last time), separated by commas.")
         print("Example: 1,2,3,4,5,6,(...)\n")
