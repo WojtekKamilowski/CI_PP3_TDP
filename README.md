@@ -254,7 +254,9 @@ As the site owner I want to:
 14. Ensure users operate with the most up to date data.
 15. Verify the accuracy of the automated forecasting and see how it impact operational costs.
 
+### Technical Design
 
+<img src="docs/flowchart.png">
 
 
 
