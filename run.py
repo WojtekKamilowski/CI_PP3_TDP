@@ -61,7 +61,7 @@ def flatten_list(_2d_list):
     for element in _2d_list:
         if type(element) is list:
             for item in element:
-                lat_list.append(item)
+                flat_list.append(item)
         else:
             flat_list.append(element)
         return flat_list
