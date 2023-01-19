@@ -24,12 +24,7 @@ Its objective is to support everyday tasks of a freight forwarder.
     - [User Requirements and Expectations](#user-requirements-and-expectations)
     - [User Manual](#user-manual)
     - [User Stories](#user-stories)
-3. [Design](#design)
-    - [Design Choices](#design-choices)
-    - [Colors](#colors)
-    - [Fonts](#fonts)
-    - [Structure](#structure)
-    - [Wireframes](#wireframes)
+3. [Technical Design](#technical-design)
 4. [Languages](#languages)
 5. [Technologies Used](#technologies-used)
 6. [Features](#features)
@@ -135,8 +130,6 @@ The user needs to re-open the application after the update to continue using the
 
 <img src="docs/manual/option-5-added.png">
 
-[Back to Table Of Contents](#table-of-contents)
-
 #### Option 6: Delete a lane & exit
 When the user chooses this option firstly is able to preview lane names in the program, the program communicates to select a lane to be deleted.
 The user can select the lane to be deleted by its index: the first lane from the left has index 1 and user needs to count the number to identfy the lane to be deleted.
@@ -209,13 +202,57 @@ The user needs to re-open the application after the update to continue using the
 
 #### Option 9: Run daily trailer forecast & exit
 
-Once the option 9 is selected by the user the program dispalys information about the required input: 
+Once the option 9 is selected by the user the program dispalys lane names and information about the required input: 
 It must be as many numbers as many lanes in use, separated by commas: example: 1,2,3,4,5,6
 
-The user must enter numbers of how many trailers were loaded during the last operations 
+The user must enter numbers of how many trailers were loaded during the last operations for the corresponding service in the same order as per the lane names list.
+Example below: 2 trailers were loaded for the Cork, IE->Dublin, IE lane
 
- 
+<img src="docs/manual/option-9-example.png">
 
+In case there is not enough, too many numbers or not a number was entered the program informs that the data is invalid until valid input is provided.
+
+<img src="docs/manual/option-9-invalid-data.png">
+
+Once the entered data is valid the program proceeds updating on the status of the process.
+The program closes to correctly access the updated data.
+The user needs to re-open the application after the update to continue using the program.
+
+ <img src="docs/manual/option-9.png">
+
+#### Option 0: Exit
+This option closes the program.
+
+</details>
+
+[Back to Table Of Contents](#table-of-contents)
+
+### User Stories
+
+#### Users
+
+As a user I want to:
+
+1. Know what are the options of the program.
+2. Check details about trailers loaded during the last operations.
+3. See how many trailers were recently planned for loading.
+4. Identify how many trailers were unloaded or ordered at the day.
+5. Review costs associated with the incorrect demand planning.
+6. Add a new lane to the program.
+7. Delete one of the lanes from the program.
+8. Clear most recent data from the program.
+9. Reset the data from the program to contain only necessary default values.
+10. Automate my daily tedious tasks.
+11. Easily exit the program when processes are completed.
+
+#### Site Owner
+
+As the site owner I want to:
+
+12. Enable users to easily learn about the options of the program and how to use it.
+13. Prevent users from entering incorrect inputs and guid them what is required.
+14. Ensure users operate with the most up to date data.
+15. Verify the accuracy of the automated forecasting and see how it impact operational costs.
 
 
 
