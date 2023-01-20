@@ -84,7 +84,7 @@ planned_lane_count = lane_count(PLANNED)
 def get_loaded_data():
     """
     Get used equipment figures input from the user for loaded worksheet.
-    Run a while loop to collect a valid string of data from the user
+    Runs a while loop to collect a valid string of data from the user
     via the terminal, which must be a string of as many numbers
     equal to the lane count separated by commas.
     The loop will repeatedly request data, until it is valid.
@@ -298,7 +298,7 @@ def added_unused_values():
     """
     For Menu option 4.
     Access data from added_unused worksheet,
-    convert it to list of lists of ints,
+    converts it to list of lists of ints,
     flatten the list of lists to one list of ints.
     """
     column_count = lane_count(ADDED_UNUSED) + 1
