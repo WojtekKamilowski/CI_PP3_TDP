@@ -71,6 +71,7 @@ def flatten_list(_2d_list):
 def lane_count(wksh):
     """
     Counts and returns how many rows with lane names are in use.
+    Based on https://stackoverflow.com/
     """
     lane_count = len(wksh.row_values(1))
 

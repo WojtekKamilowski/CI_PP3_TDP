@@ -608,11 +608,31 @@ You can clone the repository by following these steps:
 6. Type git clone and paste the URL from the clipboard.
 7. Press Enter to create your local clone.
 
+[Back to Table Of Contents](#table-of-contents)
+
 ## Credits 
 - menu() function and the while loop from main() based on<a href="https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s">YouTube</a>.
 - daily_trailer_forecast() function with other functions used based on <a href="https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1">Code Institute</a>.
 - int_und_haul_cls variable from added_unused_values() function based on <a href="https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python">STACK OVERFLOW</a>.
 - flatten_list(_2d_list) function based on <a href="https://stackabuse.com/python-how-to-flatten-list-of-lists/">Stack Abuse</a>.
-- und_haul_vals variable from unused_haulage_costs() function based on <a href="https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.">CodeSpeedy</a>.
+- und_haul_vals and lt_und_data variables from unused_haulage_costs() function based on <a href="https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.">CodeSpeedy</a>.
+- int_last_added_unused_data variable from from unused_haulage_costs() function based on <a href="https://stackoverflow.com/questions/7368789/convert-all-strings-in-a-list-to-int">STACK OVERFLOW</a>.
+- logo() function inspired by <a href="https://github.com/aleksandracodes/CI_PP3_Connect4/blob/main/run.py ">CI_PP3_Connect4</a>.
+- add_heading(wksh) &  add_values(wksh) function from add_lane(lane) function based on <a href="https://stackoverflow.com/questions/60495748/append-value-to-column-in-gspread">STACK OVERFLOW</a>.
+- LOADED.delete_columns(lane_index_int), PLANNED.delete_columns(lane_index_int) & ADDED_UNUSED.delete_columns(lane_index_int) from delete_lane() function based on <a href="https://stackoverflow.com/questions/61213417/delete-remove-column-in-google-sheet-over-gspread-python-like-sheet-delete-row#:~:text=There%20is%20no%20method%20in,this%20with%20a%20batch%20update">STACK OVERFLOW</a>.
+- In delete_last_data(wksh, wksh_name) function wksh.delete_rows(last_row) & wksh.delete_rows(dflt_rows + 1, last_row) in delete_all_data(wksh, wksh_name) function based on <a href="https://stackoverflow.com/questions/14625617/how-to-delete-remove-row-from-the-google-spreadsheet-using-gspread-lib-in-pytho#:~:text=Since%20gspread%20version%200.5.,a%20row%20with%20delete_row()%20.&text=Save%20this%20answer.,-Show%20activity%20on">STACK OVERFLOW</a>.
+- lane_count(wksh) function based on <a href="https://stackoverflow.com/questions/42378272/col-count-in-gspread-provides-the-total-number-of-columns-even-though-they-have">STACK OVERFLOW</a>.
+- second_lane variable from elif option == "6" from <a href="https://docs.gspread.org/en/latest/user-guide.html">gspread</a>.
+- Fix of W605 in logo() from <a href="https://www.flake8rules.com/rules/W605.html">Flake8 Rules</a>.
+
+[Back to Table Of Contents](#table-of-contents)
+
+## Acknowledgements
+I would like to thank those who were a great support and inspiration during writing this project:
+- My mentor Mo Shami.
+- My wife who supported me during the process of creating this project.
+- Code Institute for preparing the materials and providing a wide range of available means of learning for the students.
+
+
 
 
