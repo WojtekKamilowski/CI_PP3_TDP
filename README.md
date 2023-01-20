@@ -474,7 +474,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 5: Add a new lane & exit | In the main menu type 4 and confirm by pressing enter key, enter a name in any format or as recommended |  | Works as expected |
+| Option 5: Add a new lane & exit | In the main menu type 4 and confirm by pressing enter key, enter a name in any format or as recommended review the list of lanes if a duplicate is not intended |  | Works as expected |
 
 
 </details>

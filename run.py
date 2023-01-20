@@ -381,7 +381,6 @@ def request_new_lane():
     """
     print("Recommended format: town, CC->town, CC")
     print("Example: Cork, IE->Dublin, IE")
-    print("Please review the lanes above to avoid an unwanted duplicate\n")
     lane = input("Please enter a new lane name:\n")
     return lane
 
@@ -571,15 +570,20 @@ def main():
         elif option == "5":
             lane_names()
             lane = request_new_lane()
+            lanes = PLANNED.row_values(1)
 
             if lane != "":
-                add_lane(lane)
-                print("Closing program...")
-                print("Program closed!")
-                break
+                if lane not in lanes:
+                    add_lane(lane)
+                    print("Closing program...")
+                    print("Program closed!")
+                    break
+                else:
+                    print(f"{lane} is already added! Please review")
+                    print("Return to menu and choose an option again")
             else:
                 print("Input cannot be blank!")
-                print("Choose this option again")
+                print("Return to menu and choose an option again")
                 print("Enter at least one character for name/code of the lane")
         elif option == "6":
             # From https://docs.gspread.org/en/latest/user-guide.html
