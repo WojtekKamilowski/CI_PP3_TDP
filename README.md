@@ -30,18 +30,11 @@ Its objective is to support everyday tasks of a freight forwarder.
 6. [Libraries](#libraries)
 7. [Features](#features)
 8. [Validation](#validation)
-    - [HTML Validation](#HTML-validation)
-    - [CSS Validation](#CSS-validation)
-    - [JavaScript Validation](#javascript-validation)
-    - [Accessibility](#accessibility)
-    - [Performance](#performance)
-    - [Device testing](#device-testing)
-    - [Browser compatibility](#browser-compatibility)
-    - [Testing user stories](#testing-user-stories)
- 9. [Bugs](#Bugs)
- 10. [Deployment](#deployment)
- 11. [Credits](#credits)
- 12. [Acknowledgements](#acknowledgements)
+10. [Manual User Stories Testing](#manual-user-stories-testing)
+11. [Bugs](#bugs)
+12. [Deployment](#deployment)
+13. [Credits](#credits)
+14. [Acknowledgements](#acknowledgements)
 
 ## Project Goals
 
@@ -287,6 +280,8 @@ As the site owner I want to:
 [Back to Table Of Contents](#table-of-contents)
 
 ## Libraries
+
+### Third Party Libraries
 - [gspread](https://docs.gspread.org/en/latest/index.html) : to add and manipulate data in Google Sheet and to enable interactions with Google APIs
 - [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/) : used to set up the authentification needed to access the Google API and connect my Service Account using the Credentials. A creds.json file is created with required details that the API needs to access the google account.
 
@@ -411,7 +406,11 @@ As the site owner I want to:
     <img src="docs/features/daily-trailer-forecast.png"> 
 </details>
 
+## Validation 
 
+[CI Python Linter](https://pep8ci.herokuapp.com/) was used to perfrom the check if the code meets PEP8 requirements. All clear, no errors found:
+<img src="docs/validation/pep8-validation.png">
 
+## Manual User Stories Testing
 
 
