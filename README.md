@@ -115,9 +115,9 @@ Below the program prints "Press enter to return to the menu": to print the main 
 #### Option 5: Add a new lane & exit 
 After selection of the option 5 the user will be requested to specify a name for the new lane to be added suggesting to follow same format: Cork, IE->Dublin, IE'
 However, as some lane names may need to be a code/ serial number or other non-standard name that would allow the user to choose it according to the operational needs,
-the user can enter any name of their choice besides empty input which will be communicated to the user and will need to choose this option again to proceed.
+the user can enter any name of their choice besides empty or exact duplicate input which will be communicated to the user and will need to choose this option again to proceed.
 <img src="docs/manual/option-5.png">
-
+<img src="docs/manual/option-5-already-added.png">
 When the user enter a name for the new lane then the program will print status updates on the progress: "Adding headings..." and "Updating worksheets"
 The data under the heading of the new lane in all worksheets will be updated as 0 for previous operations and next day planning.
 The program will then print a confirmation that the new lane has been added successfully.
@@ -474,8 +474,9 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 5: Add a new lane & exit | In the main menu type 4 and confirm by pressing enter key, enter a name in any format or as recommended review the list of lanes if a duplicate is not intended |  | Works as expected |
+| Option 5: Add a new lane & exit | In the main menu type 4 and confirm by pressing enter key, enter a name in any format or as recommended and press enter | The program displays the list of lane names, recommends the format of the input gives an example, once a new name(is not blank or exact same as one of the lanes) is entered then updates on the progress are printed, lane is added to all worksheets and program closes | Works as expected |
 
+<img src="docs/testing/user-story-7.png">
 
 </details>
 

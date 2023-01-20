@@ -583,8 +583,8 @@ def main():
                     print("Return to menu and choose an option again")
             else:
                 print("Input cannot be blank!")
-                print("Return to menu and choose an option again")
                 print("Enter at least one character for name/code of the lane")
+                print("Return to menu and choose an option again")
         elif option == "6":
             # From https://docs.gspread.org/en/latest/user-guide.html
             second_lane = PLANNED.cell(1, 2).value
