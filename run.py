@@ -184,7 +184,7 @@ def daily_trailer_forecast():
     """
     For Menu option 9.
     Runs daily trailer forecast update functions.
-    Option 9 based on Code Institute's walkthrough project Love Sandwiches.
+    Option 9 is based on Code Institute's walkthrough project Love Sandwiches.
     """
     data = get_loaded_data()
     loaded_data = [int(num) for num in data]
