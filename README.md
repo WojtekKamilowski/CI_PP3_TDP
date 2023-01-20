@@ -169,9 +169,9 @@ There is a minimum set of default numeric data: 6 rows for loaded and added_unus
 The user can delete the most recent non-default data from all worksheets by choosing option 7. 
 Once the option is chosen, the user is asked to confirm deleting LAST.
 
-Typing no or n confirmed by enter inform that the action has been stopped and displays the main menu.
+Typing no or n (in both cases input must be  in small cases) confirmed by enter inform that the action has been stopped and displays the main menu.
 
-Input of yes or y and enter deletes the most recent non-default data or informs that no more data can be deleted from the program.
+Input of yes or y (in both cases input must be  in small cases) and enter deletes the most recent non-default data or informs that no more data can be deleted from the program.
 
 If the user inputs other data than y/yes or n/no the prgoram informs about invalid input and the user needs to return to the main menu by pressing enter.
 
@@ -374,15 +374,15 @@ As the site owner I want to:
 
 <details>
     <summary>Option 7: Clear RECENT non-default data & exit</summary>
-    This feature of the program deletes last rows of numeric data fromm all worksheets that is considered non-default(6 rows for loaded & added_unused worsheets, and 7 rows)
-
-    Displays lanes currently planned for loading and requests index of the lane to be deleted.<br>
-    The user is prevented to request deleting lane index that does not exist or enters a letter instead.<br>
-    <img src="docs/features/delete-lane-exit-invalid-index.png">  
-    <img src="docs/features/delete-lane-exit-invalid-index-alpha.png">  
-    The feature provides users with an option that enables the use of the program after adjusting to the business dynamics when a service is ceased.<br>
+    This program's feature deletes last rows of numeric data from all worksheets that is considered non-default(6 rows for loaded & added_unused worsheets, and 7 rows for planned worksheet).<br>
+    The user is asked to confirm the intention of deleting the last rows of data in case the option was selected in error.<br>
+    If the confirmation input is different than yes/y/no/n then the user is informed and must return to the main menu.<br>
+    <img src="docs/features/delete-last-invalid-confirmation.png"> 
+    If all non-default data has already been deleted the program informs the user.<br>
+    <img src="docs/features/delete-last-already.png">
+    Option 7, allows the user to remove the numeric data from the program, for example when the user incorrectly entered values for the daily trailer forecast.<br>
     <img src="docs/features/delete-lane.png"> 
-    User stories covered: 8, 14, 15.
+    User stories covered: 9, 14, 15.
 </details
 
 
