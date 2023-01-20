@@ -419,6 +419,8 @@ As the site owner I want to:
 
 <details><summary>Click to see user stories testing</summary>
 
+---------------------------------------------------------------
+
 1. As a user I want to be introduced what is the program about.
 
 | Feature | Action  | Expected Result | Actual Result |
@@ -447,10 +449,38 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 2: Preview last planned data | From the main menu type 2 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of planned trailers (column headings with the data from the lowest cell of planned worksheet) | Works as expected |
+| Option 2: Preview last planned data | In the main menu type 2 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of planned trailers (column headings with the data from the lowest cell of planned worksheet) | Works as expected |
 
 <img src="docs/testing/user-story-4.png">
+
+5. As a user I want to identify how many trailers were unloaded or ordered at the day.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 3: Preview last added_unused data | In the main menu type 3 and confirm by pressing enter key | Users see a table of lane names with the corresponing numbers: postive represent trailers unused, negative ordered at the day or zeros inform there was nothing left unloaded or had to be ordered extra to complete the operations (column headings with the data from the lowest cell of added_unused worksheet) | Works as expected |
+
+<img src="docs/testing/user-story-5.png">
+
+6. As a user I want to review costs associated with the incorrect demand planning.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input number for cancellation charge and press enter or leave it blank and press enter for the default value to be applied | The program displays how many trailers were cancelled and how much it cost in total & recently | Works as expected |
+
+<img src="docs/testing/user-story-6.png">
+<img src="docs/testing/user-story-6-a.png">
+
+7. As a user I want to add a new lane to the program.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 5: Add a new lane & exit | In the main menu type 4 and confirm by pressing enter key, enter a name in any format or as recommended |  | Works as expected |
+
 
 </details>
 
 [Back to Table Of Contents](#table-of-contents)
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+|  |  |  | Works as expected |

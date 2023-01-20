@@ -381,6 +381,7 @@ def request_new_lane():
     """
     print("Recommended format: town, CC->town, CC")
     print("Example: Cork, IE->Dublin, IE")
+    print("Please review the lanes above to avoid an unwanted duplicate\n")
     lane = input("Please enter a new lane name:\n")
     return lane
 
@@ -568,6 +569,7 @@ def main():
         elif option == "4":
             unused_haulage_costs()
         elif option == "5":
+            lane_names()
             lane = request_new_lane()
 
             if lane != "":
