@@ -234,26 +234,27 @@ This option closes the program.
 
 As a user I want to:
 
-1. Know what are the options of the program.
-2. Check details about trailers loaded during the last operations.
-3. See how many trailers were recently planned for loading.
-4. Identify how many trailers were unloaded or ordered at the day.
-5. Review costs associated with the incorrect demand planning.
-6. Add a new lane to the program.
-7. Delete one of the lanes from the program.
-8. Clear most recent data from the program.
-9. Reset the data from the program to contain only necessary default values.
-10. Automate my daily tedious tasks.
-11. Easily exit the program when processes are completed.
+1. Be introduced what is the program about.
+2. Know what are the options of the program.
+3. Check details about trailers loaded during the last operations.
+4. See how many trailers were recently planned for loading.
+5. Identify how many trailers were unloaded or ordered at the day.
+6. Review costs associated with the incorrect demand planning.
+7. Add a new lane to the program.
+8. Delete one of the lanes from the program.
+9. Clear most recent data from the program.
+10. Reset the data from the program to contain only necessary default values.
+11. Automate my daily tedious tasks.
+12. Easily exit the program when processes are completed.
 
 #### Site Owner
 
 As the site owner I want to:
 
-12. Enable users to easily learn about the options of the program and how to use it.
-13. Prevent users from entering incorrect inputs and guid them what is required.
-14. Ensure users operate with the most up to date data.
-15. Verify the accuracy of the automated forecasting and see how it impact operational costs.
+13. Enable users to easily learn about the options of the program and how to use it.
+14. Prevent users from entering incorrect inputs and guide them what is required.
+15. Ensure users operate with the most up to date data.
+16. Verify the accuracy of the automated forecasting and see how it impacts operational costs.
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -286,3 +287,30 @@ As the site owner I want to:
 
 [Back to Table Of Contents](#table-of-contents)
 
+## Features
+
+<details>
+    <summary>Logo</summary>  
+    Printed above the menu options<br> 
+    The logo consists of a trailer with the program name inside: TRAILERS DEMAND PLANNER.<br>
+    It gives the user a brief graphical introduction what is the program about.<br> 
+    User stories covered: 1.
+    <img src="docs/features/logo.png">    
+</details> 
+
+<details>
+    <summary>Main menu</summary>  
+    Prints menu options<br> 
+    Displays all options of the program from: 1 - 0 .<br>
+    Informs the user what can be done in the program and displays the number to be entered to select the option.<br> 
+    User stories covered: 2, 13.
+    <img src="docs/features/main-menu.png">    
+</details> 
+
+<details>
+    <summary>Option 1: Preview last loaded data</summary>  
+    Prints lane headings with the number of trailers loaded last time<br> 
+    Provides the user with historical data that may be useful in performing work tasks such as supporting non-automated decision making processes.<br> 
+    User stories covered: 3, 15.
+    <img src="docs/features/preview-last-loaded-data.png">    
+</details> 
