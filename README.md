@@ -302,7 +302,7 @@ As the site owner I want to:
     Prints menu options<br> 
     Displays all options of the program from: 1 - 0 .<br>
     Informs the user what can be done in the program and displays the number to be entered to select the option.<br> 
-    User stories covered: 2, 13.
+    User stories covered: 2, 12.
     <img src="docs/features/main-menu.png">    
 </details> 
 
@@ -310,7 +310,7 @@ As the site owner I want to:
     <summary>Option 1: Preview last loaded data</summary>  
     Prints lane headings with the number of trailers loaded last time<br> 
     Provides the user with historical data that may be useful in performing work tasks such as supporting non-automated decision making processes.<br> 
-    User stories covered: 3, 15.
+    User stories covered: 3, 14.
     <img src="docs/features/preview-last-loaded-data.png">    
 </details> 
 
@@ -328,7 +328,7 @@ As the site owner I want to:
     Prints lane headings with the number of trailers that were unused(postiive numbers), when the planning was 100% accurate before loading(zeros) & trailers ordered for the operations on last minute(negative numbers).<br>
     User can review how many trailers were left unitilised during the last operations.<br>
     The feature provides a source of information to assist the users when working with the program to enable the current transport market trends review at that due to many reasons may not correspond to the programmed planning calculations.<br>  
-    User stories covered: 5, 15.
+    User stories covered: 5, 14.
     <img src="docs/features/preview-last-added-unused-data.png">    
 </details> 
 
@@ -342,7 +342,7 @@ As the site owner I want to:
     <img src="docs/features/run-unused-haulage-costs-report-invalid-input.png">
     User can review costs of unused trailer in total from all date in the program or recent costs.<br>
     This feature enables the user to review data focused to assist with on one of the main tasks of a freight forwarder: cost minimization and reduction of resources waste.<br> 
-    User stories covered: 6, 14, 16.
+    User stories covered: 6, 13, 15.
     <img src="docs/features/preview-last-added-unused-data.png">    
 </details> 
 
@@ -354,7 +354,7 @@ As the site owner I want to:
     <img src="docs/features/add-lane-exit-already-added.png"> 
      
     The feature provides users with an option to extend the use of the program in time when the business develops and a new service is added for freight operations.<br>
-    User stories covered: 7, 12, 14, 15.
+    User stories covered: 7, 13, 14.
     <img src="docs/features/add-lane-exit-added.png">   
 </details> 
 
@@ -366,7 +366,7 @@ As the site owner I want to:
     <img src="docs/features/delete-lane-exit-invalid-index-alpha.png">  
     The feature provides users with an option that enables the use of the program after adjusting to the business dynamics when a service is ceased.<br>
     <img src="docs/features/delete-lane.png"> 
-    User stories covered: 8, 12, 14, 15.
+    User stories covered: 8, 13, 14.
 </details>
 
 <details>
@@ -379,7 +379,7 @@ As the site owner I want to:
     <img src="docs/features/delete-last-already.png">
     Option 7, allows the user to remove the most recent numeric data from the program, for example when the user incorrectly entered values for the daily trailer forecast.<br>
     <img src="docs/features/delete-lane.png"> 
-    User stories covered: 9, 12, 14, 15.
+    User stories covered: 9, 13, 14.
 </details>
 
 <details>
@@ -392,7 +392,7 @@ As the site owner I want to:
     <img src="docs/features/delete-all-already-deleted.png">
     Option 8, allows the user to remove all numeric data from the program, for example to reset the data at the begging of a new operational period such week, month, year quarter or year.<br>
     <img src="docs/features/delete-all.png"> 
-    User stories covered: 10, 12, 14, 15.
+    User stories covered: 10, 13, 14.
 </details>
 
 <details>
@@ -404,7 +404,7 @@ As the site owner I want to:
     If the user provides incorrect input, the program informs about it.<br>
     <img src="docs/features/daily-trailer-forecast-invalid-data.png">
     Using this feature allows the user to reduce the time spent for regular, repetitive, daily tasks. Additionally it may decrease the risk of a human error as it is present during manual calculations, for example, due to a distraction during manual calulations (the operator can receive a call or answer a manager's/colleague's question in the office).<br>
-    User stories covered: 11, 12, 14, 15.
+    User stories covered: 11, 13, 14.
     <img src="docs/features/daily-trailer-forecast.png"> 
 </details>
 
@@ -515,7 +515,7 @@ As the site owner I want to:
 <img src="docs/testing/user-story-11.png">
 <img src="docs/testing/user-story-11-a.png">
 
-12. As the site owner I want to 
+12. As the site owner I want to enable users to easily learn about the options of the program and how to use it.
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
