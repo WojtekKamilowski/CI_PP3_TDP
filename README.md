@@ -241,16 +241,15 @@ As a user I want to:
 9. Clear most recent data from the program.
 10. Reset the data from the program to contain only necessary default values.
 11. Automate my daily tedious tasks.
-12. Easily exit the program when processes are completed.
 
 #### Site Owner
 
 As the site owner I want to:
 
-13. Enable users to easily learn about the options of the program and how to use it.
-14. Prevent users from entering incorrect inputs and guide them what is required.
-15. Ensure users operate with the most up to date data.
-16. Verify the accuracy of the automated forecasting and see how it impacts operational costs.
+12. Enable users to easily learn about the options of the program and how to use it.
+13. Prevent users from entering incorrect inputs and guide them what is required.
+14. Ensure users operate with the most up to date data.
+15. Verify the accuracy of the automated forecasting and see how it impacts operational costs.
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -350,10 +349,13 @@ As the site owner I want to:
 <details>
     <summary>Option 5: Add a new lane & exit</summary> 
     Requests from the user to enter a lane name to be added to the program.<br>
-    The user can add any name as required as some of the names can be an alphanumeric code, however  the input cannot be blank:.<br>
-    <img src="docs/features/add-lane-exit.png">  
+    The user can add any name as required as some of the names can be an alphanumeric code, however the input cannot be blank or exactly same as one of the existing lanes:.<br>
+    <img src="docs/features/add-lane-exit.png">
+    <img src="docs/features/add-lane-exit-already-added.png"> 
+     
     The feature provides users with an option to extend the use of the program in time when the business develops and a new service is added for freight operations.<br>
-    User stories covered: 7, 12, 14, 15.  
+    User stories covered: 7, 12, 14, 15.
+    <img src="docs/features/add-lane-exit-added.png">   
 </details> 
 
 <details>
@@ -474,9 +476,51 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 5: Add a new lane & exit | In the main menu type 4 and confirm by pressing enter key, enter a name in any format or as recommended and press enter | The program displays the list of lane names, recommends the format of the input gives an example, once a new name(is not blank or exact same as one of the lanes) is entered then updates on the progress are printed, lane is added to all worksheets and program closes | Works as expected |
+| Option 5: Add a new lane & exit | In the main menu type 5 and confirm by pressing enter key, enter a name in any format or as recommended and press enter | The program displays the list of lane names, recommends the format of the input gives an example, once a new name(is not blank or exact same as one of the lanes) is entered then updates on the progress are printed, lane is added to all worksheets and program closes | Works as expected |
 
 <img src="docs/testing/user-story-7.png">
+
+8. As a user I want to delete one of the lanes from the program.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 6: Delete a lane & exit | In the main menu type 6 and confirm by pressing enter key, review the list of lanes and identify the index of the lane to be deleted(index of first lane from the left is 1), type identified index and press enter, confirm inention of deleting the selected lane by typing 'yes' or 'y' and press enter | The program displays list of lanes, and informs the range of indexes to choose from, asks to confirm the choice, deletes the lane from all worksheets, and closes the program  | Works as expected |
+
+<img src="docs/testing/user-story-8.png">
+
+9. As a user I want to clear most recent data from the program.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 7: Clear RECENT non-default data & exit | In the main menu type 7 and confirm by pressing enter key, confirm deleting LAST by typing 'yes' or y' then press enter | The program asks to confirm the intention, deletes non-default data from last rows of all worksheets or informs that all non-default data has already been deleted and closes the program | Works as expected |
+
+<img src="docs/testing/user-story-9.png">
+<img src="docs/testing/user-story-9-a.png">
+
+10. As a user I want to reset the data from the program to contain only necessary default values.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 8: Clear ALL non-default data & exit | In the main menu type 8 and confirm by pressing enter key, confirm deleting ALL by typing 'yes' or y' then press enter | The program asks to confirm the intention, deletes all non-default data from all worksheets or informs it has already been deleted and closes the program | Works as expected |
+
+<img src="docs/testing/user-story-10.png">
+<img src="docs/testing/user-story-10-a.png">
+
+11. As a user I want to automate my daily tedious tasks.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter data representing how many trailers were used for the last oparations: as many numbers as many lanes planned, separated by commas and press enter  | Users are presented with the list of planned lanes with printed instructions to correctly enter data, the program runs daily trailer forecast and closes program  | Works as expected |
+
+<img src="docs/testing/user-story-11.png">
+<img src="docs/testing/user-story-11-a.png">
+
+12. As the site owner I want to 
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+|  |  |  | Works as expected |
+
 
 </details>
 
