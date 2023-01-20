@@ -149,7 +149,7 @@ The program closes to correctly access the updated data.
 
 The user needs to re-open the application after the update to continue using the program.
 
-<img src="docs/manual/option-6-invalid-lane-deleted.png">
+<img src="docs/manual/option-6-lane-deleted.png">
 
 At least one lane must be in the program so the user is prevented to delete the last one.
 The user needs to enter one more lane using the option 5 to be able to delete the lane that remained as last one,
@@ -292,16 +292,16 @@ As the site owner I want to:
 
 <details>
     <summary>Logo</summary>  
-    Printed above the menu options<br> 
+    Printed above the menu options.<br> 
     The logo consists of a trailer with the program name inside: TRAILERS DEMAND PLANNER.<br>
-    It gives the user a brief graphical introduction what is the program about.<br> 
+    It gives the user a brief graphical introduction what is the program about.
     User stories covered: 1.
     <img src="docs/features/logo.png">    
 </details> 
 
 <details>
     <summary>Main menu</summary>  
-    Prints menu options<br> 
+    Prints menu options.<br> 
     Displays all options of the program from: 0 - 9.<br>
     Informs the user what can be done in the program and displays the number to be entered to select the option.<br> 
     User stories covered: 2, 12, 13.
@@ -611,8 +611,8 @@ You can clone the repository by following these steps:
 [Back to Table Of Contents](#table-of-contents)
 
 ## Credits 
-- menu() function and the while loop from main() based on<a href="https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s">YouTube</a>.
-- daily_trailer_forecast() function with other functions used based on <a href="https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1">Code Institute</a>.
+- menu() function and the while loop from main() based on <a href="https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s">YouTube</a>.
+- daily_trailer_forecast() function together with other related to it functions used based on <a href="https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1">Code Institute</a>.
 - int_und_haul_cls variable from added_unused_values() function based on <a href="https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python">STACK OVERFLOW</a>.
 - flatten_list(_2d_list) function based on <a href="https://stackabuse.com/python-how-to-flatten-list-of-lists/">Stack Abuse</a>.
 - und_haul_vals and lt_und_data variables from unused_haulage_costs() function based on <a href="https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.">CodeSpeedy</a>.
