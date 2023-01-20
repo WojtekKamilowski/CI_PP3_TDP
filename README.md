@@ -406,11 +406,51 @@ As the site owner I want to:
     <img src="docs/features/daily-trailer-forecast.png"> 
 </details>
 
+[Back to Table Of Contents](#table-of-contents)
+
 ## Validation 
 
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to perfrom the check if the code meets PEP8 requirements. All clear, no errors found:
 <img src="docs/validation/pep8-validation.png">
 
+[Back to Table Of Contents](#table-of-contents)
+
 ## Manual User Stories Testing
 
+<details><summary>Click to see user stories testing</summary>
 
+1. As a user I want to be introduced what is the program about.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Logo | Open the application | Users are presented with a trailer-shaped logo with the application name inside | Works as expected |
+
+<img src="docs/testing/user-story-1.png">
+
+2. As a user I want to know what are the options of the program.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Main menu |  Open the application | Users are presented with program's options | Works as expected |
+
+<img src="docs/testing/user-story-2.png">
+
+3. As a user I want to check details about trailers loaded during the last operations.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 1: Preview last loaded data | From the main menu type 1 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of loaded trailers lately (column headings with the data from the lowest cell of loaded worksheet) | Works as expected |
+
+<img src="docs/testing/user-story-3.png">
+
+4. As a user I want to see how many trailers were recently planned for loading.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 2: Preview last planned data | From the main menu type 2 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of planned trailers (column headings with the data from the lowest cell of planned worksheet) | Works as expected |
+
+<img src="docs/testing/user-story-4.png">
+
+</details>
+
+[Back to Table Of Contents](#table-of-contents)
