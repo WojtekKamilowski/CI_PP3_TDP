@@ -508,12 +508,12 @@ def delete_last_data(wksh, wksh_name):
     """
     last_row = len(wksh.col_values(1))
 
-    def_rows = 7
+    dflt_rows = 7
 
     if wksh == PLANNED:
-        def_rows = 8
+        dflt_rows = 8
 
-    if last_row > def_rows:
+    if last_row > dflt_rows:
         print(f"Deleting from {wksh_name} worksheet...")
         wksh.delete_rows(last_row)
         print(f"Deleting from {wksh_name} worksheet has been completed!\n")
@@ -529,13 +529,13 @@ def delete_all_data(wksh, wksh_name):
     """
     last_row = len(wksh.col_values(1))
 
-    def_rows = 7
+    dflt_rows = 7
 
     if wksh == PLANNED:
-        def_rows = 8
+        dflt_rows = 8
 
-    if last_row > def_rows:
-        wksh.delete_rows(def_rows + 1, last_row)
+    if last_row > dflt_rows:
+        wksh.delete_rows(dflt_rows + 1, last_row)
         print(f"Deleting ALL non-default data from {wksh_name}...")
         print(f"ALL non-default data deleted from {wksh_name} now")
     else:

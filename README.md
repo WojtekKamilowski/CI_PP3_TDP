@@ -358,7 +358,31 @@ As the site owner I want to:
     The user can add any name as required as some of the names can be an alphanumeric code, however  the input cannot be blank:.<br>
     <img src="docs/features/add-lane-exit.png">  
     The feature provides users with an option to extend the use of the program in time when the business develops and a new service is added for freight operations.<br>
-    User stories covered: 7, 14, 15.
-    
+    User stories covered: 7, 14, 15.  
 </details> 
+
+<details>
+    <summary>Option 6: Delete a lane & exit</summary> 
+    Displays lanes currently planned for loading and requests index of the lane to be deleted.<br>
+    The user is prevented to request deleting lane index that does not exist or enters a letter instead.<br>
+    <img src="docs/features/delete-lane-exit-invalid-index.png">  
+    <img src="docs/features/delete-lane-exit-invalid-index-alpha.png">  
+    The feature provides users with an option that enables the use of the program after adjusting to the business dynamics when a service is ceased.<br>
+    <img src="docs/features/delete-lane.png"> 
+    User stories covered: 8, 14, 15.
+</details
+
+<details>
+    <summary>Option 7: Clear RECENT non-default data & exit</summary>
+    This feature of the program deletes last rows of numeric data fromm all worksheets that is considered non-default(6 rows for loaded & added_unused worsheets, and 7 rows)
+
+    Displays lanes currently planned for loading and requests index of the lane to be deleted.<br>
+    The user is prevented to request deleting lane index that does not exist or enters a letter instead.<br>
+    <img src="docs/features/delete-lane-exit-invalid-index.png">  
+    <img src="docs/features/delete-lane-exit-invalid-index-alpha.png">  
+    The feature provides users with an option that enables the use of the program after adjusting to the business dynamics when a service is ceased.<br>
+    <img src="docs/features/delete-lane.png"> 
+    User stories covered: 8, 14, 15.
+</details
+
 
