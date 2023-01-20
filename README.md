@@ -370,7 +370,7 @@ As the site owner I want to:
     The feature provides users with an option that enables the use of the program after adjusting to the business dynamics when a service is ceased.<br>
     <img src="docs/features/delete-lane.png"> 
     User stories covered: 8, 14, 15.
-</details
+</details>
 
 <details>
     <summary>Option 7: Clear RECENT non-default data & exit</summary>
@@ -380,9 +380,28 @@ As the site owner I want to:
     <img src="docs/features/delete-last-invalid-confirmation.png"> 
     If all non-default data has already been deleted the program informs the user.<br>
     <img src="docs/features/delete-last-already.png">
-    Option 7, allows the user to remove the numeric data from the program, for example when the user incorrectly entered values for the daily trailer forecast.<br>
+    Option 7, allows the user to remove the most recent numeric data from the program, for example when the user incorrectly entered values for the daily trailer forecast.<br>
     <img src="docs/features/delete-lane.png"> 
     User stories covered: 9, 14, 15.
-</details
+</details>
 
+<details>
+    <summary>Option 8: Clear ALL non-default data & exit</summary>
+    This program's feature deletes ALL rows of numeric data from all worksheets that is considered non-default(6 rows for loaded & added_unused worsheets, and 7 rows for planned worksheet).<br>
+    The user is asked to confirm the intention of deleting the all rows of data in case the option was selected in error.<br>
+    If the confirmation input is different than yes/y/no/n then the user is informed and must return to the main menu.<br>
+    <img src="docs/features/delete-all-invalid-confirmation.png"> 
+    If all non-default data has already been deleted the program informs the user.<br>
+    <img src="docs/features/delete-all-already-deleted.png">
+    Option 8, allows the user to remove all numeric data from the program, for example to reset the data at the begging of a new operational period such week, month, year quarter or year.<br>
+    <img src="docs/features/delete-all.png"> 
+    User stories covered: 10, 14, 15.
+</details>
+
+<details>
+    <summary>Option 9: Run daily trailer forecast & exit</summary>
+    The feature automates one of the most repetitive tasks of freight forwarders which may be especially useful for people unexperience in the industry and can find planning orders for next days challenging.<br>
+    List of lanes in use is displayed and the user is requested 
+
+</details>
 
