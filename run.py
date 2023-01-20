@@ -20,6 +20,7 @@ def logo():
     """
     Prints program logo
     Based on CI_PP3_Connect4
+    PEP8 validation error W605 fixed from https://www.flake8rules.com/
     """
     print("____________________________________________________")
     print("|                                                   |")

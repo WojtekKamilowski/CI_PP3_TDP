@@ -569,3 +569,50 @@ As the site owner I want to:
 
 [Back to Table Of Contents](#table-of-contents)
 
+## Bugs
+
+| Bug  | Fix  |
+| ------- | ------- |
+| PEP8 W605 for logo | Add r'before quotation marks in print |
+| Daily trailer forecast cannot be run after deleting all data using Option 7 or 8 | Establish minimum default rows to secure calculation process |
+| User can add a blank lane name which was poorly displays list of lanes in other functions | Add lane != "" for the if statement for Option 5: Add a new lane & exit |
+| if lane not in lanes: statement did not work due to: "TypeError: argument of type 'NoneType' is not iterable" | Update variable lanes from = lane_names() to PLANNED.row_values(1) |
+
+[Back to Table Of Contents](#table-of-contents)
+
+## Deployment
+The website was deployed using Heroku following these steps:
+1. Use the "pip freeze > requiremnts.txt" command in the terminal then commit and push it to GitHub.
+2. Login or create a Heroku account.
+3. Click the "new" button in the upper right corner and select "create new app"
+4. Choose an app name and your region and click "Create app"
+5. Go to the "settings" tab, then to Config Vars and press "Reveal Config Vars".
+6. In the field for KEY add "CREDS" and into VALUE field copy & paste entire content of creds.json file, and click "Add".
+7. Below add another Config Var with KEY = "PORT" & VALUE = "8000".
+8. Add Buildpacks: firtly python (it must be on the top) and then node.js below.
+9. Go to the "Deploy" section and select GitHub for Deployment method, click "Connect to GitHub".
+10. Search for a repository to connect to.
+11. Click enable automatic deploys and then deploy branch.
+12. Wait for the app to be built and then click on the "View" link.
+
+You can fork the repository by following these steps:
+1. Go to the <a href="https://github.com/WojtekKamilowski/CI_PP3_TDP">GitHub repository</a>.
+2. Click on the Fork button in the upper right-hand corner.
+
+You can clone the repository by following these steps:
+1. Go to the <a href="https://github.com/WojtekKamilowski/CI_PP3_TDP">GitHub repository</a>.
+2. Locate the Code button above the list of files and click it.
+3. Select if you prefer to clone using HTTPS, SSH, or Github CLI and click the copy button to copy the URL to your clipboard.
+4. Open Git Bash
+5. Change the current working directory to the one where you want the cloned directory.
+6. Type git clone and paste the URL from the clipboard.
+7. Press Enter to create your local clone.
+
+## Credits 
+- menu() function and the while loop from main() based on<a href="https://www.youtube.com/watch?v=_qHGNgJ1EcI&t=1s">YouTube</a>.
+- daily_trailer_forecast() function with other functions used based on <a href="https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1">Code Institute</a>.
+- int_und_haul_cls variable from added_unused_values() function based on <a href="https://stackoverflow.com/questions/2166577/casting-from-a-list-of-lists-of-strings-to-list-of-lists-of-ints-in-python">STACK OVERFLOW</a>.
+- flatten_list(_2d_list) function based on <a href="https://stackabuse.com/python-how-to-flatten-list-of-lists/">Stack Abuse</a>.
+- und_haul_vals variable from unused_haulage_costs() function based on <a href="https://www.codespeedy.com/print-all-positive-numbers-from-a-list-in-python/#:~:text=Using%20the%20%E2%80%9Clambda%E2%80%9D%20function%3A,list%20of%20all%20positive%20numbers.">CodeSpeedy</a>.
+
+
