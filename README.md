@@ -155,6 +155,8 @@ At least one lane must be in the program so the user is prevented to delete the 
 The user needs to enter one more lane using the option 5 to be able to delete the lane that remained as last one,
 If no other lane is known, lane name such: "???" can be used temporarily while adding an extra one.
 
+<img src="docs/manual/option-6-minimum.png">
+
 #### Option 7: Clear RECENT non-default data & exit.
 
 There is a minimum set of default numeric data: 6 rows for loaded and added_unused worksheets, and 7 rows for planned worksheet to provide some base data for calculations. 
@@ -300,9 +302,9 @@ As the site owner I want to:
 <details>
     <summary>Main menu</summary>  
     Prints menu options<br> 
-    Displays all options of the program from: 1 - 0 .<br>
+    Displays all options of the program from: 0 - 9.<br>
     Informs the user what can be done in the program and displays the number to be entered to select the option.<br> 
-    User stories covered: 2, 12.
+    User stories covered: 2, 12, 13.
     <img src="docs/features/main-menu.png">    
 </details> 
 
@@ -316,9 +318,9 @@ As the site owner I want to:
 
 <details>
     <summary>Option 2: Preview last planned data</summary>  
-    Prints lane headings with the number of trailers that were planned lately<br> 
+    Prints lane headings with the number of trailers that were planned lately.<br> 
     User can review how many trailers are to be loaded if the daily forecast process has been completed,
-    Or preview it before running the daily forecast for data analysis.
+    Or preview it before running the daily forecast for data analysis.<br>
     User stories covered: 4.
     <img src="docs/features/preview-last-planned-data.png">    
 </details> 
@@ -352,7 +354,6 @@ As the site owner I want to:
     The user can add any name as required as some of the names can be an alphanumeric code, however the input cannot be blank or exactly same as one of the existing lanes:.<br>
     <img src="docs/features/add-lane-exit.png">
     <img src="docs/features/add-lane-exit-already-added.png"> 
-     
     The feature provides users with an option to extend the use of the program in time when the business develops and a new service is added for freight operations.<br>
     User stories covered: 7, 13, 14.
     <img src="docs/features/add-lane-exit-added.png">   
@@ -379,7 +380,7 @@ As the site owner I want to:
     <img src="docs/features/delete-last-already.png">
     Option 7, allows the user to remove the most recent numeric data from the program, for example when the user incorrectly entered values for the daily trailer forecast.<br>
     <img src="docs/features/delete-lane.png"> 
-    User stories covered: 9, 13, 14.
+    User stories covered: 9, 14.
 </details>
 
 <details>
@@ -392,7 +393,7 @@ As the site owner I want to:
     <img src="docs/features/delete-all-already-deleted.png">
     Option 8, allows the user to remove all numeric data from the program, for example to reset the data at the begging of a new operational period such week, month, year quarter or year.<br>
     <img src="docs/features/delete-all.png"> 
-    User stories covered: 10, 13, 14.
+    User stories covered: 10, 14.
 </details>
 
 <details>
@@ -467,7 +468,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input number for cancellation charge and press enter or leave it blank and press enter for the default value to be applied | The program displays how many trailers were cancelled and how much it cost in total & recently | Works as expected |
+| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input an integer for cancellation charge and press enter or leave it blank and press enter for the default value to be applied | The program displays how many trailers were cancelled and how much it cost in total & recently | Works as expected |
 
 <img src="docs/testing/user-story-6.png">
 <img src="docs/testing/user-story-6-a.png">
@@ -519,13 +520,52 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-|  |  |  | Works as expected |
+| Main menu | Open the application | The user is presented with range of options with their indexed (1 - 9 & 0) with their descriptions pointing their use | Works as expected |
 
+<img src="docs/testing/user-story-12.png">
+
+13. As the site owner I want to prevent users from entering incorrect inputs and guide them what is required.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input something different than an integer ( for example a letter) for cancellation charge and press enter | Program informs that that data is invalid and repeats request to enter cancellation charge until input is correct | Works as expected |
+| Option 5: Add a new lane & exit | In the main menu type 5 and confirm by pressing enter key, enter exact same name as one of the existing lanes or leave input blank and press enter | Users are informed that input cannot be blank or the entered name is already added, and that they should to return to menu by pressing enter where they can choose one of the options again | Works as expected |
+| Option 6: Delete a lane & exit | In the main menu type 6 and confirm by pressing enter key, type index outside of the presented range and press enter | Users are informed that the range of indexes is from x to y, however, z was entered, program repeats the request for a valid input | Works as expected |
+| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter some data that is against the presented instructions (letters, special signs, floats, not as many numbers as instructed) and press enter | Informs that data is invalid or that x numbers is required, but only y is provided | Works as expected |
+| Main menu | Open the application and type a number or letter different than 0 - 9, press enter | User is informed that the selected option is invalid, and to press enter to return to the menu | Works as expected |
+
+<img src="docs/testing/user-story-13-a.png">
+<img src="docs/testing/user-story-13-b.png">
+<img src="docs/testing/user-story-13-c.png">
+<img src="docs/testing/user-story-13-d.png">
+<img src="docs/testing/user-story-13-e.png">
+<img src="docs/testing/user-story-13-f.png">
+<img src="docs/testing/user-story-13.png">
+<img src="docs/testing/user-story-13-g.png">
+
+14. As the site owner I want to ensure users operate with the most up to date data.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 1: Preview last loaded data | From the main menu type 1 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of loaded trailers lately (column headings with the data from the lowest cell of loaded worksheet) | Users access the most up to date data from loaded worksheet | Works as expected |
+| Option 3: Preview last added_unused data | In the main menu type 3 and confirm by pressing enter key | Users see a table of lane names with the corresponing numbers: postive represent trailers unused, negative ordered at the day or zeros inform there was nothing left unloaded or had to be ordered extra to complete the operations (column headings with the data from the lowest cell of added_unused worksheet) |  Users access the most up to date data from added_unused worksheet | Works as expected |
+| Option 5: Add a new lane & exit | In the main menu type 5 and confirm by pressing enter key, enter a name in any format or as recommended and press enter, once process is completed reopen the application and open any of the options that display lanes list (e.g. Option 1: Preview last loaded data) | The program displays the list of lane names, recommends the format of the input gives an example, once a new name(is not blank or exact same as one of the lanes) is entered then updates on the progress are printed, lane is added to all worksheets and program closes. After the automatic closing the users reopen the application and can see that new lane is added to the program | Works as expected |
+| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter data representing how many trailers were used for the last oparations: as many numbers as many lanes planned, separated by commas and press enter. Once process is completed reopen the application and open Option 2: Preview last planned data | Users are presented with the list of planned lanes with printed instructions to correctly enter data, the program runs daily trailer forecast and closes program. After the automatic closing the users reopen the application select Option 2: Preview last planned data and see results of the automated forecast for next operations | Works as expected |
+
+<img src="docs/testing/user-story-14-a.png">
+<img src="docs/testing/user-story-14-b.png">
+<img src="docs/testing/user-story-14-c.png">
+<img src="docs/testing/user-story-14-d.png">
+
+15. As the site owner I want to verify the accuracy of the automated forecasting and see how it impacts operational costs.
+
+| Feature | Action  | Expected Result | Actual Result |
+| ------- | ------- | --------------- | ------------- |
+| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input an integer for cancellation charge and press enter or leave it blank and press enter for the default value to be applied | The program displays how many trailers were cancelled and how much it cost in total & recently | Works as expected |
+
+<img src="docs/testing/user-story-15.png">
 
 </details>
 
 [Back to Table Of Contents](#table-of-contents)
 
-| Feature | Action  | Expected Result | Actual Result |
-| ------- | ------- | --------------- | ------------- |
-|  |  |  | Works as expected |
