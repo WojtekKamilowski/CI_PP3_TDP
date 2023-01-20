@@ -99,6 +99,9 @@ Below the program prints "Press enter to return to the menu": to print the main 
 Selecting Option 2 prints a reminder to pre-order trailers for next operations.
 Example 'Cork, IE->Dublin, IE': '2', which means the user should contact a haulage opeartor to order 2 trailers.
 
+The option can be used to check what was planned for the operations before running the daily trailer forecast (option 9) or
+After the daily trailer forecast as a support when ordering trailers from haulage providers for next loading.
+
 Below the program prints "Press enter to return to the menu": to print the main menu press enter.
 
 #### Option 3: Preview last added_unused data
@@ -281,9 +284,11 @@ As the site owner I want to:
 - [CI Python Linter](https://pep8ci.herokuapp.com/)
 - [YouTube](https://www.youtube.com/) to find video tutorial how to create a program menu in Python.
 
+[Back to Table Of Contents](#table-of-contents)
+
 ## Libraries
-- [gspread](https://docs.gspread.org/en/latest/index.html) to add and manipulate data in my Google spreadsheet and to interact with Google APIs
-- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/) used to set up the authentification needed to access the Google API and connect my Service Account with the Credentials function. A creds.json file is created with all details the API needs to access the google account.
+- [gspread](https://docs.gspread.org/en/latest/index.html) : to add and manipulate data in Google Sheet and to enable interactions with Google APIs
+- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/) : used to set up the authentification needed to access the Google API and connect my Service Account using the Credentials. A creds.json file is created with required details that the API needs to access the google account.
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -314,3 +319,46 @@ As the site owner I want to:
     User stories covered: 3, 15.
     <img src="docs/features/preview-last-loaded-data.png">    
 </details> 
+
+<details>
+    <summary>Option 2: Preview last planned data</summary>  
+    Prints lane headings with the number of trailers that were planned lately<br> 
+    User can review how many trailers are to be loaded if the daily forecast process has been completed,
+    Or preview it before running the daily forecast for data analysis.
+    User stories covered: 4.
+    <img src="docs/features/preview-last-planned-data.png">    
+</details> 
+
+<details>
+    <summary>Option 3: Preview last added_unused data</summary>  
+    Prints lane headings with the number of trailers that were unused(postiive numbers), when the planning was 100% accurate before loading(zeros) & trailers ordered for the operations on last minute(negative numbers).<br>
+    User can review how many trailers were left unitilised during the last operations.<br>
+    The feature provides a source of information to assist the users when working with the program to enable the current transport market trends review at that due to many reasons may not correspond to the programmed planning calculations.<br>  
+    User stories covered: 5, 15.
+    <img src="docs/features/preview-last-added-unused-data.png">    
+</details> 
+
+<details>
+    <summary>Option 4: Run unused haulage costs report</summary> 
+    Requests from the user to enter how much the cancellation charge per trailer is.<br>
+    If the user does not know/ is not sure how much it would be(e.g. a new starter in the industry),
+    then the program assumes the standard charge in the business: €250/trailer.<br>
+    <img src="docs/features/run-unused-haulage-costs-report-default.png">
+    The user is prevented to enter invalid data such letters:
+    <img src="docs/features/run-unused-haulage-costs-report-invalid-input.png">
+    User can review costs of unused trailer in total from all date in the program or recent costs.<br>
+    This feature enables the user to review data focused to assist with on one of the main tasks of a freight forwarder: cost minimization and reduction of resources waste.<br> 
+    User stories covered: 6, 14, 16.
+    <img src="docs/features/preview-last-added-unused-data.png">    
+</details> 
+
+<details>
+    <summary>Option 5: Add a new lane & exit</summary> 
+    Requests from the user to enter a lane name to be added to the program.<br>
+    The user can add any name as required as some of the names can be an alphanumeric code, however  the input cannot be blank:.<br>
+    <img src="docs/features/add-lane-exit.png">  
+    The feature provides users with an option to extend the use of the program in time when the business develops and a new service is added for freight operations.<br>
+    User stories covered: 7, 14, 15.
+    
+</details> 
+
