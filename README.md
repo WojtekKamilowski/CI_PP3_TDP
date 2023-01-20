@@ -358,7 +358,7 @@ As the site owner I want to:
     The user can add any name as required as some of the names can be an alphanumeric code, however  the input cannot be blank:.<br>
     <img src="docs/features/add-lane-exit.png">  
     The feature provides users with an option to extend the use of the program in time when the business develops and a new service is added for freight operations.<br>
-    User stories covered: 7, 14, 15.  
+    User stories covered: 7, 12, 14, 15.  
 </details> 
 
 <details>
@@ -369,7 +369,7 @@ As the site owner I want to:
     <img src="docs/features/delete-lane-exit-invalid-index-alpha.png">  
     The feature provides users with an option that enables the use of the program after adjusting to the business dynamics when a service is ceased.<br>
     <img src="docs/features/delete-lane.png"> 
-    User stories covered: 8, 14, 15.
+    User stories covered: 8, 12, 14, 15.
 </details>
 
 <details>
@@ -382,7 +382,7 @@ As the site owner I want to:
     <img src="docs/features/delete-last-already.png">
     Option 7, allows the user to remove the most recent numeric data from the program, for example when the user incorrectly entered values for the daily trailer forecast.<br>
     <img src="docs/features/delete-lane.png"> 
-    User stories covered: 9, 14, 15.
+    User stories covered: 9, 12, 14, 15.
 </details>
 
 <details>
@@ -395,7 +395,7 @@ As the site owner I want to:
     <img src="docs/features/delete-all-already-deleted.png">
     Option 8, allows the user to remove all numeric data from the program, for example to reset the data at the begging of a new operational period such week, month, year quarter or year.<br>
     <img src="docs/features/delete-all.png"> 
-    User stories covered: 10, 14, 15.
+    User stories covered: 10, 12, 14, 15.
 </details>
 
 <details>
@@ -406,9 +406,12 @@ As the site owner I want to:
     The user is requested to enter how many trailers were used for each lane (as many numbers required as many lanes are in the program).<br>
     If the user provides incorrect input, the program informs about it.<br>
     <img src="docs/features/daily-trailer-forecast-invalid-data.png">
-    Using this feature allows the user to reduce the time spent for regular, repetitive, daily tasks, reducing risk of a human error as possible during manual calculations, that can happen for example, due to a distraction in the middle of the calculation (receive a call or answer a manager's/colleague's question in the office.<br>
-    <img src="docs/features/daily-trailer-forecast.png">
+    Using this feature allows the user to reduce the time spent for regular, repetitive, daily tasks. Additionally it may decrease the risk of a human error as it is present during manual calculations, for example, due to a distraction during manual calulations (the operator can receive a call or answer a manager's/colleague's question in the office).<br>
+    User stories covered: 11, 12, 14, 15.
+    <img src="docs/features/daily-trailer-forecast.png"> 
 </details>
+
+
 
 
 
