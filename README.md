@@ -401,7 +401,14 @@ As the site owner I want to:
 <details>
     <summary>Option 9: Run daily trailer forecast & exit</summary>
     The feature automates one of the most repetitive tasks of freight forwarders which may be especially useful for people unexperience in the industry and can find planning orders for next days challenging.<br>
-    List of lanes in use is displayed and the user is requested 
-
+    List of lanes in use is displayed to assist with entering values for the requested input.<br>
+    <img src="docs/features/daily-trailer-forecast-lanes.png">
+    The user is requested to enter how many trailers were used for each lane (as many numbers required as many lanes are in the program).<br>
+    If the user provides incorrect input, the program informs about it.<br>
+    <img src="docs/features/daily-trailer-forecast-invalid-data.png">
+    Using this feature allows the user to reduce the time spent for regular, repetitive, daily tasks, reducing risk of a human error as possible during manual calculations, that can happen for example, due to a distraction in the middle of the calculation (receive a call or answer a manager's/colleague's question in the office.<br>
+    <img src="docs/features/daily-trailer-forecast.png">
 </details>
+
+
 
