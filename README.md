@@ -49,7 +49,7 @@ Its objective is to support everyday tasks of a freight forwarder.
 
 ### Business Owner Goals
 - Access data related to daily operations.
-- Identify unecessary operations costs.
+- Identify unnecessary operations costs.
 - Provide employees with a simple tool to manage their daily tasks. 
 - Improve productivity by automatic day-to-day tasks.
 
@@ -65,7 +65,7 @@ Its objective is to support everyday tasks of a freight forwarder.
 - A simple, easy to train on tool to manage daily tasks at work.
 - Easy access to information crucial to perform the operations.
 - Easy navigation.
-- Possiblity to confirm intention to delete.
+- Possibility to confirm intention to delete.
 
 ### User Manual
 
@@ -78,7 +78,7 @@ Opens with the program Consists of three main parts:
 - User input
 
 Actions:
-- Review and select one of the options by inputing the index number of the option confirming with enter.
+- Review and select one of the options by inputting the index number of the option confirming with enter.
 - If an invalid option is selected the program will print: "Invalid Option, please try again" & "Press enter to return to the menu": 
     In this case user needs to press enter to see the main menu again and choose one of the options: 1 - 9 or 0
 
@@ -90,7 +90,7 @@ Below the program prints "Press enter to return to the menu": to print the main 
 
 #### Option 2: Preview last planned data
 Selecting Option 2 prints a reminder to pre-order trailers for next operations.
-Example 'Cork, IE->Dublin, IE': '2', which means the user should contact a haulage opeartor to order 2 trailers.
+Example 'Cork, IE->Dublin, IE': '2', which means the user should contact a haulage operator to order 2 trailers.
 
 The option can be used to check what was planned for the operations before running the daily trailer forecast (option 9) or
 After the daily trailer forecast as a support when ordering trailers from haulage providers for next loading.
@@ -98,9 +98,9 @@ After the daily trailer forecast as a support when ordering trailers from haulag
 Below the program prints "Press enter to return to the menu": to print the main menu press enter.
 
 #### Option 3: Preview last added_unused data
-Option 3 displays how many trailers were unused (positive numbers) or ordered at the day (negative numbers) during last opeartions for each lane.
-Example 1: 'Cork, IE->Dublin, IE': '2', means that 2 trailers were planned previosuly without the need and eventually were not loaded.
-Example 2: 'Cork, IE->Reading, GB': '-1', there was one trailer loaded more than planned and the freight forwarder had to contact a haulage opeartor to order 1 trailer for loading on the day of operations.
+Option 3 displays how many trailers were unused (positive numbers) or ordered at the day (negative numbers) during last operations for each lane.
+Example 1: 'Cork, IE->Dublin, IE': '2', means that 2 trailers were planned previously without the need and eventually were not loaded.
+Example 2: 'Cork, IE->Reading, GB': '-1', there was one trailer loaded more than planned and the freight forwarder had to contact a haulage operator to order 1 trailer for loading on the day of operations.
 
 Below the program prints "Press enter to return to the menu": to print the main menu press enter.
 
@@ -108,7 +108,7 @@ Below the program prints "Press enter to return to the menu": to print the main 
 Choosing this option the user will be asked to confirm how much haulier operator will charge the freight forwarding company for cancelling loading at the day operations.
 If the input is invalid the program will display an error: Invalid data, in case there the input is blank the program will assume €250 as default cancellation charge.
 
-The program prints information how many trailers in total were unused and how much it cost and below same for most recent opearations only. 
+The program prints information how many trailers in total were unused and how much it cost and below same for the most recent operations only. 
 
 Below the program prints "Press enter to return to the menu": to print the main menu press enter.
 
@@ -129,7 +129,7 @@ The user needs to re-open the application after the update to continue using the
 
 #### Option 6: Delete a lane & exit
 When the user chooses this option firstly is able to preview lane names in the program, the program communicates to select a lane to be deleted.
-The user can select the lane to be deleted by its index: the first lane from the left has index 1 and user needs to count the number to identfy the lane to be deleted.
+The user can select the lane to be deleted by its index: the first lane from the left has index 1 and user needs to count the number to identify the lane to be deleted.
 The program also prints the range of indexes to choose from. The user is asked to enter index for example: 1, which must be confirmed by pressing enter key.
 
 <img src="docs/manual/option-6.png">
@@ -164,11 +164,11 @@ There is a minimum set of default numeric data: 6 rows for loaded and added_unus
 The user can delete the most recent non-default data from all worksheets by choosing option 7. 
 Once the option is chosen, the user is asked to confirm deleting LAST.
 
-Typing no or n (in both cases input must be  in small cases) confirmed by enter inform that the action has been stopped and displays the main menu.
+Typing no or n (in both cases input must be in small cases) confirmed by enter inform that the action has been stopped and displays the main menu.
 
-Input of yes or y (in both cases input must be  in small cases) and enter deletes the most recent non-default data or informs that no more data can be deleted from the program.
+Input of yes or y (in both cases input must be in small cases) and enter deletes the most recent non-default data or informs that no more data can be deleted from the program.
 
-If the user inputs other data than y/yes or n/no the prgoram informs about invalid input and the user needs to return to the main menu by pressing enter.
+If the user inputs other data than y/yes or n/no the program informs about invalid input and the user needs to return to the main menu by pressing enter.
 
 <img src="docs/manual/option-7-invalid-confirmation.png">
 
@@ -201,7 +201,7 @@ The user needs to re-open the application after the update to continue using the
 
 #### Option 9: Run daily trailer forecast & exit
 
-Once the option 9 is selected by the user the program dispalys lane names and information about the required input: 
+Once the option 9 is selected by the user the program displays lane names and information about the required input: 
 It must be as many numbers as many lanes in use, separated by commas: example: 1,2,3,4,5,6
 
 The user must enter numbers of how many trailers were loaded during the last operations for the corresponding service in the same order as per the lane names list.
@@ -240,7 +240,7 @@ As a user I want to:
 6. Review costs associated with the incorrect demand planning.
 7. Add a new lane to the program.
 8. Delete one of the lanes from the program.
-9. Clear most recent data from the program.
+9. Clear the most recent data from the program.
 10. Reset the data from the program to contain only necessary default values.
 11. Automate my daily tedious tasks.
 
@@ -284,7 +284,7 @@ As the site owner I want to:
 
 ### Third Party Libraries
 - [gspread](https://docs.gspread.org/en/latest/index.html) : to add and manipulate data in Google Sheet and to enable interactions with Google APIs
-- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/) : used to set up the authentification needed to access the Google API and connect my Service Account using the Credentials. A creds.json file is created with required details that the API needs to access the google account.
+- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/) : used to set up the authentication needed to access the Google API and connect my Service Account using the Credentials. A creds.json file is created with required details that the API needs to access the google account.
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -328,7 +328,7 @@ As the site owner I want to:
 <details>
     <summary>Option 3: Preview last added_unused data</summary>  
     Prints lane headings with the number of trailers that were unused(postiive numbers), when the planning was 100% accurate before loading(zeros) & trailers ordered for the operations on last minute(negative numbers).<br>
-    User can review how many trailers were left unitilised during the last operations.<br>
+    User can review how many trailers were left unutilised during the last operations.<br>
     The feature provides a source of information to assist the users when working with the program to enable the current transport market trends review at that due to many reasons may not correspond to the programmed planning calculations.<br>  
     User stories covered: 5, 14.
     <img src="docs/features/preview-last-added-unused-data.png">    
@@ -372,7 +372,7 @@ As the site owner I want to:
 
 <details>
     <summary>Option 7: Clear RECENT non-default data & exit</summary>
-    This program's feature deletes last rows of numeric data from all worksheets that is considered non-default(6 rows for loaded & added_unused worsheets, and 7 rows for planned worksheet).<br>
+    This program's feature deletes last rows of numeric data from all worksheets that is considered non-default(6 rows for loaded & added_unused worksheets, and 7 rows for planned worksheet).<br>
     The user is asked to confirm the intention of deleting the last rows of data in case the option was selected in error.<br>
     If the confirmation input is different than yes/y/no/n then the user is informed and must return to the main menu.<br>
     <img src="docs/features/delete-last-invalid-confirmation.png"> 
@@ -385,7 +385,7 @@ As the site owner I want to:
 
 <details>
     <summary>Option 8: Clear ALL non-default data & exit</summary>
-    This program's feature deletes ALL rows of numeric data from all worksheets that is considered non-default(6 rows for loaded & added_unused worsheets, and 7 rows for planned worksheet).<br>
+    This program's feature deletes ALL rows of numeric data from all worksheets that is considered non-default(6 rows for loaded & added_unused worksheets, and 7 rows for planned worksheet).<br>
     The user is asked to confirm the intention of deleting the all rows of data in case the option was selected in error.<br>
     If the confirmation input is different than yes/y/no/n then the user is informed and must return to the main menu.<br>
     <img src="docs/features/delete-all-invalid-confirmation.png"> 
@@ -398,13 +398,13 @@ As the site owner I want to:
 
 <details>
     <summary>Option 9: Run daily trailer forecast & exit</summary>
-    The feature automates one of the most repetitive tasks of freight forwarders which may be especially useful for people unexperience in the industry and can find planning orders for next days challenging.<br>
+    The feature automates one of the most repetitive tasks of freight forwarders which may be especially useful for people unexperienced in the industry and can find planning orders for next days challenging.<br>
     List of lanes in use is displayed to assist with entering values for the requested input.<br>
     <img src="docs/features/daily-trailer-forecast-lanes.png">
     The user is requested to enter how many trailers were used for each lane (as many numbers required as many lanes are in the program).<br>
     If the user provides incorrect input, the program informs about it.<br>
     <img src="docs/features/daily-trailer-forecast-invalid-data.png">
-    Using this feature allows the user to reduce the time spent for regular, repetitive, daily tasks. Additionally it may decrease the risk of a human error as it is present during manual calculations, for example, due to a distraction during manual calulations (the operator can receive a call or answer a manager's/colleague's question in the office).<br>
+    Using this feature allows the user to reduce the time spent for regular, repetitive, daily tasks. Additionally it may decrease the risk of a human error as it is present during manual calculations, for example, due to a distraction during manual caclulations (the operator can receive a call or answer a manager's/colleague's question in the office).<br>
     User stories covered: 11, 13, 14.
     <img src="docs/features/daily-trailer-forecast.png"> 
 </details>
@@ -413,7 +413,7 @@ As the site owner I want to:
 
 ## Validation 
 
-[CI Python Linter](https://pep8ci.herokuapp.com/) was used to perfrom the check if the code meets PEP8 requirements. All clear, no errors found:
+[CI Python Linter](https://pep8ci.herokuapp.com/) was used to perform the check if the code meets PEP8 requirements. All clear, no errors found:
 <img src="docs/validation/pep8-validation.png">
 
 [Back to Table Of Contents](#table-of-contents)
@@ -444,7 +444,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 1: Preview last loaded data | From the main menu type 1 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of loaded trailers lately (column headings with the data from the lowest cell of loaded worksheet) | Works as expected |
+| Option 1: Preview last loaded data | From the main menu type 1 and confirm by pressing enter key | Users see a table of lane names with the corresponding number of loaded trailers lately (column headings with the data from the lowest cell of loaded worksheet) | Works as expected |
 
 <img src="docs/testing/user-story-3.png">
 
@@ -452,7 +452,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 2: Preview last planned data | In the main menu type 2 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of planned trailers (column headings with the data from the lowest cell of planned worksheet) | Works as expected |
+| Option 2: Preview last planned data | In the main menu type 2 and confirm by pressing enter key | Users see a table of lane names with the corresponding number of planned trailers (column headings with the data from the lowest cell of planned worksheet) | Works as expected |
 
 <img src="docs/testing/user-story-4.png">
 
@@ -460,7 +460,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 3: Preview last added_unused data | In the main menu type 3 and confirm by pressing enter key | Users see a table of lane names with the corresponing numbers: postive represent trailers unused, negative ordered at the day or zeros inform there was nothing left unloaded or had to be ordered extra to complete the operations (column headings with the data from the lowest cell of added_unused worksheet) | Works as expected |
+| Option 3: Preview last added_unused data | In the main menu type 3 and confirm by pressing enter key | Users see a table of lane names with the corresponding numbers: positive represent trailers unused, negative ordered at the day or zeros inform there was nothing left unloaded or had to be ordered extra to complete the operations (column headings with the data from the lowest cell of added_unused worksheet) | Works as expected |
 
 <img src="docs/testing/user-story-5.png">
 
@@ -485,11 +485,11 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 6: Delete a lane & exit | In the main menu type 6 and confirm by pressing enter key, review the list of lanes and identify the index of the lane to be deleted(index of first lane from the left is 1), type identified index and press enter, confirm inention of deleting the selected lane by typing 'yes' or 'y' and press enter | The program displays list of lanes, and informs the range of indexes to choose from, asks to confirm the choice, deletes the lane from all worksheets, and closes the program  | Works as expected |
+| Option 6: Delete a lane & exit | In the main menu type 6 and confirm by pressing enter key, review the list of lanes and identify the index of the lane to be deleted(index of first lane from the left is 1), type identified index and press enter, confirm intention of deleting the selected lane by typing 'yes' or 'y' and press enter | The program displays list of lanes, and informs the range of indexes to choose from, asks to confirm the choice, deletes the lane from all worksheets, and closes the program  | Works as expected |
 
 <img src="docs/testing/user-story-8.png">
 
-9. As a user I want to clear most recent data from the program.
+9. As a user I want to clear the most recent data from the program.
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
@@ -511,7 +511,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter data representing how many trailers were used for the last oparations: as many numbers as many lanes planned, separated by commas and press enter  | Users are presented with the list of planned lanes with printed instructions to correctly enter data, the program runs daily trailer forecast and closes program  | Works as expected |
+| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter data representing how many trailers were used for the last operations: as many numbers as many lanes planned, separated by commas and press enter  | Users are presented with the list of planned lanes with printed instructions to correctly enter data, the program runs daily trailer forecast and closes program  | Works as expected |
 
 <img src="docs/testing/user-story-11.png">
 <img src="docs/testing/user-story-11-a.png">
@@ -528,7 +528,7 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input something different than an integer ( for example a letter) for cancellation charge and press enter | Program informs that that data is invalid and repeats request to enter cancellation charge until input is correct | Works as expected |
+| Option 4: Run unused haulage costs report | In the main menu type 4 and confirm by pressing enter key, then input something different than an integer (for example a letter) for cancellation charge and press enter | Program informs that that data is invalid and repeats request to enter cancellation charge until input is correct | Works as expected |
 | Option 5: Add a new lane & exit | In the main menu type 5 and confirm by pressing enter key, enter exact same name as one of the existing lanes or leave input blank and press enter | Users are informed that input cannot be blank or the entered name is already added, and that they should to return to menu by pressing enter where they can choose one of the options again | Works as expected |
 | Option 6: Delete a lane & exit | In the main menu type 6 and confirm by pressing enter key, type index outside of the presented range and press enter | Users are informed that the range of indexes is from x to y, however, z was entered, program repeats the request for a valid input | Works as expected |
 | Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter some data that is against the presented instructions (letters, special signs, floats, not as many numbers as instructed) and press enter | Informs that data is invalid or that x numbers is required, but only y is provided | Works as expected |
@@ -547,10 +547,10 @@ As the site owner I want to:
 
 | Feature | Action  | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-| Option 1: Preview last loaded data | From the main menu type 1 and confirm by pressing enter key | Users see a table of lane names with the corresponing number of loaded trailers lately (column headings with the data from the lowest cell of loaded worksheet) | Users access the most up to date data from loaded worksheet | Works as expected |
-| Option 3: Preview last added_unused data | In the main menu type 3 and confirm by pressing enter key | Users see a table of lane names with the corresponing numbers: postive represent trailers unused, negative ordered at the day or zeros inform there was nothing left unloaded or had to be ordered extra to complete the operations (column headings with the data from the lowest cell of added_unused worksheet) |  Users access the most up to date data from added_unused worksheet | Works as expected |
+| Option 1: Preview last loaded data | From the main menu type 1 and confirm by pressing enter key | Users see a table of lane names with the corresponding number of loaded trailers lately (column headings with the data from the lowest cell of loaded worksheet) | Users access the most up to date data from loaded worksheet | Works as expected |
+| Option 3: Preview last added_unused data | In the main menu type 3 and confirm by pressing enter key | Users see a table of lane names with the corresponding numbers: positive represent trailers unused, negative ordered at the day or zeros inform there was nothing left unloaded or had to be ordered extra to complete the operations (column headings with the data from the lowest cell of added_unused worksheet) |  Users access the most up to date data from added_unused worksheet | Works as expected |
 | Option 5: Add a new lane & exit | In the main menu type 5 and confirm by pressing enter key, enter a name in any format or as recommended and press enter, once process is completed reopen the application and open any of the options that display lanes list (e.g. Option 1: Preview last loaded data) | The program displays the list of lane names, recommends the format of the input gives an example, once a new name(is not blank or exact same as one of the lanes) is entered then updates on the progress are printed, lane is added to all worksheets and program closes. After the automatic closing the users reopen the application and can see that new lane is added to the program | Works as expected |
-| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter data representing how many trailers were used for the last oparations: as many numbers as many lanes planned, separated by commas and press enter. Once process is completed reopen the application and open Option 2: Preview last planned data | Users are presented with the list of planned lanes with printed instructions to correctly enter data, the program runs daily trailer forecast and closes program. After the automatic closing the users reopen the application select Option 2: Preview last planned data and see results of the automated forecast for next operations | Works as expected |
+| Option 9: Run daily trailer forecast & exit | In the main menu type 9 and confirm by pressing enter key, enter data representing how many trailers were used for the last operations: as many numbers as many lanes planned, separated by commas and press enter. Once process is completed reopen the application and open Option 2: Preview last planned data | Users are presented with the list of planned lanes with printed instructions to correctly enter data, the program runs daily trailer forecast and closes program. After the automatic closing the users reopen the application select Option 2: Preview last planned data and see results of the automated forecast for next operations | Works as expected |
 
 <img src="docs/testing/user-story-14-a.png">
 <img src="docs/testing/user-story-14-b.png">
@@ -589,7 +589,7 @@ The website was deployed using Heroku following these steps:
 5. Go to the "settings" tab, then to Config Vars and press "Reveal Config Vars".
 6. In the field for KEY add "CREDS" and into VALUE field copy & paste entire content of creds.json file, and click "Add".
 7. Below add another Config Var with KEY = "PORT" & VALUE = "8000".
-8. Add Buildpacks: firtly python (it must be on the top) and then node.js below.
+8. Add Buildpacks: first python (it must be on the top) and then node.js below.
 9. Go to the "Deploy" section and select GitHub for Deployment method, click "Connect to GitHub".
 10. Search for a repository to connect to.
 11. Click enable automatic deploys and then deploy branch.
@@ -629,10 +629,6 @@ You can clone the repository by following these steps:
 
 ## Acknowledgements
 I would like to thank those who were a great support and inspiration during writing this project:
+- My wife, who supported me during the process of creating this project.
 - My mentor Mo Shami.
-- My wife who supported me during the process of creating this project.
 - Code Institute for preparing the materials and providing a wide range of available means of learning for the students.
-
-
-
-
